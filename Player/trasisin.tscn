@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://cqgbw31n0ck6v"]
+
+[ext_resource type="Script" path="res://trasisin.gd" id="1_prt7j"]
+[ext_resource type="AudioStream" uid="uid://fcgb1ykolwlb" path="res://Audio/videogame-death-sound-43894.mp3" id="2_u51wh"]
+
+[sub_resource type="Animation" id="Animation_aipcp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.505882, 0.658824, 0.447059, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8rtjq"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.0901961), Color(0, 0, 0, 0.120523), Color(0, 0, 0, 0.15085), Color(0, 0, 0, 0.181176), Color(0, 0, 0, 0.211503), Color(0, 0, 0, 0.24183), Color(0, 0, 0, 0.272157), Color(0, 0, 0, 0.302484), Color(0, 0, 0, 0.33281), Color(0, 0, 0, 0.363137), Color(0, 0, 0, 0.393464), Color(0, 0, 0, 0.423791), Color(0, 0, 0, 0.454118), Color(0, 0, 0, 0.484444), Color(0, 0, 0, 0.514771), Color(0, 0, 0, 0.545098), Color(0, 0, 0, 0.575425), Color(0, 0, 0, 0.605752), Color(0, 0, 0, 0.636078), Color(0, 0, 0, 0.666405), Color(0, 0, 0, 0.696732), Color(0, 0, 0, 0.727059), Color(0, 0, 0, 0.757386), Color(0, 0, 0, 0.787712), Color(0, 0, 0, 0.818039), Color(0, 0, 0, 0.848366), Color(0, 0, 0, 0.878693), Color(0, 0, 0, 0.90902), Color(0, 0, 0, 0.939346), Color(0, 0, 0, 0.969673), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fj4hs"]
+_data = {
+"RESET": SubResource("Animation_aipcp"),
+"new_animation": SubResource("Animation_8rtjq")
+}
+
+[node name="trasisin" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_prt7j")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.505882, 0.658824, 0.447059, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fj4hs")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_u51wh")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished1"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

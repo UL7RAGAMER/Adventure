@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://eccb6vi1yjqa"]
+
+[ext_resource type="Texture2D" uid="uid://das15xk6t13c2" path="res://Texture/icon.svg" id="1_oyhyc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bsd73"]
+
+[node name="Node2D" type="Sprite2D"]
+material = SubResource("ShaderMaterial_bsd73")
+texture = ExtResource("1_oyhyc")
