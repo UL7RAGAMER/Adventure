@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://c4uv3cur76h0r"]
+[gd_scene load_steps=54 format=3 uid="uid://c4uv3cur76h0r"]
 
 [ext_resource type="Script" path="res://Level/level.gd" id="1_b3drq"]
 [ext_resource type="Texture2D" uid="uid://du8i3i0ukc661" path="res://Texture/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="3_ohnlv"]
@@ -32,6 +32,9 @@
 [ext_resource type="Texture2D" uid="uid://cn3tprott0bha" path="res://Level/Sprite-0001.png" id="27_u7dqk"]
 [ext_resource type="Texture2D" uid="uid://4kkl3ir64di5" path="res://Texture/block.png" id="29_iishn"]
 [ext_resource type="Texture2D" uid="uid://d3qsmfmn223d5" path="res://Texture/border.png" id="30_o3ka3"]
+[ext_resource type="Texture2D" uid="uid://ce7otcmg1w720" path="res://Texture/lamp.png" id="33_b40ab"]
+[ext_resource type="Texture2D" uid="uid://dbmfvwude6arv" path="res://Texture/ambirnt light.png" id="33_fjuwm"]
+[ext_resource type="Texture2D" uid="uid://bwt08mavudxli" path="res://Texture/asd.png" id="35_rghql"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qtydr"]
 size = Vector2(82, 69)
@@ -107,18 +110,26 @@ size = Vector2(512.603, 86.6313)
 
 [sub_resource type="Environment" id="Environment_mrtdi"]
 background_mode = 3
+ssr_max_steps = 479
+ssr_fade_in = 0.0168985
 glow_enabled = true
 glow_normalized = true
-glow_intensity = 1.31
+glow_intensity = 8.0
+glow_mix = 0.0
 glow_blend_mode = 1
 glow_hdr_threshold = 0.0
-glow_hdr_scale = 0.3
+glow_hdr_scale = 4.0
+glow_map_strength = 1.0
+glow_map = ExtResource("33_fjuwm")
 fog_light_energy = 22.2
 fog_sun_scatter = 1.0
 fog_density = 1.2575
 fog_height = 1024.0
 fog_height_density = 0.0675
-adjustment_brightness = 0.83
+adjustment_brightness = 0.33
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2o0h1"]
+polygon = PackedVector2Array(44.4729, 785.645, 171.871, 787.427, 184.789, 742.437, 344.26, 740.655, 358.671, 723.933, 359.616, 701.254, 373.16, 682.041, 429.541, 678.261, 438.439, 858.684, 44.9639, 856.51)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_b3drq")
@@ -204,7 +215,10 @@ collision_mask = 30
 [node name="GPUParticles2D" parent="Player" index="1"]
 z_index = -2
 
-[node name="Timer5" parent="Player" index="13"]
+[node name="LightOccluder2D" parent="Player" index="2"]
+position = Vector2(-50.8633, -42.9684)
+
+[node name="Timer5" parent="Player" index="14"]
 autostart = true
 
 [node name="RemoteTransform2D2" type="RemoteTransform2D" parent="Player"]
@@ -702,6 +716,22 @@ one_shot = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mrtdi")
+
+[node name="Lamp" type="Sprite2D" parent="."]
+position = Vector2(389.557, 657.356)
+scale = Vector2(1.28, 1.28)
+texture = ExtResource("33_b40ab")
+
+[node name="PointLight2D" type="PointLight2D" parent="Lamp"]
+position = Vector2(-2.56084, 1.65448)
+scale = Vector2(2.59198, 2.59198)
+color = Color(0, 0.960784, 0.862745, 1)
+shadow_enabled = true
+shadow_filter = 2
+texture = ExtResource("35_rghql")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_2o0h1")
 
 [connection signal="hurt" from="." to="Player" method="_on_level_hurt"]
 [connection signal="body_entered" from="Portal/Area2D" to="Portal" method="_on_area_2d_body_entered"]
