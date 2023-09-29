@@ -40,16 +40,16 @@ func _physics_process(delta):
 		
 		rest()
 		
-	$"../CanvasLayer/Label3".set_text(str(exp1))
-	$"../CanvasLayer/Label3".set_text(str(exp1))
+	$"../Tutorial/CanvasLayer/Label3".set_text(str(exp1))
+	$"../Tutorial/CanvasLayer/Label3".set_text(str(exp1))
 	if InputBuffer.is_action_press_buffered('xp'):
 		gain_xp(1)
 	max_health = PlayerPos.def
-	$"../CanvasLayer/TextureProgressBar3".set_max(exp_req)
-	$"../CanvasLayer/TextureProgressBar3".set_value(exp1)
+	$"../Tutorial/CanvasLayer/TextureProgressBar3".set_max(exp_req)
+	$"../Tutorial/CanvasLayer/TextureProgressBar3".set_value(exp1)
 
-	$"../CanvasLayer/TextureProgressBar2".set_max(PlayerPos.max_mana)
-	$"../CanvasLayer/TextureProgressBar".set_max(max_health)
+	$"../Tutorial/CanvasLayer/TextureProgressBar2".set_max(PlayerPos.max_mana)
+	$"../Tutorial/CanvasLayer/TextureProgressBar".set_max(max_health)
 	up_health()
 	if health <= 0:
 		health = 0
@@ -60,10 +60,10 @@ func _physics_process(delta):
 
 		await $player.animation_finished
 		$player.set_frame(7)
-		$"../CanvasLayer/AnimationTree".play("new_animation")
-		await $"../CanvasLayer/AnimationTree".animation_finished
-		$"../CanvasLayer/AnimationTree".play("new_animation")		
-		$"../CanvasLayer".visible = false
+		$"../Tutorial/CanvasLayer/AnimationTree".play("new_animation")
+		await $"../Tutorial/CanvasLayer/AnimationTree".animation_finished
+		$"../Tutorial/CanvasLayer/AnimationTree".play("new_animation")		
+		$"../Tutorial/CanvasLayer".visible = false
 		$".".visible = false
 		
 		Trasisin.change_scene_to_file("res://Player/game.tscn")
@@ -120,7 +120,7 @@ func _physics_process(delta):
 		else:
 			$player.play("idle")
 			pass	
-	$"../CanvasLayer/TextureProgressBar2".value = mana
+	$"../Tutorial/CanvasLayer/TextureProgressBar2".value = mana
 
 	attack()
 	posi.emit(position)	
@@ -133,10 +133,10 @@ func _physics_process(delta):
 func inventory():
 	if Input.is_action_just_pressed("inventory"):
 		print('work')
-		if $"../CanvasLayer2".visible == true:
-			$"../CanvasLayer2".visible = false
-		elif $"../CanvasLayer2".visible == false:
-			$"../CanvasLayer2".visible = true
+		if $"../Tutorial/CanvasLayer2".visible == true:
+			$"../Tutorial/CanvasLayer2".visible = false
+		elif $"../Tutorial/CanvasLayer2".visible == false:
+			$"../Tutorial/CanvasLayer2".visible = true
 
 func update_direction():
 	
@@ -210,7 +210,7 @@ func _on_timer_3_timeout():
 
 
 func up_health():
-	var health_p =$"../CanvasLayer/TextureProgressBar"
+	var health_p =$"../Tutorial/CanvasLayer/TextureProgressBar"
 	health_p.value = health
 
 	

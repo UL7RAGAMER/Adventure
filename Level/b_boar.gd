@@ -16,7 +16,7 @@ func _physics_process(delta):
 		$".".queue_free()
 		var c = get_node('/root/Level/Player')
 		c.gain_xp(150)
-	var pos = $"../Player".position.x - $".".position.x
+	var pos = %Player.position.x - $".".position.x
 	if anilocked == false:
 		$boar.play("idle")
 	if not is_on_floor():
@@ -24,7 +24,7 @@ func _physics_process(delta):
 	if (pos < 100 and pos > 0) or (pos > -100 and pos < 0) :
 
 		run = true
-		var direc = ($"../Player".global_position.x - $".".global_position.x )
+		var direc = (%Player.global_position.x - $".".global_position.x )
 		if direc <0:
 			position.x -= randi_range(80,100) * delta
 			
@@ -54,7 +54,7 @@ func _physics_process(delta):
 
 func hurt():
 	var x = false
-	var pos = $"../Player".position.x - $".".position.x
+	var pos = %Player.position.x - $".".position.x
 	if (pos <= 65 and pos > 0) or (pos >= -49 and pos < 0) :
 		player_hurt1.emit()
 		x = true

@@ -4,8 +4,8 @@ var bluefb:PackedScene = preload("res://Player/bluefb.tscn")
 var bfb_aud:PackedScene = preload("res://Player/bfb_aud.tscn")
 var bfb_ani = preload("res://Player/bfb_ani.tscn")
 var boar = load("res://Player/character_body_2d.tscn")
-@onready var mrk1 : Marker2D = $spw1
-@onready var mrk2 : Marker2D = $spw2
+@onready var mrk1 : Marker2D = $Tutorial/spw1
+@onready var mrk2 : Marker2D = $Tutorial/spw2
 var num = 0
 signal hurt()
 func _ready():
@@ -13,14 +13,14 @@ func _ready():
 signal dmg(dmg) 
 func _process(delta):
 	num += 1
-	$CanvasLayer2/Control/Panel2/Label2.set_text(str(PlayerPos.points))
-	var pos1 = $spw1.position
-	var pos2 = $spw2.position
+	$Tutorial/CanvasLayer2/Control/Panel2/Label2.set_text(str(PlayerPos.points))
+	var pos1 = $Tutorial/spw1.position
+	var pos2 = $Tutorial/spw2.position
 	var f_pos = pos1
 	f_pos.x = randi_range(pos1.x,pos2.x) 
 	var b = boar.instantiate() as CharacterBody2D
 	b.position = f_pos
-	if num<5:
+	if false:
 		add_child(b)
 	b.player_hurt.connect(_on_character_body_2d_player_hurt)
 	if PlayerPos.dead == true:
@@ -34,15 +34,15 @@ func _on_player_fireball(pos, direction):
 	fb.rotation_degrees = rad_to_deg(direction.angle())
 	fb.direction = direction
 	print(fb.position,fb.rotation_degrees,fb.direction)
-	$Fireballs.add_child(fb)
-	$Fireballs/Fireball/AudioStreamPlayer2D.play()
+	$Tutorial/Fireballs.add_child(fb)
+	$Tutorial/Fireballs/Fireball/AudioStreamPlayer2D.play()
 	await get_tree().create_timer(3).timeout
-	$Fireballs/Fireball/fireball.play("fizziling")
-	$Fireballs/Fireball/CollisionShape2D.set_deferred("disabled",true)
+	$Tutorial/Fireballs/Fireball/fireball.play("fizziling")
+	$Tutorial/Fireballs/Fireball/CollisionShape2D.set_deferred("disabled",true)
 	for i in range(0,153):
-		$Fireballs/Fireball/GPUParticles2D.amount -= 1
+		$Tutorial/Fireballs/Fireball/GPUParticles2D.amount -= 1
 	
-	await $Fireballs/Fireball/fireball.animation_finished
+	await $Tutorial/Fireballs/Fireball/fireball.animation_finished
 	fb.queue_free()
 
 
@@ -60,9 +60,9 @@ func _on_player_bluefb(pos, dir):
 	bfb.direction = dir
 	bfb_aud1.direction = dir
 	bfb_ani1.direction = dir
-	$Fireballs.add_child(bfb)
-	$Fireballs.add_child(bfb_aud1)
-	$Fireballs.add_child(bfb_ani1)	
+	$Tutorial/Fireballs.add_child(bfb)
+	$Tutorial/Fireballs.add_child(bfb_aud1)
+	$Tutorial/Fireballs.add_child(bfb_ani1)	
 	
 	await get_tree().create_timer(6.671).timeout
 	bfb.queue_free()
@@ -83,7 +83,7 @@ func _on_button_pressed():
 		PlayerPos.dmg_multi_changer('yes')
 		var stat_dmg = PlayerPos.dmg_multiplyer
 		
-		$CanvasLayer2/Control/Panel2/Control/Label.set_text(str(stat_dmg))
+		$Tutorial/CanvasLayer2/Control/Panel2/Control/Label.set_text(str(stat_dmg))
 	
 
 
@@ -96,7 +96,7 @@ func _on_button_2_pressed():
 			PlayerPos.dmg_multi_changer('z')
 			
 		var stat_dmg = PlayerPos.dmg_multiplyer
-		$CanvasLayer2/Control/Panel2/Control/Label.set_text(str(stat_dmg))
+		$Tutorial/CanvasLayer2/Control/Panel2/Control/Label.set_text(str(stat_dmg))
 		
 		pass # Replace with function body.
 
@@ -111,7 +111,7 @@ func _on_button_3_pressed():
 			
 		var stat_mana = PlayerPos.max_mana
 		stat_mana = round(stat_mana)
-		$CanvasLayer2/Control/Panel2/Control2/Label2.set_text(str(stat_mana))
+		$Tutorial/CanvasLayer2/Control/Panel2/Control2/Label2.set_text(str(stat_mana))
 		pass # Replace with function body.
 
 
@@ -127,7 +127,7 @@ func _on_button_4_pressed():
 
 		var stat_mana = PlayerPos.max_mana
 		stat_mana = round(stat_mana)
-		$CanvasLayer2/Control/Panel2/Control2/Label2.set_text(str(stat_mana))
+		$Tutorial/CanvasLayer2/Control/Panel2/Control2/Label2.set_text(str(stat_mana))
 	pass # Replace with function body.
 
 
@@ -139,7 +139,7 @@ func _on_button_5_pressed():
 		
 
 		var stat_def = PlayerPos.def
-		$CanvasLayer2/Control/Panel2/Control3/Label3.set_text(str(stat_def))
+		$Tutorial/CanvasLayer2/Control/Panel2/Control3/Label3.set_text(str(stat_def))
 
 		pass # Replace with function body.
 
@@ -155,7 +155,7 @@ func _on_button_6_pressed():
 
 		var stat_def = PlayerPos.def
 
-		$CanvasLayer2/Control/Panel2/Control3/Label3.set_text(str(stat_def))
+		$Tutorial/CanvasLayer2/Control/Panel2/Control3/Label3.set_text(str(stat_def))
 	
 	pass # Replace with function body.
 

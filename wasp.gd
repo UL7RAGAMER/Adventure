@@ -1,6 +1,6 @@
 extends CharacterBody2D
 var ani_lock = false
-@onready var player = $"../../Player"
+@onready var player = %Player
 var bullet = preload("res://Level/wasp_bullet.tscn")
 var num = 1
 var health = 3
@@ -31,7 +31,7 @@ func atk():
 	$AnimatedSprite2D.play("atk")
 	await $AnimatedSprite2D.animation_finished
 	var bul = bullet.instantiate() as Node2D
-	var direc = ($"/root/Level/Player/Marker2D".global_position - $".".global_position).normalized()
+	var direc = ($"/root/World/Player/Marker2D".global_position - $".".global_position).normalized()
 	
 	bul.direction = direc
 	bul.rotation_degrees = rad_to_deg(direc.angle())

@@ -191,6 +191,7 @@ animations = [{
 
 [node name="Fireball" type="Area2D"]
 modulate = Color(0.85098, 0.501961, 1, 1)
+z_index = 30
 scale = Vector2(0.6, 0.6)
 collision_layer = 4
 collision_mask = 23

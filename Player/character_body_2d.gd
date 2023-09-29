@@ -6,6 +6,8 @@ var dmg = false
 var run  = false
 var direction : Vector2 = Vector2.ZERO
 var health = 5
+func _ready():
+	print($"../../Player",12)
 signal player_hurt()
 func _physics_process(delta):
 	t = randf_range(0,0.03)
@@ -15,7 +17,9 @@ func _physics_process(delta):
 		$".".queue_free()
 		var c = get_node('/root/Level/Player')
 		c.gain_xp(50)
-	var pos = $"../Player".position.x - $".".position.x
+		
+	var pl = %Player.position.x
+	var pos =%Player.position.x - position.x
 	if anilocked == false:
 		$boar.play("idle")
 	if not is_on_floor():
@@ -23,7 +27,7 @@ func _physics_process(delta):
 	if (pos < 150 and pos > 0) or (pos > -150 and pos < 0) :
 
 		run = true
-		$".".global_position =  $".".global_position.lerp($"../Player".global_position, t)
+		$".".global_position =  $".".global_position.lerp(%Player.global_position, t)
 		anilocked = true
 		if dmg == false:
 			$boar.play("run")
@@ -47,7 +51,7 @@ func _physics_process(delta):
 
 func hurt():
 	var x = false
-	var pos = $"../Player".position.x - $".".position.x
+	var pos = %Player.position.x - $".".position.x
 	if (pos <= 28 and pos > 0) or (pos >= -30 and pos < 0) :
 		player_hurt.emit()
 		x = true
