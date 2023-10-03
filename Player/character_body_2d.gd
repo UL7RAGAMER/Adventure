@@ -15,7 +15,7 @@ func _physics_process(delta):
 		t = 0
 	if health  <= 0:
 		$".".queue_free()
-		var c = get_node('/root/Level/Player')
+		var c = get_node('/root/World/Player')
 		c.gain_xp(50)
 		
 	var pl = %Player.position.x

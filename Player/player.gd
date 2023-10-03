@@ -260,7 +260,7 @@ func gain_xp(amount):
 func lvl_up():
 	lvl += 1
 	exp_req = req_xp(lvl + 1)
-	$"../CanvasLayer/Label".set_text(str(lvl))
+	$"../Tutorial/CanvasLayer/Label".set_text(str(lvl))
 	PlayerPos.points += 1
 func supre_saiyan():	
 	var supre = $GPUParticles2D.process_material.get_param_texture(4).get_curve().get_point_left_tangent(1)
