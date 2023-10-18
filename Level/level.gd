@@ -12,6 +12,7 @@ func _ready():
 	pass
 signal dmg(dmg) 
 func _process(delta):
+
 	num += 1
 	$Tutorial/CanvasLayer2/Control/Panel2/Label2.set_text(str(PlayerPos.points))
 	var pos1 = $Tutorial/spw1.position
@@ -180,3 +181,5 @@ func _on_wasp_wasp_h(h):
 	
 	
 	pass # Replace with function body.
+
+
