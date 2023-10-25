@@ -12,7 +12,7 @@ func _ready():
 	pass
 signal dmg(dmg) 
 func _process(delta):
-
+	
 	num += 1
 	$Tutorial/CanvasLayer2/Control/Panel2/Label2.set_text(str(PlayerPos.points))
 	var pos1 = $Tutorial/spw1.position
@@ -171,8 +171,7 @@ func _on_player_dead():
 	pass # Replace with function body.
 
 
-func _on_bullet_w_hurt(h):
-	print(h)
+func _on_bullet_w_hurt(h):				
 	pass # Replace with function body.
 
 
@@ -183,3 +182,25 @@ func _on_wasp_wasp_h(h):
 	pass # Replace with function body.
 
 
+
+
+func _on_animation_player_animation_finished(anim_name):
+	pass # Replace with function body.
+
+
+
+
+
+func _on_button_toggled(button_pressed):
+	pass # Replace with function body.
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered():
+	$Tutorial.visible = true
+	pass # Replace with function body.
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	$Tutorial.visible = false
+	
+	pass # Replace with function body.

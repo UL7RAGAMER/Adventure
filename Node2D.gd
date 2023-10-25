@@ -10,6 +10,11 @@ var def = 10
 var def_changed = false
 var points = 0
 var x = load("res://Player/player.tscn")
+var l1 = false
+var l2 = false
+var l3 = false
+var l4 = false
+var l5 = false
 func _process(delta):
 
 	pass

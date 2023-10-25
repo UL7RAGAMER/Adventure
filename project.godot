@@ -12,7 +12,6 @@ config_version=5
 
 run/main_scene="res://Level/level.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
-run/max_fps=100
 config/icon="res://Texture/icon.svg"
 
 [autoload]
@@ -21,15 +20,12 @@ Trasisin="*res://Player/trasisin.tscn"
 PlayerPos="*res://Player/player pos.tscn"
 InputBuffer="*res://godot-input-buffer-godot-4/input_buffer.gd"
 
-[debug]
-
-shapes/collision/draw_2d_outlines=false
-
 [display]
 
-window/size/viewport_width=1600
-window/size/viewport_height=777
+window/size/viewport_width=1280
+window/size/viewport_height=704
 window/size/mode=3
+window/vsync/vsync_mode=0
 
 [editor_plugins]
 

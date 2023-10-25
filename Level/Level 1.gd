@@ -8,5 +8,10 @@ func _ready():
 
 
 func _process(delta):
-	ProjectSettings.set_setting('debug/shapes/collision/draw_2d_outlines',true)
+	$ParallaxBackground/ParallaxLayer/Sprite2D.centered = false
+	OS.is_debug_build()
+	
 	pass
+
+
+

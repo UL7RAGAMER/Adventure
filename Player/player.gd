@@ -5,6 +5,7 @@ signal bluefb(position, direction)
 signal atk()
 signal dead()
 const SPEED = 200.0
+const dbug = 1
 const JUMP_VELOCITY = -400.0
 var max_health = PlayerPos.def
 var health = max_health 
@@ -16,7 +17,7 @@ var was_in_air : bool = false
 var can_attacked : bool = true
 var can_fb : bool = true
 var can_bfb : bool = true
-
+var pf = 10
 var can_move = true
 var fb_cost = 40
 var bfb_cost = 20
@@ -28,8 +29,8 @@ var can_jump = false
 func _physics_process(delta):
 
 	
-	if Input.is_action_pressed("Down") and is_on_floor():
-		position.y +=10
+	if Input.is_action_just_pressed("Down") and is_on_floor():
+		position.y +=5
 	$GPUParticles2D.visible = false
 	$GPUParticles2D2.visible = false
 	$GPUParticles2D.process_material.set_emission_sphere_radius(1)
@@ -74,7 +75,7 @@ func _physics_process(delta):
 		Trasisin.change_scene_to_file("res://Player/game.tscn")
 		dead.emit()
 	if not is_on_floor():
-		velocity.y += (gravity) * delta
+		velocity.y += (gravity) * delta*dbug
 		was_in_air = true
 	else:
 		
@@ -84,12 +85,12 @@ func _physics_process(delta):
 	# Handle Jump.
 	if is_on_floor() and can_jump == false:
 		can_jump = true
-	elif can_jump == true and $Jump.is_stopped():
+	elif can_jump == true and $Jump.is_stopped() :
 		$Jump.start()
 		
 	if Input.is_action_just_pressed("ui_accept") and can_jump:
 		jump()
-	
+		
 	if Input.is_action_pressed("hurt"):
 		health-=1
 	if health != 0 and (not health<0):	
@@ -122,12 +123,15 @@ func _physics_process(delta):
 			$player.play("idle")
 			pass	
 	$"../Hud/TextureProgressBar2".value = mana
-	$"../Hud/Label4".set_text(str(can_jump,'\n',is_on_floor(),'\n',$Jump.time_left))
+
 	attack()
 	posi.emit(position)	
 	inventory()				
 	move_and_slide()
-
+	for i in get_slide_collision_count():
+		var c = get_slide_collision(i)
+		if c.get_collider() is RigidBody2D:
+			c.get_collider().apply_central_impulse(-c.get_normal() * pf)
 	update_direction()
 	_on_player_2d_animation_finished()
 
@@ -148,7 +152,8 @@ var  was_on_floor = is_on_floor()
 func jump():
 	velocity.y = JUMP_VELOCITY
 	$player.play("jump_start")
-	ani_locked = true		
+	ani_locked = true
+	can_jump = false
 func  land():
 	$player.play('jump_end')
 	ani_locked = true
@@ -307,4 +312,10 @@ func _on_timer_6_timeout():
 
 func _on_jump_timeout():
 	can_jump = false
+	pass # Replace with function body.
+
+
+func _on_area_2d_body_entered2(body):
+	await get_tree().create_timer(0.1).timeout
+	health = 0
 	pass # Replace with function body.

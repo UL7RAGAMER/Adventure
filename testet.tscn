@@ -1,8 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://eccb6vi1yjqa"]
+[gd_scene load_steps=20 format=3 uid="uid://eccb6vi1yjqa"]
 
 [ext_resource type="Texture2D" uid="uid://das15xk6t13c2" path="res://Texture/icon.svg" id="1_oyhyc"]
 [ext_resource type="Texture2D" uid="uid://cx8bu4bf5h8ji" path="res://Texture/test1.png" id="1_w8x01"]
 [ext_resource type="Texture2D" uid="uid://fce22u1tfcne" path="res://Texture/test.png" id="3_h7qyw"]
+[ext_resource type="Script" path="res://RigidBody2D.gd" id="4_i6m2h"]
+[ext_resource type="Texture2D" uid="uid://bwt08mavudxli" path="res://Texture/asd.png" id="5_28uvg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bsd73"]
 
@@ -115,12 +117,13 @@ script/source = "extends CharacterBody2D
 const SPEED = 1000.0
 const JUMP_VELOCITY = -400.0
 var moving = false
-
+var push_force = 80
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting(\"physics/2d/default_gravity\")
 
 
 func _physics_process(delta):
+
 	velocity = velocity.round()
 	var tw = get_tree().create_tween()
 	# Handle Jump.
@@ -163,6 +166,7 @@ func _physics_process(delta):
 
 		pass
 	move_and_slide()
+
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_28md0"]
@@ -201,6 +205,9 @@ func _on_timer_2_timeout():
 	speed += 10
 	pass # Replace with function body.
 "
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6d8mt"]
+radius = 20.6694
 
 [node name="Node2D" type="Node2D"]
 material = SubResource("ShaderMaterial_bsd73")
@@ -259,7 +266,7 @@ label_settings = SubResource("LabelSettings_r83sn")
 process_physics_priority = 2
 modulate = Color(5.92, 1, 1, 1)
 collision_layer = 2
-collision_mask = 3
+collision_mask = 7
 safe_margin = 0.001
 script = SubResource("GDScript_k74su")
 player = NodePath("../player")
@@ -294,6 +301,22 @@ autostart = true
 [node name="Timer2" type="Timer" parent="enemy"]
 wait_time = 1.03
 autostart = true
+
+[node name="RigidBody2D" type="StaticBody2D" parent="."]
+position = Vector2(93, -254)
+scale = Vector2(3.14497, 3.14497)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("4_i6m2h")
+
+[node name="Asd" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(-0.0917969, 0.100891)
+texture = ExtResource("5_28uvg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(-0.120117, 0.0566406)
+scale = Vector2(0.439662, 0.439662)
+shape = SubResource("CircleShape2D_6d8mt")
 
 [connection signal="timeout" from="enemy/Timer" to="enemy" method="_on_timer_timeout"]
 [connection signal="timeout" from="enemy/Timer2" to="enemy" method="_on_timer_2_timeout"]
