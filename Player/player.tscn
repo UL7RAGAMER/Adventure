@@ -647,6 +647,8 @@ shape = SubResource("CapsuleShape2D_77mt2")
 wait_time = 0.1
 one_shot = true
 
+[node name="AnimationTree" type="AnimationTree" parent="."]
+
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
 [connection signal="timeout" from="Timer3" to="." method="_on_timer_3_timeout"]
 [connection signal="timeout" from="Timer4" to="." method="_on_timer_4_timeout"]
