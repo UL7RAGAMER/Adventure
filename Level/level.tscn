@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://c4uv3cur76h0r"]
+[gd_scene load_steps=99 format=3 uid="uid://c4uv3cur76h0r"]
 
 [ext_resource type="Script" path="res://Level/level.gd" id="1_b3drq"]
 [ext_resource type="PackedScene" uid="uid://cc8wav40o0jst" path="res://Player/player.tscn" id="4_gwfel"]
@@ -44,6 +44,8 @@
 [ext_resource type="Texture2D" uid="uid://diwx6iqb2d15n" path="res://Texture/WHITE.png" id="39_mw8po"]
 [ext_resource type="Shader" path="res://Level/level.gdshader" id="40_x56on"]
 [ext_resource type="Script" path="res://Level/fog.gd" id="41_05ehr"]
+[ext_resource type="Texture2D" uid="uid://bw7bkly3yl6th" path="res://lamp_n.tres" id="42_bjtek"]
+[ext_resource type="Texture2D" uid="uid://byaai528lgbj6" path="res://Texture/lght.png" id="42_gjj4x"]
 [ext_resource type="Texture2D" uid="uid://cebtpbhw5nhug" path="res://Texture/lamph-export.png" id="42_lmwio"]
 [ext_resource type="Script" path="res://Level/test.gd" id="45_ouw2i"]
 [ext_resource type="Texture2D" uid="uid://cqiomnbhbjq80" path="res://Texture/ZOMBIE.png" id="46_oo7ex"]
@@ -349,7 +351,7 @@ size = Vector2(11.2485, 27.4318)
 script = ExtResource("1_b3drq")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(4308.96, 628.238)
+position = Vector2(6624, 799)
 zoom = Vector2(3.605, 3.605)
 process_callback = 0
 limit_left = 0
@@ -1030,15 +1032,24 @@ collision_layer = 128
 collision_mask = 3
 can_sleep = false
 
-[node name="Lamph-export" type="Sprite2D" parent="Level 1/Lamps/lamp/Lanten"]
-texture = ExtResource("42_lmwio")
-region_enabled = true
-region_rect = Rect2(0, 19, 24, 13)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level 1/Lamps/lamp/Lanten"]
-position = Vector2(-0.422852, 0.0563354)
+position = Vector2(-0.644043, 0.0597534)
 scale = Vector2(2.17389, 0.706732)
 shape = SubResource("CapsuleShape2D_np0dq")
+
+[node name="PointLight2D" type="PointLight2D" parent="Level 1/Lamps/lamp/Lanten"]
+position = Vector2(-0.644531, 0.0595703)
+scale = Vector2(0.194797, -0.156588)
+color = Color(1, 0.568627, 0, 1)
+energy = 7.05
+texture = ExtResource("42_gjj4x")
+height = 19.0
+
+[node name="Lamph-export" type="Sprite2D" parent="Level 1/Lamps/lamp/Lanten"]
+position = Vector2(0.355957, -0.940247)
+texture = ExtResource("42_bjtek")
+region_enabled = true
+region_rect = Rect2(0, 19, 24, 13)
 
 [node name="chain" type="RigidBody2D" parent="Level 1/Lamps/lamp"]
 position = Vector2(6687.98, 772.464)
@@ -1048,7 +1059,7 @@ position = Vector2(0.181152, 0.0105591)
 shape = SubResource("RectangleShape2D_blg3i")
 
 [node name="Sprite2D" type="Sprite2D" parent="Level 1/Lamps/lamp/chain"]
-texture = ExtResource("42_lmwio")
+texture = ExtResource("42_bjtek")
 region_enabled = true
 region_rect = Rect2(10, 14, 3, 5)
 
@@ -1060,7 +1071,7 @@ position = Vector2(0.181152, 0.0105591)
 shape = SubResource("RectangleShape2D_blg3i")
 
 [node name="Sprite2D" type="Sprite2D" parent="Level 1/Lamps/lamp/chain1"]
-texture = ExtResource("42_lmwio")
+texture = ExtResource("42_bjtek")
 region_enabled = true
 region_rect = Rect2(10, 14, 3, 5)
 
@@ -1072,7 +1083,7 @@ position = Vector2(0.181152, 0.0105591)
 shape = SubResource("RectangleShape2D_blg3i")
 
 [node name="Sprite2D" type="Sprite2D" parent="Level 1/Lamps/lamp/chain2"]
-texture = ExtResource("42_lmwio")
+texture = ExtResource("42_bjtek")
 region_enabled = true
 region_rect = Rect2(10, 14, 3, 5)
 
@@ -1304,7 +1315,7 @@ shape = SubResource("RectangleShape2D_04ghg")
 [node name="Player" parent="." instance=ExtResource("4_gwfel")]
 unique_name_in_owner = true
 z_index = 775
-position = Vector2(4308.96, 628.238)
+position = Vector2(6624, 799)
 collision_mask = 30
 
 [node name="GPUParticles2D" parent="Player" index="1"]

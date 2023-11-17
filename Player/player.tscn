@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://cc8wav40o0jst"]
+[gd_scene load_steps=84 format=3 uid="uid://cc8wav40o0jst"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_edqt5"]
 [ext_resource type="Texture2D" uid="uid://vopundayk7on" path="res://Texture/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Character/Idle/particles - Copy.png" id="2_sotpr"]
@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bdwt5spr5w1gq" path="res://Texture/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Character/Dead/Dead-Sheet.png" id="3_3wc0a"]
 [ext_resource type="Texture2D" uid="uid://c35w5md5fv66x" path="res://Texture/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Character/Idle/Idle-Sheet.png" id="3_ob3vl"]
 [ext_resource type="Texture2D" uid="uid://27xiraop08wp" path="res://Texture/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Character/Jumlp-All/Jump-All-Sheet.png" id="4_1gdc1"]
-[ext_resource type="Shader" path="res://Player/player.gdshader" id="4_ubemt"]
+[ext_resource type="Shader" path="res://Player/normal maping.gdshader" id="4_lkbe3"]
 [ext_resource type="Texture2D" uid="uid://cou1kdbbxquoe" path="res://Texture/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Character/Jump-End/Jump-End-Sheet.png" id="5_rees1"]
 [ext_resource type="Texture2D" uid="uid://buv11wcvjny72" path="res://Texture/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Character/Jump-Start/Jump-Start-Sheet.png" id="6_lcd4u"]
 [ext_resource type="Texture2D" uid="uid://dmux77200nt56" path="res://Texture/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Character/Run/Run-Sheet.png" id="7_vctef"]
@@ -45,10 +45,11 @@ scale_max = 1.8
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7q6na"]
 polygon = PackedVector2Array(48, 20, 56, 20, 56, 22, 58, 22, 58, 23, 59, 23, 59, 24, 60, 24, 60, 30, 58, 30, 58, 31, 57, 31, 57, 33, 55, 33, 55, 34, 54, 34, 54, 35, 55, 35, 55, 36, 56, 36, 56, 37, 57, 37, 57, 41, 56, 41, 56, 42, 55, 42, 55, 45, 56, 45, 56, 46, 57, 46, 57, 47, 58, 47, 58, 48, 60, 48, 60, 49, 63, 49, 63, 50, 65, 50, 65, 51, 67, 51, 67, 52, 68, 52, 68, 54, 67, 54, 67, 55, 62, 55, 62, 57, 61, 57, 61, 59, 60, 59, 60, 62, 61, 62, 61, 63, 62, 63, 62, 64, 56, 64, 56, 60, 57, 60, 57, 54, 55, 54, 55, 53, 54, 53, 54, 52, 49, 52, 49, 53, 48, 53, 48, 54, 47, 54, 47, 54, 47, 55, 46, 55, 46, 55, 46, 56, 45, 56, 45, 58, 44, 58, 44, 59, 43, 59, 43, 61, 42, 61, 42, 64, 35, 64, 35, 63, 36, 63, 36, 62, 37, 62, 37, 61, 38, 61, 38, 60, 39, 60, 39, 58, 40, 58, 40, 56, 41, 56, 41, 54, 42, 54, 42, 52, 43, 52, 43, 50, 39, 50, 39, 47, 38, 47, 38, 46, 36, 46, 36, 45, 34, 45, 34, 43, 33, 43, 33, 42, 34, 42, 34, 41, 36, 41, 36, 42, 37, 42, 37, 41, 38, 41, 38, 40, 39, 40, 39, 39, 40, 39, 40, 38, 40, 35, 43, 35, 43, 34, 47, 34, 47, 33, 46, 33, 46, 32, 45, 32, 44, 32, 44, 28, 45, 28, 45, 26, 44, 26, 44, 24, 45, 24, 45, 23, 45, 23, 46, 23, 46, 22, 47, 22, 47, 21, 48, 21)
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_6vsnv"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sqeqn"]
-shader = ExtResource("4_ubemt")
-shader_parameter/alpha = 0.0
-shader_parameter/col = Color(1, 0.25098, 0, 1)
+shader = ExtResource("4_lkbe3")
+shader_parameter/normal_map = SubResource("CanvasTexture_6vsnv")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_468nk"]
 atlas = ExtResource("3_ob3vl")
@@ -536,7 +537,7 @@ occluder = SubResource("OccluderPolygon2D_7q6na")
 material = SubResource("ShaderMaterial_sqeqn")
 position = Vector2(-32.3973, -41.7107)
 sprite_frames = SubResource("SpriteFrames_re207")
-animation = &"aa"
+animation = &"idle"
 autoplay = "idle"
 centered = false
 

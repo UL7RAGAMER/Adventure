@@ -235,7 +235,7 @@ func _on_level_hurt(d):
 		$Timer2.start()		
 		hit = true
 		health -= d
-		$player.material.set_shader_parameter("alpha",1) 
+		#$player.material.set_shader_parameter("alpha",1) 
 		$Timer6.start()
 
 	pass 	
@@ -306,7 +306,7 @@ func _on_area_2d_body_entered(body):
 
 
 func _on_timer_6_timeout():
-	$player.material.set_shader_parameter("alpha",0) 
+	#$player.material.set_shader_parameter("alpha",0) 
 	pass # Replace with function body.
 
 

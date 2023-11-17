@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://cu8wwquo3c8mt"]
+
+[ext_resource type="Texture2D" uid="uid://c35w5md5fv66x" path="res://Texture/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Character/Idle/Idle-Sheet.png" id="1_f37oc"]
+[ext_resource type="Texture2D" uid="uid://d203tjjivy23u" path="res://Texture/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Character/Idle/Idle-Sheet_n.png" id="2_addop"]
+[ext_resource type="Texture2D" uid="uid://byaai528lgbj6" path="res://Texture/lght.png" id="3_mrhi2"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_lxh1t"]
+diffuse_texture = ExtResource("1_f37oc")
+normal_texture = ExtResource("2_addop")
+
+[sub_resource type="Animation" id="Animation_jj3kg"]
+resource_name = "idle"
+length = 0.32
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_5k78d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wmr7l"]
+_data = {
+"RESET": SubResource("Animation_5k78d"),
+"idle": SubResource("Animation_jj3kg")
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_lxh1t")
+hframes = 4
+region_rect = Rect2(-793, -295, 552, 237)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_wmr7l")
+}
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-2.06519, -17.8636)
+texture = ExtResource("3_mrhi2")

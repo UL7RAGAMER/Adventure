@@ -6,7 +6,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_5saxa"]
 font = ExtResource("2_ti3t6")
 font_size = 316
-font_color = Color(0.851563, 0.851563, 0.851563, 1)
+font_color = Color(0.89, 0.87, 0.87, 1)
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 7
 shadow_color = Color(0, 0, 0, 1)
@@ -43,7 +43,7 @@ offset_right = 34.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.986659, 1.0078)
-color = Color(0.3705, 0.57, 0, 1)
+color = Color(0, 0.505882, 0.890196, 1)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
