@@ -77,4 +77,35 @@ input_str = input("Enter a string: ")
 result_dict = lcount(input_str)
 print("Letter count dictionary:", result_dict)
 
+#7
+
+n = int(input("Enter how many names you want to enter: "))
+names = {}
+
+def check(d):
+    while d not in names:
+        d = input(f"{d} not found. Enter again: ")
+    return d
+
+for _ in range(n):
+    name, number = input("Enter name of friend: "), input("Enter phone number: ")
+    names[name] = number
+
+print(names)
+
+names[input('Enter new name: ')] = input('Enter new number: ')
+print(names)
+
+to_delete = check(input('Enter name to delete: '))
+del names[to_delete]
+
+to_modify = check(input('Enter name to change: '))
+names[to_modify] = input('Enter new number: ')
+
+to_check = input('Enter name to check: ')
+print(to_check in names)
+
+print("Dictionary in sorted order")
+for i in sorted(names):
+    print((i, names[i]), end=" ")
 
