@@ -53,17 +53,18 @@ rev()
 
 #5
 e = ()
-a=''
-
+u=()
+d=()
 n = int(input('enter the no. emails'))
 for i in range(n):
-     x = input('enter email')
-     x=tuple(x)
-     for i in x:
-          a+=i
-     print(tuple(a.split('@')))
-
-
+    x = input('Enter')
+    e+=(x,)
+    x = tuple(x.split('@'))
+    u+=(x[0],)
+    d+=(x[1],)
+print(e)
+print(u)
+print(d)
 #6
 def lcount(s):
     count_dict = {}
