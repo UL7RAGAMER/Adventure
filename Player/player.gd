@@ -4,7 +4,7 @@ signal fireball(position,direction )
 signal bluefb(position, direction)
 signal atk()
 signal dead()
-const SPEED = 200.0
+const SPEED = 190.0
 const dbug = 1
 const JUMP_VELOCITY = -400.0
 var max_health = PlayerPos.def
@@ -25,8 +25,10 @@ var mana = PlayerPos.mana
 var x = -1045
 var y = 1
 var time = 0.1
-var can_jump = false	
+var can_jump = false
+var has_jumped = false	
 func _physics_process(delta):
+	$Label.set_text(str(ani_locked,was_in_air))
 
 	
 	if Input.is_action_just_pressed("Down") and is_on_floor():
@@ -78,10 +80,10 @@ func _physics_process(delta):
 		velocity.y += (gravity) * delta*dbug
 		was_in_air = true
 	else:
-		
-		if was_in_air == true:
+
+		if has_jumped:
 			land()	
-		was_in_air = false
+		
 	# Handle Jump.
 	if is_on_floor() and can_jump == false:
 		can_jump = true
@@ -128,12 +130,12 @@ func _physics_process(delta):
 	posi.emit(position)	
 	inventory()				
 	move_and_slide()
-	for i in get_slide_collision_count():
-		var c = get_slide_collision(i)
-		if c.get_collider() is RigidBody2D:
-			c.get_collider().apply_central_impulse(-c.get_normal() * pf)
+	#for i in get_slide_collision_count():
+		#var c = get_slide_collision(i)
+		#if c.get_collider() is RigidBody2D:
+			#c.get_collider().apply_central_impulse(-c.get_normal() * pf)
 	update_direction()
-	_on_player_2d_animation_finished()
+	_on_player_animation_finished()
 
 func inventory():
 	if Input.is_action_just_pressed("inventory"):
@@ -154,9 +156,14 @@ func jump():
 	$player.play("jump_start")
 	ani_locked = true
 	can_jump = false
-func  land():
-	$player.play('jump_end')
-	ani_locked = true
+	has_jumped = true
+func land():
+	if was_in_air:
+		ani_locked = false
+		was_in_air = false
+	else:
+		pass
+	
 func attack():
 	if Input.is_action_just_pressed("Primary Action") and can_attacked:
 		var x = randi() % $Node2D.get_child_count()
@@ -171,11 +178,10 @@ func attack():
 		can_move = false
 	
 
-func _on_player_2d_animation_finished():
+func _on_player_animation_finished():
 	if $player.animation == 'jump_end':
-		ani_locked = false
-	if  $player.animation == "atk":
-		$attack/sword.set_deferred("disabled", false)
+		pass
+
 		
 
 func _on_timer_timeout():
