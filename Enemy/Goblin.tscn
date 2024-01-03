@@ -1,25 +1,26 @@
-[gd_scene load_steps=21 format=3 uid="uid://d4eu6a8mern6p"]
+[gd_scene load_steps=24 format=3 uid="uid://d4eu6a8mern6p"]
 
 [ext_resource type="Script" path="res://Goblin.gd" id="1_glxhb"]
 [ext_resource type="Texture2D" uid="uid://cw0yfimrw5f6n" path="res://Texture/Goblin/idle.png" id="2_gcnep"]
 [ext_resource type="Texture2D" uid="uid://cnalbbr4k4qn7" path="res://Texture/Goblin/idle_n.png" id="3_x00j5"]
+[ext_resource type="Script" path="res://Enemy/Path2D.gd" id="4_st2sk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_avyc7"]
 height = 56.0
 
 [sub_resource type="Animation" id="Animation_51oaa"]
 resource_name = "Atk"
-length = 0.6
+length = 1.2
 loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Idle:frame")
+tracks/0/path = NodePath("Path2D/PathFollow2D/Idle:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.35, 0.45, 0.55),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.7, 0.8, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [5, 6, 7, 8, 9, 10, 11]
@@ -27,7 +28,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Idle:flip_h")
+tracks/1/path = NodePath("Path2D/PathFollow2D/Idle:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -45,7 +46,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Idle:frame")
+tracks/0/path = NodePath("Path2D/PathFollow2D/Idle:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -57,7 +58,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Idle:flip_h")
+tracks/1/path = NodePath("Path2D/PathFollow2D/Idle:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -75,7 +76,7 @@ step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Idle:frame")
+tracks/0/path = NodePath("Path2D/PathFollow2D/Idle:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -87,7 +88,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Idle:flip_h")
+tracks/1/path = NodePath("Path2D/PathFollow2D/Idle:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -105,7 +106,7 @@ step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Idle:frame")
+tracks/0/path = NodePath("Path2D/PathFollow2D/Idle:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -117,7 +118,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Idle:flip_h")
+tracks/1/path = NodePath("Path2D/PathFollow2D/Idle:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -132,7 +133,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Idle:frame")
+tracks/0/path = NodePath("Path2D/PathFollow2D/Idle:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -144,7 +145,37 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Idle:flip_h")
+tracks/1/path = NodePath("Path2D/PathFollow2D/Idle:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_nrwqt"]
+resource_name = "Atk_fall"
+length = 0.7
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D/Idle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.7, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8, 9, 10, 11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Path2D/PathFollow2D/Idle:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -158,14 +189,11 @@ tracks/1/keys = {
 _data = {
 "Atk": SubResource("Animation_51oaa"),
 "Atk_2": SubResource("Animation_pyhfd"),
+"Atk_fall": SubResource("Animation_nrwqt"),
 "Idle": SubResource("Animation_74vac"),
 "Idle_2": SubResource("Animation_wu6g7"),
 "RESET": SubResource("Animation_0kbqg")
 }
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_winoe"]
-diffuse_texture = ExtResource("2_gcnep")
-normal_texture = ExtResource("3_x00j5")
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xdaqc"]
 animation = &"Idle_2"
@@ -204,7 +232,7 @@ input_1/auto_advance = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_krs3a"]
-graph_offset = Vector2(-381.649, 96.9888)
+graph_offset = Vector2(-348.268, 87.5288)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_uo6nl")
 nodes/Animation/position = Vector2(-40, 180)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_xdaqc")
@@ -224,6 +252,17 @@ node_connections = [&"Atk", 0, &"Animation 4", &"Atk", 1, &"Animation 3", &"Chan
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c5y68"]
 
+[sub_resource type="Curve2D" id="Curve2D_pvdc6"]
+bake_interval = 0.01
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -3.786, 0, 0, 0, 58.621, 0, 142, -60.8261, -16.2709, -8.33385, 16.2709, 8.33385, 257, -3.82608)
+}
+point_count = 3
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_winoe"]
+diffuse_texture = ExtResource("2_gcnep")
+normal_texture = ExtResource("3_x00j5")
+
 [node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("ground_detector", "jump_block", "flip_node")]
 collision_layer = 0
 collision_mask = 2
@@ -242,30 +281,30 @@ libraries = {
 "": SubResource("AnimationLibrary_ihvh5")
 }
 
-[node name="Idle" type="Sprite2D" parent="."]
-position = Vector2(-39, -15)
-texture = SubResource("CanvasTexture_winoe")
-offset = Vector2(40, 15)
-hframes = 12
-region_rect = Rect2(0, 0, 64, 64)
-
 [node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
 libraries = {
 "": SubResource("AnimationLibrary_ihvh5")
 }
 tree_root = SubResource("AnimationNodeBlendTree_krs3a")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Atk/current_state = "Atk2"
-parameters/Atk/transition_request = "Atk"
-parameters/Atk/current_index = 1
-parameters/Change/current_state = "Idle"
+parameters/Atk/current_state = "Atk"
+parameters/Atk/transition_request = ""
+parameters/Atk/current_index = 0
+parameters/Change/current_state = "atk"
 parameters/Change/transition_request = ""
-parameters/Change/current_index = 0
+parameters/Change/current_index = 1
 parameters/Idle/current_state = "Idle"
 parameters/Idle/transition_request = ""
 parameters/Idle/current_index = 0
 
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="flip" type="Node2D" parent="."]
+position = Vector2(-2.38419e-07, -1.90735e-06)
+scale = Vector2(1, 1)
 
 [node name="jump" type="Area2D" parent="flip"]
 collision_layer = 0
@@ -283,6 +322,22 @@ collision_mask = 2
 position = Vector2(19, 29)
 shape = SubResource("RectangleShape2D_c5y68")
 
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(0, 19.8261)
+curve = SubResource("Curve2D_pvdc6")
+script = ExtResource("4_st2sk")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-3.786, 0)
+rotation = -0.259871
+rotates = false
+loop = false
+
+[node name="Idle" type="Sprite2D" parent="Path2D/PathFollow2D"]
+position = Vector2(-25.0828, -42.7052)
+rotation = 0.259871
+scale = Vector2(1, 1)
+texture = SubResource("CanvasTexture_winoe")
+offset = Vector2(40, 15)
+hframes = 12
+region_rect = Rect2(0, 0, 64, 64)

@@ -353,8 +353,8 @@ size = Vector2(11.2485, 27.4318)
 script = ExtResource("1_b3drq")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(6610, 787)
-zoom = Vector2(3.605, 3.605)
+position = Vector2(7131, 818)
+zoom = Vector2(3.34, 3.34)
 process_callback = 0
 limit_left = 0
 limit_smoothed = true
@@ -1315,14 +1315,10 @@ position = Vector2(6642, 617)
 [node name="Goblin" parent="Level 1/Goblins" instance=ExtResource("49_h3o0h")]
 position = Vector2(123, 178)
 
-[node name="AnimationTree" parent="Level 1/Goblins/Goblin" index="2"]
-parameters/conditions/atk = false
-parameters/conditions/idle = false
-
 [node name="Player" parent="." instance=ExtResource("4_gwfel")]
 unique_name_in_owner = true
 z_index = 775
-position = Vector2(6610, 787)
+position = Vector2(7131, 818)
 collision_mask = 30
 
 [node name="GPUParticles2D" parent="Player" index="1"]
