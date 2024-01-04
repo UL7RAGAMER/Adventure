@@ -7,6 +7,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var flip_node : Node2D
 @onready var anitree : AnimationTree = $AnimationTree
 @onready var path : Path2D = $Path2D
+
 var ground_in_front : bool = true
 
 @onready var direc = (%Player.global_position.x - $".".global_position.x )
@@ -17,6 +18,7 @@ var ground_in_front : bool = true
 			flip_node.scale.x = new_direction.x
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
 	if not is_on_floor():
 		velocity.y += (gravity) * delta
 	elif (not ground_detector.has_overlapping_bodies() or (is_on_wall())):
@@ -45,10 +47,12 @@ func update():
 			anitree.set('parameters/Idle/transition_request','Idle 2')
 		else:
 			anitree.set('parameters/Idle/transition_request','Idle')
+		$Path2D/PathFollow2D.set_progress_ratio(0)
 func jump():
 	velocity.y += jump_velocity
 
 func update_path(d):
+	var r = $Path2D/PathFollow2D.get_progress_ratio()
 	var pos = %Player.global_position.x - $".".global_position.x
 	var pos2 = path.curve.get_point_position(2)
 	var pos1 = path.curve.get_point_position(1)
@@ -65,18 +69,56 @@ func update_path(d):
 			path.curve.set_point_in(1,Vector2(-58,0))
 			path.curve.set_point_out(1,Vector2(58,0))
 		path.curve.set_point_position(1,pos1)
-		attack(d)
+		if r <= 0.428:
+			attack_j(d)
+		elif r == 1:
+			reset(plp)
+			
+				
+		else:
+			attack_f(d)
 	pass
-func attack(d):
-	anitree.set('parameters/Change/transition_request','atk')
-	if move_direction.x < 0:
-		anitree.set('parameters/Atk/transition_request','Atk2')
-	else:
-		anitree.set('parameters/Atk/transition_request','Atk')
+func attack_j(d):
+	await  get_tree().create_timer(0.2).timeout
 	var r = $Path2D/PathFollow2D.get_progress_ratio()
-	$Label.set_text(str(d))
-	$Path2D/PathFollow2D.set_progress_ratio(r + 0.0041666)
-	if r == 1:
-		$Path2D/PathFollow2D.set_progress_ratio(0)
+	$Label.set_text(str(r))
+	if r <= 0.428:
+		$Path2D/PathFollow2D.set_progress_ratio(r + ft(0.45))
+	
+		
 	#Change the animation to fix
+	anitree.set('parameters/Change/transition_request','Atk_jump')
+	if move_direction.x < 0:
+		anitree.set('parameters/Atk_j/transition_request','Atk_flipped')
+	else:
+		anitree.set('parameters/Atk_j/transition_request','Atk')
 	pass
+func attack_f(d):
+	var r = $Path2D/PathFollow2D.get_progress_ratio()
+	if r != 1:
+		$Label.set_text(str(r))
+		$Path2D/PathFollow2D.set_progress_ratio(r + ft(0.3))
+		anitree.set('parameters/Change/transition_request','Atk_fall')
+		if move_direction.x < 0:
+			anitree.set('parameters/Atk_f/transition_request','Atk_fliped')
+		else:
+			anitree.set('parameters/Atk_f/transition_request','Atk')
+	
+		
+		
+		pass
+		
+func reset(plp):
+	var pos0 = path.curve.get_point_position(0)
+	var pos2 = path.curve.get_point_position(2)
+	path.curve.remove_point(0)
+	path.curve.remove_point(1)
+	path.curve.remove_point(2)
+	$Path2D/PathFollow2D.set_progress_ratio(0)
+	path.curve.add_point(Vector2.ZERO,Vector2.ZERO,Vector2.ZERO,0)
+	path.curve.add_point(Vector2(0,-65),Vector2.ZERO,Vector2.ZERO,1)
+	path.curve.add_point(plp,Vector2.ZERO,Vector2.ZERO,2)
+
+	pass
+func ft(x):
+	return 1/(200 * x)
