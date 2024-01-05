@@ -1,17 +1,17 @@
-[gd_scene load_steps=28 format=3 uid="uid://d4eu6a8mern6p"]
+[gd_scene load_steps=29 format=3 uid="uid://d4eu6a8mern6p"]
 
 [ext_resource type="Script" path="res://Goblin.gd" id="1_glxhb"]
 [ext_resource type="Texture2D" uid="uid://cw0yfimrw5f6n" path="res://Texture/Goblin/idle.png" id="2_gcnep"]
 [ext_resource type="Texture2D" uid="uid://cnalbbr4k4qn7" path="res://Texture/Goblin/idle_n.png" id="3_x00j5"]
 [ext_resource type="Script" path="res://Enemy/Path2D.gd" id="4_st2sk"]
+[ext_resource type="Texture2D" uid="uid://sp2kurich2po" path="res://Texture/marker.png" id="5_me0h3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_avyc7"]
 height = 56.0
 
-[sub_resource type="Animation" id="Animation_74vac"]
-resource_name = "Idle"
-length = 0.5
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_51oaa"]
+resource_name = "Atk_fall"
+length = 0.3
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -20,10 +20,10 @@ tracks/0/path = NodePath("Path2D/PathFollow2D/Idle:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4]
+"values": [8, 9, 10, 11]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -32,14 +32,16 @@ tracks/1/path = NodePath("Path2D/PathFollow2D/Idle:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.01),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_0kbqg"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_uttt7"]
+resource_name = "Atk_fall_2"
+length = 0.5
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -47,10 +49,10 @@ tracks/0/path = NodePath("Path2D/PathFollow2D/Idle:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [10, 9, 10, 11]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -62,7 +64,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_nrwqt"]
@@ -80,35 +82,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [5, 6, 7]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Path2D/PathFollow2D/Idle:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_51oaa"]
-resource_name = "Atk_fall"
-length = 0.3
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Path2D/PathFollow2D/Idle:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [8, 9, 10, 11]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -152,9 +125,10 @@ tracks/1/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_uttt7"]
-resource_name = "Atk_fall_2"
+[sub_resource type="Animation" id="Animation_74vac"]
+resource_name = "Idle"
 length = 0.5
+loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -163,10 +137,10 @@ tracks/0/path = NodePath("Path2D/PathFollow2D/Idle:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [10, 9, 10, 11]
+"values": [0, 1, 2, 3, 4]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -175,10 +149,10 @@ tracks/1/path = NodePath("Path2D/PathFollow2D/Idle:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.01),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_ogkmh"]
@@ -209,6 +183,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_0kbqg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D/Idle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Path2D/PathFollow2D/Idle:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ihvh5"]
@@ -276,7 +277,7 @@ input_1/auto_advance = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_krs3a"]
-graph_offset = Vector2(-436.274, 363.965)
+graph_offset = Vector2(-283.817, 181.567)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_uo6nl")
 nodes/Animation/position = Vector2(-40, 180)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_xdaqc")
@@ -305,7 +306,7 @@ node_connections = [&"Atk_f", 0, &"Animation 4", &"Atk_f", 1, &"Animation 3", &"
 [sub_resource type="Curve2D" id="Curve2D_pvdc6"]
 bake_interval = 0.01
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -3.786, 0, -59.5119, -0.890899, 59.5119, 0.890899, 162, -65.8261, 0, 0, 16.2709, 8.33385, 310, -0.826099)
+"points": PackedVector2Array(0, 0, 0, 0, -3.786, 0, -59.5119, -0.890899, 59.5119, 0.890899, 162, -65.8261, 0, 0, 16.2709, 8.33385, 320, -0.826)
 }
 point_count = 3
 
@@ -391,3 +392,26 @@ texture = SubResource("CanvasTexture_winoe")
 offset = Vector2(40, 15)
 hframes = 12
 region_rect = Rect2(0, 0, 64, 64)
+
+[node name="Marker2D" type="Marker2D" parent="Path2D"]
+modulate = Color(0.184314, 0, 1, 1)
+position = Vector2(-4, 0.173901)
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/Marker2D"]
+texture = ExtResource("5_me0h3")
+
+[node name="Marker2D2" type="Marker2D" parent="Path2D"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(160, -65.826)
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/Marker2D2"]
+texture = ExtResource("5_me0h3")
+
+[node name="Marker2D3" type="Marker2D" parent="Path2D"]
+modulate = Color(1, 0.784314, 0, 1)
+position = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/Marker2D3"]
+texture = ExtResource("5_me0h3")
+
+[connection signal="jp" from="." to="." method="_on_jp"]
