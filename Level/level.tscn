@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://c4uv3cur76h0r"]
+[gd_scene load_steps=101 format=3 uid="uid://c4uv3cur76h0r"]
 
 [ext_resource type="Script" path="res://Level/level.gd" id="1_b3drq"]
 [ext_resource type="PackedScene" uid="uid://cc8wav40o0jst" path="res://Player/player.tscn" id="4_gwfel"]
@@ -50,6 +50,7 @@
 [ext_resource type="Script" path="res://Level/test.gd" id="45_ouw2i"]
 [ext_resource type="Texture2D" uid="uid://cqiomnbhbjq80" path="res://Texture/ZOMBIE.png" id="46_oo7ex"]
 [ext_resource type="PackedScene" uid="uid://d4eu6a8mern6p" path="res://Enemy/Goblin.tscn" id="49_h3o0h"]
+[ext_resource type="Script" path="res://Level/Goblins.gd" id="49_jtnt3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_07sah"]
 texture = ExtResource("27_u7dqk")
@@ -1311,6 +1312,7 @@ shape = SubResource("RectangleShape2D_04ghg")
 
 [node name="Goblins" type="Node2D" parent="Level 1"]
 position = Vector2(6642, 617)
+script = ExtResource("49_jtnt3")
 
 [node name="Goblin" parent="Level 1/Goblins" instance=ExtResource("49_h3o0h")]
 position = Vector2(122, 312)
@@ -1320,6 +1322,9 @@ parameters/Atk_f/current_state = "Atk"
 parameters/Atk_f/current_index = 0
 parameters/Atk_j/current_state = ""
 parameters/Atk_j/current_index = -1
+
+[node name="Goblin2" parent="Level 1/Goblins" instance=ExtResource("49_h3o0h")]
+position = Vector2(605, 324)
 
 [node name="Player" parent="." instance=ExtResource("4_gwfel")]
 unique_name_in_owner = true

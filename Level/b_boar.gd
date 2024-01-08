@@ -5,7 +5,7 @@ var t = 0.01
 var dmg = false
 var run  = false
 var direction : Vector2 = Vector2.ZERO
-var health = 15
+var health = 1
 var xp = 100
 signal player_hurt1()
 func _physics_process(delta):

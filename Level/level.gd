@@ -9,9 +9,14 @@ var boar = load("res://Player/character_body_2d.tscn")
 var num = 0
 signal hurt()
 func _ready():
+	for i in $"Level 1/Goblins".get_children():
+		i.atk.connect(_on_goblin_atk)
 	pass
 signal dmg(dmg) 
+
 func _process(delta):
+
+	
 	
 	num += 1
 	$Tutorial/CanvasLayer2/Control/Panel2/Label2.set_text(str(PlayerPos.points))
@@ -203,4 +208,9 @@ func _on_visible_on_screen_notifier_2d_screen_entered():
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	$Tutorial.visible = false
 	
+	pass # Replace with function body.
+
+
+func _on_goblin_atk():
+	hurt.emit(1)
 	pass # Replace with function body.

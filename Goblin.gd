@@ -1,6 +1,9 @@
 extends CharacterBody2D
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+@export_category('Stats')
+@export var health = 5
 @export var speed : float = 100.0
+@export_category('Ai')
 @export var jump_velocity : float = -300.0
 @export var ground_detector : Area2D
 @export var jump_block : Area2D
@@ -10,6 +13,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var jumped = false
 var ground_in_front : bool = true
 signal jp
+signal atk
 @onready var direc = (%Player.global_position.x - $".".global_position.x )
 @export var move_direction : Vector2 = Vector2.RIGHT :  
 	set(new_direction):
@@ -17,7 +21,14 @@ signal jp
 			move_direction = new_direction
 			flip_node.scale.x = new_direction.x
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+func _ready():
+	add_to_group('goblins')
 func _process(delta):
+	if health <= 0:
+		await get_tree().create_timer(0.1).timeout
+		queue_free()
+	
+	var p = %Player.global_position - $".".global_position
 
 	if not is_on_floor():
 		velocity.y += (gravity) * delta
@@ -28,11 +39,12 @@ func _process(delta):
 				move_direction *= -1
 			# If facing a floor gap or a jumpable wall, jump
 			else:
-				jump()
+				pass
 	
 	update(delta)
 	
 	move_and_slide()
+
 	pass
 func update(d):
 	var pos = %Player.global_position.x - $".".global_position.x
@@ -48,9 +60,12 @@ func update(d):
 		else:
 			anitree.set('parameters/Idle/transition_request','Idle')
 		$Path2D/PathFollow2D.set_progress_ratio(0)
+		var plp = (%Player.global_position - $Path2D/PathFollow2D/Idle.global_position)
+		if ((plp.x < 50 and plp.x > 0) or (plp.x > -50 and plp.x < 0)) and((plp.y < 50 and plp.y > 0) or (plp.y > -50 and plp.y < 0)) and jumped == true :
+			#atk.emit()
+			pass	
 func jump():
 	velocity.y += jump_velocity
-
 func update_path(d):
 	var r = $Path2D/PathFollow2D.get_progress_ratio()
 	var pos = %Player.global_position.x - $".".global_position.x
@@ -65,7 +80,7 @@ func update_path(d):
 	path.curve.set_point_position(1,pos1)
 	if jumped == false:
 		var p = path.curve.get_point_count()
-		$Label.set_text(str(p))
+		
 		path.curve.remove_point(3)
 		path.curve.remove_point(4)
 
@@ -111,12 +126,9 @@ func attack_f(d):
 			anitree.set('parameters/Atk_f/transition_request','Atk')
 	
 		
-		
 		pass
-		
 func reset(plp):
 	if jumped == false :
-		$Label.set_text('Reset')
 		var pos0 = path.curve.get_point_position(0)
 		var pos2 = path.curve.get_point_position(2)
 		path.curve.clear_points()
@@ -128,12 +140,28 @@ func reset(plp):
 		path.curve.add_point(plp,Vector2.ZERO,Vector2.ZERO,2)
 		jumped = true
 		jp.emit()
-
 func ft(x):
 	return 1/(200 * x)
-
-
 func _on_jp():
+
+
 	await get_tree().create_timer(3).timeout
 	jumped = false
+	pass # Replace with function body.
+
+
+
+
+func _on_area_2d_area_entered(area):
+	print('asd')
+	$Label.set_text(str(area))
+	health -= PlayerPos.dmg
+	$Path2D/PathFollow2D/Idle.material.set_shader_parameter("Hit",true) 
+	await get_tree().create_timer(0.1).timeout
+	$Path2D/PathFollow2D/Idle.material.set_shader_parameter("Hit",false) 
+	await get_tree().create_timer(0.1).timeout
+	$Path2D/PathFollow2D/Idle.material.set_shader_parameter("Hit",true) 
+	await get_tree().create_timer(0.1).timeout
+	$Path2D/PathFollow2D/Idle.material.set_shader_parameter("Hit",false) 
+
 	pass # Replace with function body.

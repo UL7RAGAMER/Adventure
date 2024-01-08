@@ -1,0 +1,79 @@
+[gd_resource type="VisualShader" load_steps=6 format=3 uid="uid://nnr8wvyq8lkq"]
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_kux0f"]
+default_input_values = [0, 0.0, 1, 0.0, 2, 0.0, 3, 0.0]
+op_type = 2
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_6k7ae"]
+output_port_for_preview = 0
+expanded_output_ports = [0]
+parameter_name = "Red"
+
+[sub_resource type="VisualShaderNodeBooleanParameter" id="VisualShaderNodeBooleanParameter_ejqil"]
+parameter_name = "Hit"
+
+[sub_resource type="VisualShaderNodeSwitch" id="VisualShaderNodeSwitch_yeb83"]
+default_input_values = [0, false, 1, Quaternion(1, 1, 1, 1), 2, Quaternion(0, 0, 0, 1)]
+op_type = 5
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_wlvmx"]
+output_port_for_preview = 0
+input_name = "color"
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform bool Hit;
+uniform vec4 Red : source_color;
+
+
+
+void fragment() {
+// BooleanParameter:6
+	bool n_out6p0 = Hit;
+
+
+// ColorParameter:5
+	vec4 n_out5p0 = Red;
+	float n_out5p1 = n_out5p0.r;
+	float n_out5p2 = n_out5p0.g;
+	float n_out5p3 = n_out5p0.b;
+	float n_out5p4 = n_out5p0.a;
+
+
+// VectorCompose:4
+	vec4 n_out4p0 = vec4(n_out5p1, n_out5p2, n_out5p3, n_out5p4);
+
+
+// Input:9
+	vec4 n_out9p0 = COLOR;
+
+
+	vec4 n_out8p0;
+// Switch:8
+	n_out8p0 = mix(n_out9p0, n_out4p0, float(n_out6p0));
+
+
+// Output:0
+	COLOR.rgb = vec3(n_out8p0.xyz);
+
+
+}
+"
+graph_offset = Vector2(-266.708, -90.9863)
+mode = 1
+flags/light_only = false
+nodes/vertex/0/position = Vector2(400, 140)
+nodes/fragment/0/position = Vector2(720, 320)
+nodes/fragment/4/node = SubResource("VisualShaderNodeVectorCompose_kux0f")
+nodes/fragment/4/position = Vector2(31.982, 259.16)
+nodes/fragment/5/node = SubResource("VisualShaderNodeColorParameter_6k7ae")
+nodes/fragment/5/position = Vector2(-560, 160)
+nodes/fragment/6/node = SubResource("VisualShaderNodeBooleanParameter_ejqil")
+nodes/fragment/6/position = Vector2(-80, 100)
+nodes/fragment/8/node = SubResource("VisualShaderNodeSwitch_yeb83")
+nodes/fragment/8/position = Vector2(300, 300)
+nodes/fragment/9/node = SubResource("VisualShaderNodeInput_wlvmx")
+nodes/fragment/9/position = Vector2(-80, 460)
+nodes/fragment/connections = PackedInt32Array(5, 1, 4, 0, 5, 3, 4, 2, 5, 4, 4, 3, 6, 0, 8, 0, 8, 0, 0, 0, 4, 0, 8, 1, 9, 0, 8, 2, 5, 2, 4, 1)

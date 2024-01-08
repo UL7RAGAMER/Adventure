@@ -479,7 +479,7 @@ animations = [{
 height = 46.4287
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kgvyn"]
-size = Vector2(37, 61)
+size = Vector2(23.5907, 61)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_77mt2"]
 height = 46.0
@@ -546,11 +546,12 @@ autostart = true
 
 [node name="attack" type="Area2D" parent="."]
 position = Vector2(2.6027, -1.47027)
+disable_mode = 1
 collision_layer = 4
 collision_mask = 16
 
 [node name="sword" type="CollisionShape2D" parent="attack"]
-position = Vector2(31.5, -8)
+position = Vector2(24.7954, -8)
 shape = SubResource("RectangleShape2D_kgvyn")
 disabled = true
 debug_color = Color(0, 0.6, 0.701961, 0.419608)

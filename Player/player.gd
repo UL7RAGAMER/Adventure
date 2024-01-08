@@ -4,7 +4,7 @@ signal fireball(position,direction )
 signal bluefb(position, direction)
 signal atk()
 signal dead()
-const SPEED = 190.0
+var SPEED = 190.0
 const dbug = 1
 const JUMP_VELOCITY = -400.0
 var max_health = PlayerPos.def
@@ -97,7 +97,11 @@ func _physics_process(delta):
 		health-=1
 	if health != 0 and (not health<0):	
 		direction = Input.get_vector("Left", "Right", "None", 'None')
-		if direction and can_move:
+		if can_move:
+			SPEED = 190
+		else:
+			SPEED = 90
+		if direction:
 			velocity.x = direction.x * SPEED
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -172,11 +176,10 @@ func attack():
 			
 		$player.play('atk')
 		can_attacked = false
-		$attack/sword.set_deferred("disabled",true)
+		$attack/sword.set_deferred("disabled",false)
 		$Timer.start()
 		ani_locked = true
 		can_move = false
-	
 
 func _on_player_animation_finished():
 	if $player.animation == 'jump_end':

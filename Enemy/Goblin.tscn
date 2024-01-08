@@ -1,10 +1,14 @@
-[gd_scene load_steps=29 format=3 uid="uid://d4eu6a8mern6p"]
+[gd_scene load_steps=34 format=3 uid="uid://d4eu6a8mern6p"]
 
 [ext_resource type="Script" path="res://Goblin.gd" id="1_glxhb"]
 [ext_resource type="Texture2D" uid="uid://cw0yfimrw5f6n" path="res://Texture/Goblin/idle.png" id="2_gcnep"]
+[ext_resource type="Shader" uid="uid://nnr8wvyq8lkq" path="res://Enemy/new_shader.tres" id="3_uxexw"]
 [ext_resource type="Texture2D" uid="uid://cnalbbr4k4qn7" path="res://Texture/Goblin/idle_n.png" id="3_x00j5"]
 [ext_resource type="Script" path="res://Enemy/Path2D.gd" id="4_st2sk"]
 [ext_resource type="Texture2D" uid="uid://sp2kurich2po" path="res://Texture/marker.png" id="5_me0h3"]
+[ext_resource type="Texture2D" uid="uid://bwt08mavudxli" path="res://Texture/asd.png" id="7_p0ulh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vvqu0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_avyc7"]
 height = 56.0
@@ -277,7 +281,6 @@ input_1/auto_advance = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_krs3a"]
-graph_offset = Vector2(-283.817, 181.567)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_uo6nl")
 nodes/Animation/position = Vector2(-40, 180)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_xdaqc")
@@ -303,6 +306,9 @@ node_connections = [&"Atk_f", 0, &"Animation 4", &"Atk_f", 1, &"Animation 3", &"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c5y68"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p3vfn"]
+size = Vector2(39, 53)
+
 [sub_resource type="Curve2D" id="Curve2D_pvdc6"]
 bake_interval = 0.01
 _data = {
@@ -310,13 +316,19 @@ _data = {
 }
 point_count = 3
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_417js"]
+shader = ExtResource("3_uxexw")
+shader_parameter/Hit = false
+shader_parameter/Red = Color(1, 0, 0, 1)
+
 [sub_resource type="CanvasTexture" id="CanvasTexture_winoe"]
 diffuse_texture = ExtResource("2_gcnep")
 normal_texture = ExtResource("3_x00j5")
 
 [node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("ground_detector", "jump_block", "flip_node")]
+material = SubResource("ShaderMaterial_vvqu0")
 collision_layer = 0
-collision_mask = 2
+collision_mask = 6
 script = ExtResource("1_glxhb")
 jump_velocity = -223.41
 ground_detector = NodePath("flip/ground")
@@ -354,6 +366,7 @@ parameters/Idle/current_index = 0
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
+text = "asdadad"
 
 [node name="flip" type="Node2D" parent="."]
 position = Vector2(-2.38419e-07, -1.90735e-06)
@@ -374,6 +387,14 @@ collision_mask = 2
 position = Vector2(19, 29)
 shape = SubResource("RectangleShape2D_c5y68")
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-4, 5)
+shape = SubResource("RectangleShape2D_p3vfn")
+
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(0, 19.8261)
 curve = SubResource("Curve2D_pvdc6")
@@ -386,6 +407,7 @@ rotates = false
 loop = false
 
 [node name="Idle" type="Sprite2D" parent="Path2D/PathFollow2D"]
+material = SubResource("ShaderMaterial_417js")
 position = Vector2(-25.0828, -42.7052)
 rotation = 0.259871
 texture = SubResource("CanvasTexture_winoe")
@@ -394,6 +416,7 @@ hframes = 12
 region_rect = Rect2(0, 0, 64, 64)
 
 [node name="Marker2D" type="Marker2D" parent="Path2D"]
+visible = false
 modulate = Color(0.184314, 0, 1, 1)
 position = Vector2(-4, 0.173901)
 
@@ -401,6 +424,7 @@ position = Vector2(-4, 0.173901)
 texture = ExtResource("5_me0h3")
 
 [node name="Marker2D2" type="Marker2D" parent="Path2D"]
+visible = false
 modulate = Color(1, 0, 0, 1)
 position = Vector2(160, -65.826)
 
@@ -408,10 +432,18 @@ position = Vector2(160, -65.826)
 texture = ExtResource("5_me0h3")
 
 [node name="Marker2D3" type="Marker2D" parent="Path2D"]
+visible = false
 modulate = Color(1, 0.784314, 0, 1)
 position = Vector2(320, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D/Marker2D3"]
 texture = ExtResource("5_me0h3")
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(47, 5)
+editor_only = true
+texture = ExtResource("7_p0ulh")
+texture_scale = 6.22
+
 [connection signal="jp" from="." to="." method="_on_jp"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
