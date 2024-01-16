@@ -36,6 +36,7 @@ func _process(delta):
 pass		
 func _on_player_fireball(pos, direction):
 	var fb = fireball.instantiate() as Area2D
+	fb.z_index = 10
 	fb.position = pos
 	fb.rotation_degrees = rad_to_deg(direction.angle())
 	fb.direction = direction

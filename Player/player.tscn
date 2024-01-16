@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://mn4aeoc76eyo" path="res://Audio/short-whoosh5.mp3" id="12_bhlco"]
 [ext_resource type="Texture2D" uid="uid://dw7j4ytry5r1d" path="res://Texture/My char/run mc.png" id="12_ebdrv"]
 [ext_resource type="AudioStream" uid="uid://60rpmqlnc006" path="res://Audio/short-whoosh6.mp3" id="13_hon66"]
+[ext_resource type="Texture2D" uid="uid://c5vh71yhu2vnw" path="res://Player/light.tres" id="18_aflt6"]
 
 [sub_resource type="Curve" id="Curve_p3cfg"]
 min_value = -200.0
@@ -40,8 +41,14 @@ tangential_accel_max = 16.3
 damping_max = 30.675
 scale_max = 1.8
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7q6na"]
-polygon = PackedVector2Array(48, 20, 56, 20, 56, 22, 58, 22, 58, 23, 59, 23, 59, 24, 60, 24, 60, 30, 58, 30, 58, 31, 57, 31, 57, 33, 55, 33, 55, 34, 54, 34, 54, 35, 55, 35, 55, 36, 56, 36, 56, 37, 57, 37, 57, 41, 56, 41, 56, 42, 55, 42, 55, 45, 56, 45, 56, 46, 57, 46, 57, 47, 58, 47, 58, 48, 60, 48, 60, 49, 63, 49, 63, 50, 65, 50, 65, 51, 67, 51, 67, 52, 68, 52, 68, 54, 67, 54, 67, 55, 62, 55, 62, 57, 61, 57, 61, 59, 60, 59, 60, 62, 61, 62, 61, 63, 62, 63, 62, 64, 56, 64, 56, 60, 57, 60, 57, 54, 55, 54, 55, 53, 54, 53, 54, 52, 49, 52, 49, 53, 48, 53, 48, 54, 47, 54, 47, 54, 47, 55, 46, 55, 46, 55, 46, 56, 45, 56, 45, 58, 44, 58, 44, 59, 43, 59, 43, 61, 42, 61, 42, 64, 35, 64, 35, 63, 36, 63, 36, 62, 37, 62, 37, 61, 38, 61, 38, 60, 39, 60, 39, 58, 40, 58, 40, 56, 41, 56, 41, 54, 42, 54, 42, 52, 43, 52, 43, 50, 39, 50, 39, 47, 38, 47, 38, 46, 36, 46, 36, 45, 34, 45, 34, 43, 33, 43, 33, 42, 34, 42, 34, 41, 36, 41, 36, 42, 37, 42, 37, 41, 38, 41, 38, 40, 39, 40, 39, 39, 40, 39, 40, 38, 40, 35, 43, 35, 43, 34, 47, 34, 47, 33, 46, 33, 46, 32, 45, 32, 44, 32, 44, 28, 45, 28, 45, 26, 44, 26, 44, 24, 45, 24, 45, 23, 45, 23, 46, 23, 46, 22, 47, 22, 47, 21, 48, 21)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qv0wt"]
+height = 46.4287
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kgvyn"]
+size = Vector2(23.5907, 61)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_77mt2"]
+height = 46.0
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_6vsnv"]
 
@@ -475,15 +482,6 @@ animations = [{
 "speed": 15.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qv0wt"]
-height = 46.4287
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kgvyn"]
-size = Vector2(23.5907, 61)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_77mt2"]
-height = 46.0
-
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 78
 script = ExtResource("1_edqt5")
@@ -511,18 +509,6 @@ preprocess = 1.0
 explosiveness = 0.07
 randomness = 0.07
 fixed_fps = 1000
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-visible = false
-position = Vector2(-51, -43)
-occluder = SubResource("OccluderPolygon2D_7q6na")
-
-[node name="player" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_sqeqn")
-position = Vector2(0, -18.0288)
-sprite_frames = SubResource("SpriteFrames_re207")
-animation = &"jump_start"
-autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_qv0wt")
@@ -631,6 +617,7 @@ one_shot = true
 [node name="AnimationTree" type="AnimationTree" parent="."]
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = 10.0
 offset_top = -28.0
 offset_right = 50.0
@@ -639,7 +626,21 @@ scale = Vector2(0.03552, 0.03552)
 theme_override_font_sizes/font_size = 441
 text = "asd"
 
-[connection signal="animation_finished" from="player" to="." method="_on_player_animation_finished"]
+[node name="player" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_sqeqn")
+position = Vector2(0, -18.0288)
+sprite_frames = SubResource("SpriteFrames_re207")
+animation = &"jump_start"
+autoplay = "idle"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+modulate = Color(2, 2, 2, 1)
+color = Color(1, 0.803922, 0.34902, 1)
+energy = 0.66
+texture = ExtResource("18_aflt6")
+texture_scale = 0.68
+height = 41.0
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
 [connection signal="timeout" from="Timer3" to="." method="_on_timer_3_timeout"]
@@ -650,3 +651,4 @@ text = "asd"
 [connection signal="timeout" from="Timer5" to="." method="_on_timer_5_timeout"]
 [connection signal="timeout" from="Timer6" to="." method="_on_timer_6_timeout"]
 [connection signal="timeout" from="Jump" to="." method="_on_jump_timeout"]
+[connection signal="animation_finished" from="player" to="." method="_on_player_animation_finished"]

@@ -1,0 +1,109 @@
+[gd_scene load_steps=6 format=3 uid="uid://cuss82iweq43u"]
+
+[ext_resource type="Texture2D" uid="uid://bw7bkly3yl6th" path="res://lamp_n.tres" id="2_0nmqb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sygpa"]
+radius = 1.65723
+height = 11.3656
+
+[sub_resource type="Gradient" id="Gradient_m72i8"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.79602)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7u8ta"]
+gradient = SubResource("Gradient_m72i8")
+width = 500
+height = 500
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0mtp3"]
+size = Vector2(2.67468, 3.22508)
+
+[node name="lamp" type="Node2D"]
+
+[node name="Lanten" type="RigidBody2D" parent="."]
+position = Vector2(0.410156, 18.973)
+collision_layer = 128
+collision_mask = 3
+can_sleep = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanten"]
+position = Vector2(-0.644043, 0.0597534)
+scale = Vector2(2.17389, 0.706732)
+shape = SubResource("CapsuleShape2D_sygpa")
+
+[node name="PointLight2D" type="PointLight2D" parent="Lanten"]
+position = Vector2(-0.410156, -1.97302)
+scale = Vector2(0.194797, -0.156588)
+color = Color(1, 0.635294, 0, 1)
+energy = 5.68
+shadow_color = Color(0, 0, 0, 1)
+shadow_filter = 1
+texture = SubResource("GradientTexture2D_7u8ta")
+height = 19.0
+
+[node name="Lamph-export" type="Sprite2D" parent="Lanten"]
+position = Vector2(0.355957, -0.940247)
+texture = ExtResource("2_0nmqb")
+region_enabled = true
+region_rect = Rect2(0, 19, 24, 13)
+
+[node name="chain" type="RigidBody2D" parent="."]
+position = Vector2(0, 9.97198)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="chain"]
+position = Vector2(0.181152, 0.0105591)
+shape = SubResource("RectangleShape2D_0mtp3")
+
+[node name="Sprite2D" type="Sprite2D" parent="chain"]
+texture = ExtResource("2_0nmqb")
+region_enabled = true
+region_rect = Rect2(10, 14, 3, 5)
+
+[node name="chain1" type="RigidBody2D" parent="."]
+position = Vector2(0.0200195, 4.979)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="chain1"]
+position = Vector2(0.181152, 0.0105591)
+shape = SubResource("RectangleShape2D_0mtp3")
+
+[node name="Sprite2D" type="Sprite2D" parent="chain1"]
+texture = ExtResource("2_0nmqb")
+region_enabled = true
+region_rect = Rect2(10, 14, 3, 5)
+
+[node name="chain2" type="StaticBody2D" parent="."]
+position = Vector2(0.0400391, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="chain2"]
+position = Vector2(0.181152, 0.0105591)
+shape = SubResource("RectangleShape2D_0mtp3")
+
+[node name="Sprite2D" type="Sprite2D" parent="chain2"]
+texture = ExtResource("2_0nmqb")
+region_enabled = true
+region_rect = Rect2(10, 14, 3, 5)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(0.0204928, 12.363)
+scale = Vector2(0.0902493, 0.0902493)
+node_a = NodePath("../Lanten")
+node_b = NodePath("../chain")
+bias = 0.9
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="."]
+position = Vector2(0, 7.55499)
+scale = Vector2(0.0501829, 0.0501829)
+node_a = NodePath("../chain")
+node_b = NodePath("../chain1")
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="."]
+position = Vector2(0.0102539, 2.48297)
+scale = Vector2(0.0527573, 0.0527573)
+node_a = NodePath("../chain2")
+node_b = NodePath("../chain1")

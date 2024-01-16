@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://c4uv3cur76h0r"]
+[gd_scene load_steps=96 format=3 uid="uid://c4uv3cur76h0r"]
 
 [ext_resource type="Script" path="res://Level/level.gd" id="1_b3drq"]
 [ext_resource type="PackedScene" uid="uid://cc8wav40o0jst" path="res://Player/player.tscn" id="4_gwfel"]
@@ -32,7 +32,6 @@
 [ext_resource type="Texture2D" uid="uid://d3qsmfmn223d5" path="res://Texture/border.png" id="30_o3ka3"]
 [ext_resource type="Script" path="res://Level/Level 1.gd" id="32_d231k"]
 [ext_resource type="Texture2D" uid="uid://ce7otcmg1w720" path="res://Texture/lamp.png" id="33_b40ab"]
-[ext_resource type="Texture2D" uid="uid://dbmfvwude6arv" path="res://Texture/ambirnt light.png" id="33_fjuwm"]
 [ext_resource type="SpriteFrames" uid="uid://dmvfcam66p7ww" path="res://level.tres" id="33_pneo4"]
 [ext_resource type="Script" path="res://Level/lever.gd" id="34_x6nld"]
 [ext_resource type="Texture2D" uid="uid://80olwgpryv84" path="res://Texture/parallaz1.png" id="35_jnnqx"]
@@ -44,9 +43,7 @@
 [ext_resource type="Texture2D" uid="uid://diwx6iqb2d15n" path="res://Texture/WHITE.png" id="39_mw8po"]
 [ext_resource type="Shader" path="res://Level/level.gdshader" id="40_x56on"]
 [ext_resource type="Script" path="res://Level/fog.gd" id="41_05ehr"]
-[ext_resource type="Texture2D" uid="uid://bw7bkly3yl6th" path="res://lamp_n.tres" id="42_bjtek"]
-[ext_resource type="Texture2D" uid="uid://byaai528lgbj6" path="res://Texture/lght.png" id="42_gjj4x"]
-[ext_resource type="Texture2D" uid="uid://cebtpbhw5nhug" path="res://Texture/lamph-export.png" id="42_lmwio"]
+[ext_resource type="PackedScene" uid="uid://cuss82iweq43u" path="res://lamp.tscn" id="42_wbg6t"]
 [ext_resource type="Script" path="res://Level/test.gd" id="45_ouw2i"]
 [ext_resource type="Texture2D" uid="uid://cqiomnbhbjq80" path="res://Texture/ZOMBIE.png" id="46_oo7ex"]
 [ext_resource type="PackedScene" uid="uid://d4eu6a8mern6p" path="res://Enemy/Goblin.tscn" id="49_h3o0h"]
@@ -127,19 +124,14 @@ ssr_max_steps = 479
 ssr_fade_in = 0.0168985
 glow_enabled = true
 glow_normalized = true
-glow_intensity = 8.0
+glow_intensity = 1.1
 glow_mix = 0.0
+glow_bloom = 0.75
 glow_blend_mode = 1
-glow_hdr_threshold = 0.0
-glow_hdr_scale = 4.0
-glow_map_strength = 1.0
-glow_map = ExtResource("33_fjuwm")
-fog_light_energy = 22.2
-fog_sun_scatter = 1.0
-fog_density = 1.2575
-fog_height = 1024.0
-fog_height_density = 0.0675
-adjustment_brightness = 0.33
+adjustment_enabled = true
+adjustment_brightness = 1.15
+adjustment_contrast = 1.18
+adjustment_saturation = 1.18
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2o0h1"]
 polygon = PackedVector2Array(44.4729, 785.645, 171.871, 787.427, 184.789, 742.437, 344.26, 740.655, 358.671, 723.933, 359.616, 701.254, 373.16, 682.041, 429.541, 678.261, 438.439, 858.684, 44.9639, 856.51)
@@ -222,13 +214,6 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7gkry"]
 radius = 20.6694
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_np0dq"]
-radius = 1.65723
-height = 11.3656
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_blg3i"]
-size = Vector2(2.67468, 3.22508)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w0xw2"]
 
@@ -354,8 +339,8 @@ size = Vector2(11.2485, 27.4318)
 script = ExtResource("1_b3drq")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(7149, 933)
-zoom = Vector2(3.34, 3.34)
+position = Vector2(6784, 817)
+zoom = Vector2(2.823, 2.823)
 process_callback = 0
 limit_left = 0
 limit_smoothed = true
@@ -364,60 +349,64 @@ position_smoothing_enabled = true
 [node name="Hud" type="CanvasLayer" parent="."]
 
 [node name="Panel" type="Panel" parent="Hud"]
-offset_top = 842.0
-offset_right = 1683.0
-offset_bottom = 1075.0
-scale = Vector2(1.03854, 1.03854)
+anchors_preset = -1
+anchor_left = -0.3
+anchor_top = 0.678977
+anchor_right = 1.06552
+anchor_bottom = 1.0227
+offset_left = 386.0
+offset_top = 50.0
+offset_right = 321.137
+offset_bottom = 41.0201
+grow_horizontal = 2
+scale = Vector2(0.760721, 0.760721)
 theme_override_styles/panel = SubResource("StyleBoxTexture_07sah")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Hud"]
 anchors_preset = -1
-anchor_left = 0.00374996
-anchor_top = 0.010296
-anchor_right = 0.385063
-anchor_bottom = 0.119813
-offset_left = 10.1315
-offset_top = 934.262
-offset_right = -490.969
-offset_bottom = 864.167
-grow_horizontal = 0
-scale = Vector2(6.23056, 6.31482)
+anchor_left = -0.28125
+anchor_top = 0.811079
+anchor_right = 0.249321
+anchor_bottom = 0.945628
+offset_left = 392.0
+offset_top = 31.0001
+offset_right = -178.131
+offset_bottom = -48.7222
+grow_horizontal = 2
+scale = Vector2(4.19438, 4.2511)
 max_value = 10.0
 value = 10.0
 texture_under = ExtResource("10_4o4ir")
 texture_progress = ExtResource("11_e78n8")
-metadata/_edit_use_anchors_ = true
 
 [node name="TextureProgressBar2" type="TextureProgressBar" parent="Hud"]
 anchors_preset = -1
-anchor_left = -2.7523e-05
-anchor_top = 0.0226445
-anchor_right = 0.381286
-anchor_bottom = 0.102957
-offset_left = 1031.91
-offset_top = 931.618
-offset_right = 530.809
-offset_bottom = 880.215
-grow_horizontal = 0
-scale = Vector2(6.342, 6.427)
+anchor_left = 0.511719
+anchor_top = 0.825284
+anchor_right = 1.05178
+anchor_bottom = 0.925706
+offset_left = 124.0
+offset_top = 25.0001
+offset_right = -458.278
+offset_bottom = -34.6969
+grow_horizontal = 2
+scale = Vector2(4.3247, 4.26592)
 value = 100.0
 texture_under = ExtResource("12_f47qs")
 texture_over = ExtResource("12_jns3m")
 texture_progress = ExtResource("13_fu6d8")
-metadata/_edit_use_anchors_ = true
 
 [node name="TextureProgressBar3" type="TextureProgressBar" parent="Hud"]
 anchors_preset = -1
 anchor_left = -2.7523e-05
 anchor_top = 0.0226445
-anchor_right = 0.381286
-anchor_bottom = 0.102957
-offset_left = 616.446
+anchor_bottom = 0.0226445
+offset_left = 491.035
 offset_top = 12.0757
-offset_right = 106.344
-offset_bottom = -39.3271
+offset_right = 591.034
+offset_bottom = 23.0757
 grow_horizontal = 0
-scale = Vector2(5.47427, 5.54831)
+scale = Vector2(3.48158, 3.52866)
 value = 100.0
 texture_under = ExtResource("17_7mx54")
 texture_progress = ExtResource("17_ocfq2")
@@ -433,29 +422,27 @@ libraries = {
 
 [node name="Label" type="Label" parent="Hud"]
 anchors_preset = -1
-anchor_top = 0.02
-anchor_right = 1.0
-anchor_bottom = 0.954
-offset_left = 973.42
-offset_top = 937.495
-offset_right = -238.58
-offset_bottom = 991.777
+anchor_left = 0.457031
+anchor_top = 0.832386
+anchor_right = 0.489748
+anchor_bottom = 0.922006
+offset_left = 120.0
+offset_top = 19.0
+offset_right = 466.123
+offset_bottom = 732.908
+grow_horizontal = 2
 scale = Vector2(0.10793, 0.0811999)
 theme_override_colors/font_color = Color(0.929412, 0.74902, 0.290196, 1)
 theme_override_fonts/font = ExtResource("19_5auy0")
-theme_override_font_sizes/font_size = 591
+theme_override_font_sizes/font_size = 461
 text = "1"
 
 [node name="Label3" type="Label" parent="Hud"]
-anchors_preset = -1
-anchor_top = 0.02
-anchor_right = 1.0
-anchor_bottom = 0.954
-offset_left = 864.986
-offset_top = 83.7298
-offset_right = -347.014
-offset_bottom = 138.012
-scale = Vector2(0.100479, 0.0755942)
+offset_left = 652.0
+offset_top = 76.0
+offset_right = 1040.0
+offset_bottom = 853.0
+scale = Vector2(0.0684244, 0.0514783)
 theme_override_colors/font_color = Color(0.054902, 0.905882, 0.705882, 1)
 theme_override_fonts/font = ExtResource("19_5auy0")
 theme_override_font_sizes/font_size = 591
@@ -463,36 +450,47 @@ text = "1"
 
 [node name="Label2" type="Label" parent="Hud"]
 anchors_preset = -1
-anchor_top = 0.02
-anchor_right = 1.0
-anchor_bottom = 0.954
-offset_left = 724.78
-offset_top = 937.495
-offset_right = 436.78
-offset_bottom = 688.777
+anchor_left = 0.267969
+anchor_top = 0.833807
+anchor_right = 0.460088
+anchor_bottom = 0.92875
+offset_left = 173.0
+offset_top = 17.0
+offset_right = 1239.09
+offset_bottom = 424.16
+grow_horizontal = 2
 scale = Vector2(0.187433, 0.141013)
 theme_override_colors/font_color = Color(0.929412, 0.74902, 0.290196, 1)
 theme_override_fonts/font = ExtResource("20_83cpf")
-theme_override_font_sizes/font_size = 591
+theme_override_font_sizes/font_size = 461
 text = "LEVEL:"
 
 [node name="Label4" type="Label" parent="Hud"]
-offset_right = 40.0
+offset_left = 34.0
+offset_right = 74.0
 offset_bottom = 23.0
 
 [node name="Button" type="Button" parent="Hud"]
 visible = false
-offset_right = 8.0
-offset_bottom = 8.0
+offset_right = 5013.0
+offset_bottom = 1733.0
 scale = Vector2(0.0399678, 0.0399678)
 theme_override_font_sizes/font_size = 1266
 text = "collision"
 
+[node name="Control" type="Control" parent="Hud"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="Tutorial" type="Node2D" parent="."]
 
 [node name="Fireballs" type="Node2D" parent="Tutorial"]
+top_level = true
 
 [node name="Fireball" parent="Tutorial" instance=ExtResource("9_k5on2")]
+modulate = Color(12.1647, 7.60392, 3.8, 1)
 
 [node name="GPUParticles2D" parent="Tutorial/Fireball" index="0"]
 visible = false
@@ -877,7 +875,7 @@ position = Vector2(2080.44, 518.031)
 collision_mask = 39
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Tutorial"]
-position = Vector2(1228.33, 433.563)
+position = Vector2(1229, 422)
 scale = Vector2(-123.881, -44.7293)
 
 [node name="Level 1" type="Node2D" parent="."]
@@ -987,7 +985,6 @@ offset_bottom = 2229.53
 scale = Vector2(2.44416, 0.77838)
 
 [node name="ColorRect" type="ColorRect" parent="Level 1"]
-visible = false
 material = SubResource("ShaderMaterial_m661a")
 offset_left = 3737.75
 offset_top = -16.6789
@@ -1021,163 +1018,8 @@ shape = SubResource("CircleShape2D_7gkry")
 
 [node name="Lamps" type="Node2D" parent="Level 1"]
 
-[node name="lamp" type="Node2D" parent="Level 1/Lamps"]
-position = Vector2(2.25391, 1.47522)
-
-[node name="Lanten" type="RigidBody2D" parent="Level 1/Lamps/lamp"]
-position = Vector2(6688.39, 781.465)
-collision_layer = 128
-collision_mask = 3
-can_sleep = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level 1/Lamps/lamp/Lanten"]
-position = Vector2(-0.644043, 0.0597534)
-scale = Vector2(2.17389, 0.706732)
-shape = SubResource("CapsuleShape2D_np0dq")
-
-[node name="PointLight2D" type="PointLight2D" parent="Level 1/Lamps/lamp/Lanten"]
-position = Vector2(-0.644531, 0.0595703)
-scale = Vector2(0.194797, -0.156588)
-color = Color(1, 0.568627, 0, 1)
-energy = 7.05
-texture = ExtResource("42_gjj4x")
-height = 19.0
-
-[node name="Lamph-export" type="Sprite2D" parent="Level 1/Lamps/lamp/Lanten"]
-position = Vector2(0.355957, -0.940247)
-texture = ExtResource("42_bjtek")
-region_enabled = true
-region_rect = Rect2(0, 19, 24, 13)
-
-[node name="chain" type="RigidBody2D" parent="Level 1/Lamps/lamp"]
-position = Vector2(6687.98, 772.464)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level 1/Lamps/lamp/chain"]
-position = Vector2(0.181152, 0.0105591)
-shape = SubResource("RectangleShape2D_blg3i")
-
-[node name="Sprite2D" type="Sprite2D" parent="Level 1/Lamps/lamp/chain"]
-texture = ExtResource("42_bjtek")
-region_enabled = true
-region_rect = Rect2(10, 14, 3, 5)
-
-[node name="chain1" type="RigidBody2D" parent="Level 1/Lamps/lamp"]
-position = Vector2(6688, 767.471)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level 1/Lamps/lamp/chain1"]
-position = Vector2(0.181152, 0.0105591)
-shape = SubResource("RectangleShape2D_blg3i")
-
-[node name="Sprite2D" type="Sprite2D" parent="Level 1/Lamps/lamp/chain1"]
-texture = ExtResource("42_bjtek")
-region_enabled = true
-region_rect = Rect2(10, 14, 3, 5)
-
-[node name="chain2" type="StaticBody2D" parent="Level 1/Lamps/lamp"]
-position = Vector2(6688.02, 762.492)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level 1/Lamps/lamp/chain2"]
-position = Vector2(0.181152, 0.0105591)
-shape = SubResource("RectangleShape2D_blg3i")
-
-[node name="Sprite2D" type="Sprite2D" parent="Level 1/Lamps/lamp/chain2"]
-texture = ExtResource("42_bjtek")
-region_enabled = true
-region_rect = Rect2(10, 14, 3, 5)
-
-[node name="PinJoint2D" type="PinJoint2D" parent="Level 1/Lamps/lamp"]
-position = Vector2(6688, 774.855)
-scale = Vector2(0.0902493, 0.0902493)
-node_a = NodePath("../Lanten")
-node_b = NodePath("../chain")
-bias = 0.9
-
-[node name="PinJoint2D2" type="PinJoint2D" parent="Level 1/Lamps/lamp"]
-position = Vector2(6687.98, 770.047)
-scale = Vector2(0.0501829, 0.0501829)
-node_a = NodePath("../chain")
-node_b = NodePath("../chain1")
-
-[node name="PinJoint2D3" type="PinJoint2D" parent="Level 1/Lamps/lamp"]
-position = Vector2(6687.99, 764.975)
-scale = Vector2(0.0527573, 0.0527573)
-node_a = NodePath("../chain2")
-node_b = NodePath("../chain1")
-
-[node name="lamp2" type="Node2D" parent="Level 1/Lamps"]
-position = Vector2(713.481, -0.90332)
-
-[node name="Lanten" type="RigidBody2D" parent="Level 1/Lamps/lamp2"]
-position = Vector2(6688.39, 781.465)
-collision_layer = 128
-collision_mask = 3
-can_sleep = false
-linear_velocity = Vector2(5, 0)
-
-[node name="Lamph-export" type="Sprite2D" parent="Level 1/Lamps/lamp2/Lanten"]
-texture = ExtResource("42_lmwio")
-region_enabled = true
-region_rect = Rect2(0, 19, 24, 13)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level 1/Lamps/lamp2/Lanten"]
-position = Vector2(-0.422852, 0.0563354)
-scale = Vector2(2.17389, 0.706732)
-shape = SubResource("CapsuleShape2D_np0dq")
-
-[node name="chain" type="RigidBody2D" parent="Level 1/Lamps/lamp2"]
-position = Vector2(6687.98, 772.464)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level 1/Lamps/lamp2/chain"]
-position = Vector2(0.181152, 0.0105591)
-shape = SubResource("RectangleShape2D_blg3i")
-
-[node name="Sprite2D" type="Sprite2D" parent="Level 1/Lamps/lamp2/chain"]
-texture = ExtResource("42_lmwio")
-region_enabled = true
-region_rect = Rect2(10, 14, 3, 5)
-
-[node name="chain1" type="RigidBody2D" parent="Level 1/Lamps/lamp2"]
-position = Vector2(6688, 767.471)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level 1/Lamps/lamp2/chain1"]
-position = Vector2(0.181152, 0.0105591)
-shape = SubResource("RectangleShape2D_blg3i")
-
-[node name="Sprite2D" type="Sprite2D" parent="Level 1/Lamps/lamp2/chain1"]
-texture = ExtResource("42_lmwio")
-region_enabled = true
-region_rect = Rect2(10, 14, 3, 5)
-
-[node name="chain2" type="StaticBody2D" parent="Level 1/Lamps/lamp2"]
-position = Vector2(6688.02, 762.492)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level 1/Lamps/lamp2/chain2"]
-position = Vector2(0.181152, 0.0105591)
-shape = SubResource("RectangleShape2D_blg3i")
-
-[node name="Sprite2D" type="Sprite2D" parent="Level 1/Lamps/lamp2/chain2"]
-texture = ExtResource("42_lmwio")
-region_enabled = true
-region_rect = Rect2(10, 14, 3, 5)
-
-[node name="PinJoint2D" type="PinJoint2D" parent="Level 1/Lamps/lamp2"]
-position = Vector2(6688, 774.855)
-scale = Vector2(0.0902493, 0.0902493)
-node_a = NodePath("../Lanten")
-node_b = NodePath("../chain")
-bias = 0.9
-
-[node name="PinJoint2D2" type="PinJoint2D" parent="Level 1/Lamps/lamp2"]
-position = Vector2(6687.98, 770.047)
-scale = Vector2(0.0501829, 0.0501829)
-node_a = NodePath("../chain")
-node_b = NodePath("../chain1")
-
-[node name="PinJoint2D3" type="PinJoint2D" parent="Level 1/Lamps/lamp2"]
-position = Vector2(6687.99, 764.975)
-scale = Vector2(0.0527573, 0.0527573)
-node_a = NodePath("../chain2")
-node_b = NodePath("../chain1")
+[node name="Lamp" parent="Level 1/Lamps" instance=ExtResource("42_wbg6t")]
+position = Vector2(6760, 762)
 
 [node name="levers" type="Node2D" parent="Level 1"]
 script = ExtResource("34_x6nld")
@@ -1326,19 +1168,20 @@ parameters/Atk_j/current_index = -1
 [node name="Goblin2" parent="Level 1/Goblins" instance=ExtResource("49_h3o0h")]
 position = Vector2(605, 324)
 
+[node name="CanvasModulate" type="CanvasModulate" parent="Level 1"]
+skew = 1.16937
+color = Color(0.188235, 0.188235, 0.188235, 1)
+
 [node name="Player" parent="." instance=ExtResource("4_gwfel")]
 unique_name_in_owner = true
 z_index = 775
-position = Vector2(7149, 933)
+position = Vector2(6784, 817)
 collision_mask = 30
 
 [node name="GPUParticles2D" parent="Player" index="1"]
 z_index = -2
 
-[node name="LightOccluder2D" parent="Player" index="2"]
-position = Vector2(-50.8633, -42.9684)
-
-[node name="Timer5" parent="Player" index="14"]
+[node name="Timer5" parent="Player" index="12"]
 autostart = true
 
 [node name="RemoteTransform2D2" type="RemoteTransform2D" parent="Player"]
@@ -1380,5 +1223,6 @@ update_scale = false
 [editable path="Tutorial/bluefb"]
 [editable path="Tutorial/Mobs/wasps/wasp"]
 [editable path="Tutorial/Mobs/wasps/wasp2"]
+[editable path="Level 1/Lamps/Lamp"]
 [editable path="Level 1/Goblins/Goblin"]
 [editable path="Player"]

@@ -26,10 +26,16 @@ var x = -1045
 var y = 1
 var time = 0.1
 var can_jump = false
-var has_jumped = false	
+var has_jumped = false
+var fs = false
 func _physics_process(delta):
 	$Label.set_text(str(ani_locked,was_in_air))
-
+	if Input.is_action_just_pressed('fs') and fs == false:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		fs = true
+	elif Input.is_action_just_pressed('fs') and fs == true:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		fs = false
 	
 	if Input.is_action_just_pressed("Down") and is_on_floor():
 		position.y +=5
@@ -131,8 +137,7 @@ func _physics_process(delta):
 	$"../Hud/TextureProgressBar2".value = mana
 
 	attack()
-	posi.emit(position)	
-	inventory()				
+	posi.emit(position)
 	move_and_slide()
 	#for i in get_slide_collision_count():
 		#var c = get_slide_collision(i)

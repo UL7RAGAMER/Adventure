@@ -440,7 +440,7 @@ position = Vector2(320, 0)
 texture = ExtResource("5_me0h3")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(47, 5)
+position = Vector2(60, -10)
 editor_only = true
 texture = ExtResource("7_p0ulh")
 texture_scale = 6.22
