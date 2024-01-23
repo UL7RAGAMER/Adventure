@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://c4uv3cur76h0r"]
+[gd_scene load_steps=99 format=3 uid="uid://c4uv3cur76h0r"]
 
 [ext_resource type="Script" path="res://Level/level.gd" id="1_b3drq"]
 [ext_resource type="PackedScene" uid="uid://cc8wav40o0jst" path="res://Player/player.tscn" id="4_gwfel"]
@@ -117,21 +117,6 @@ texture = ExtResource("19_h8tmo")
 size = Vector2(512.603, 86.6313)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sksy0"]
-
-[sub_resource type="Environment" id="Environment_mrtdi"]
-background_mode = 3
-ssr_max_steps = 479
-ssr_fade_in = 0.0168985
-glow_enabled = true
-glow_normalized = true
-glow_intensity = 1.1
-glow_mix = 0.0
-glow_bloom = 0.75
-glow_blend_mode = 1
-adjustment_enabled = true
-adjustment_brightness = 1.15
-adjustment_contrast = 1.18
-adjustment_saturation = 1.18
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2o0h1"]
 polygon = PackedVector2Array(44.4729, 785.645, 171.871, 787.427, 184.789, 742.437, 344.26, 740.655, 358.671, 723.933, 359.616, 701.254, 373.16, 682.041, 429.541, 678.261, 438.439, 858.684, 44.9639, 856.51)
@@ -334,6 +319,61 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_04ghg"]
 size = Vector2(11.2485, 27.4318)
+
+[sub_resource type="Animation" id="Animation_iqr0n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.188235, 0.188235, 0.188235, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5e74n"]
+resource_name = "new_animation"
+length = 50.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 25, 50),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 2,
+"values": [Color(0.188235, 0.188235, 0.188235, 1), Color(0.0705882, 0, 0.027451, 1), Color(0.121569, 0.121569, 0.121569, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ihkg0"]
+_data = {
+"RESET": SubResource("Animation_iqr0n"),
+"new_animation": SubResource("Animation_5e74n")
+}
+
+[sub_resource type="Environment" id="Environment_mrtdi"]
+background_mode = 3
+ssr_max_steps = 479
+ssr_fade_in = 0.0168985
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 1.1
+glow_mix = 0.0
+glow_bloom = 0.75
+glow_blend_mode = 1
+adjustment_enabled = true
+adjustment_brightness = 1.15
+adjustment_contrast = 1.18
+adjustment_saturation = 1.18
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_b3drq")
@@ -815,9 +855,6 @@ position = Vector2(1687, 499)
 [node name="Timer2" type="Timer" parent="Tutorial"]
 one_shot = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Tutorial"]
-environment = SubResource("Environment_mrtdi")
-
 [node name="Lamp" type="Sprite2D" parent="Tutorial"]
 position = Vector2(389.557, 657.356)
 scale = Vector2(1.28, 1.28)
@@ -1002,7 +1039,6 @@ autoplay = "RESET"
 speed_scale = 0.2
 
 [node name="debug" type="StaticBody2D" parent="Level 1"]
-visible = false
 position = Vector2(6619.68, 724.439)
 collision_layer = 2
 collision_mask = 3
@@ -1015,11 +1051,6 @@ texture = ExtResource("35_rghql")
 position = Vector2(-0.120117, 0.0566406)
 scale = Vector2(0.439662, 0.439662)
 shape = SubResource("CircleShape2D_7gkry")
-
-[node name="Lamps" type="Node2D" parent="Level 1"]
-
-[node name="Lamp" parent="Level 1/Lamps" instance=ExtResource("42_wbg6t")]
-position = Vector2(6760, 762)
 
 [node name="levers" type="Node2D" parent="Level 1"]
 script = ExtResource("34_x6nld")
@@ -1169,8 +1200,14 @@ parameters/Atk_j/current_index = -1
 position = Vector2(605, 324)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Level 1"]
-skew = 1.16937
 color = Color(0.188235, 0.188235, 0.188235, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Level 1/CanvasModulate"]
+deterministic = true
+libraries = {
+"": SubResource("AnimationLibrary_ihkg0")
+}
+autoplay = "new_animation"
 
 [node name="Player" parent="." instance=ExtResource("4_gwfel")]
 unique_name_in_owner = true
@@ -1188,6 +1225,14 @@ autostart = true
 remote_path = NodePath("../../Camera2D")
 update_rotation = false
 update_scale = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mrtdi")
+
+[node name="Lamps" type="Node2D" parent="."]
+
+[node name="lamp" parent="Lamps" instance=ExtResource("42_wbg6t")]
+position = Vector2(6769, 760)
 
 [connection signal="hurt" from="." to="Player" method="_on_level_hurt"]
 [connection signal="pressed" from="Hud/Button" to="Level 1" method="_on_button_pressed"]
@@ -1223,6 +1268,5 @@ update_scale = false
 [editable path="Tutorial/bluefb"]
 [editable path="Tutorial/Mobs/wasps/wasp"]
 [editable path="Tutorial/Mobs/wasps/wasp2"]
-[editable path="Level 1/Lamps/Lamp"]
 [editable path="Level 1/Goblins/Goblin"]
 [editable path="Player"]

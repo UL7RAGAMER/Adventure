@@ -325,7 +325,7 @@ shader_parameter/Red = Color(1, 0, 0, 1)
 diffuse_texture = ExtResource("2_gcnep")
 normal_texture = ExtResource("3_x00j5")
 
-[node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("ground_detector", "jump_block", "flip_node")]
+[node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("ground_detector", "jump_block", "flip_node", "ray")]
 material = SubResource("ShaderMaterial_vvqu0")
 collision_layer = 0
 collision_mask = 6
@@ -334,6 +334,7 @@ jump_velocity = -223.41
 ground_detector = NodePath("flip/ground")
 jump_block = NodePath("flip/jump")
 flip_node = NodePath("flip")
+ray = NodePath("RayCast2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 5)
@@ -444,6 +445,10 @@ position = Vector2(60, -10)
 editor_only = true
 texture = ExtResource("7_p0ulh")
 texture_scale = 6.22
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(62, -12)
+collision_mask = 3
 
 [connection signal="jp" from="." to="." method="_on_jp"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

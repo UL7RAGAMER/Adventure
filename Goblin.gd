@@ -4,14 +4,17 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var health = 5
 @export var speed : float = 100.0
 @export_category('Ai')
+var isatking = false
 @export var jump_velocity : float = -300.0
 @export var ground_detector : Area2D
 @export var jump_block : Area2D
 @export var flip_node : Node2D
 @onready var anitree : AnimationTree = $AnimationTree
 @onready var path : Path2D = $Path2D
+@export var ray : RayCast2D
 var jumped = false
 var ground_in_front : bool = true
+var iswall = false
 signal jp
 signal atk
 @onready var direc = (%Player.global_position.x - $".".global_position.x )
@@ -24,6 +27,13 @@ signal atk
 func _ready():
 	add_to_group('goblins')
 func _process(delta):
+	ray.target_position = %Player.global_position - global_position
+
+	if ray.get_collider() == %Player:
+		iswall = false
+	else:
+		iswall = true
+		
 	if health <= 0:
 		await get_tree().create_timer(0.1).timeout
 		queue_free()
@@ -42,7 +52,8 @@ func _process(delta):
 				pass
 	
 	update(delta)
-	
+	if iswall == false:
+		update_path(delta)
 	move_and_slide()
 
 	pass
@@ -51,7 +62,7 @@ func update(d):
 	if ((pos < 210 and pos > 0) or (pos > -210 and pos < 0) ) and jumped == false:
 		direc = (%Player.global_position - $".".global_position ).normalized()
 		move_direction = direc
-		update_path(d)
+
 	else:
 		velocity.x = 0
 		anitree.set('parameters/Change/transition_request','Idle' )
@@ -84,7 +95,8 @@ func update_path(d):
 		path.curve.remove_point(3)
 		path.curve.remove_point(4)
 
-		if (pos < 210 and pos > 0) or (pos > -210 and pos < 0)  :
+		if ((pos < 210 and pos > 0) or (pos > -210 and pos < 0)) or isatking == true  :
+			isatking = true
 			path.curve.set_point_position(2,plp)
 			if plp.x < 0: 
 				path.curve.set_point_in(1,Vector2(58,0))
@@ -92,19 +104,17 @@ func update_path(d):
 			else:
 				path.curve.set_point_in(1,Vector2(-58,0))
 				path.curve.set_point_out(1,Vector2(58,0))
-
-			if r <= 0.428 and jumped == false:
+			if r <= 0.428 and jumped == false :
 				
 				attack_j(d)
-			elif r == 1:
+			elif r == 1 :
 				reset(plp)
 				
 					
-			elif r >= 0.428 and jumped == false:
+			elif r >= 0.428 and jumped == false :
 				attack_f(d)
 		pass
 func attack_j(d):
-	await  get_tree().create_timer(0.2).timeout
 	var r = $Path2D/PathFollow2D.get_progress_ratio()
 
 	if r <= 0.428:
@@ -139,6 +149,7 @@ func reset(plp):
 		path.curve.add_point(Vector2(0,-65),Vector2.ZERO,Vector2.ZERO,1)
 		path.curve.add_point(plp,Vector2.ZERO,Vector2.ZERO,2)
 		jumped = true
+		isatking = false
 		jp.emit()
 func ft(x):
 	return 1/(200 * x)
@@ -153,7 +164,6 @@ func _on_jp():
 
 
 func _on_area_2d_area_entered(area):
-	print('asd')
 	$Label.set_text(str(area))
 	health -= PlayerPos.dmg
 	$Path2D/PathFollow2D/Idle.material.set_shader_parameter("Hit",true) 
@@ -165,3 +175,7 @@ func _on_area_2d_area_entered(area):
 	$Path2D/PathFollow2D/Idle.material.set_shader_parameter("Hit",false) 
 
 	pass # Replace with function body.
+
+
+
+

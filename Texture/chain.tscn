@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dge2hphal58u5"]
+
+[ext_resource type="Texture2D" uid="uid://bw7bkly3yl6th" path="res://lamp_n.tres" id="1_5byku"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5tugd"]
+size = Vector2(2.67468, 3.22508)
+
+[node name="chain" type="RigidBody2D"]
+continuous_cd = 2
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-0.0078392, 2.55413)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.0141083, 0.0244794)
+shape = SubResource("RectangleShape2D_5tugd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5byku")
+region_enabled = true
+region_rect = Rect2(10, 14, 3, 5)

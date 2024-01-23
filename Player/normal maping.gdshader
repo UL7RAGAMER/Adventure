@@ -1,7 +1,10 @@
 shader_type canvas_item;
-uniform sampler2D normal_map : hint_default_black;
-void fragment() {
 
-	NORMAL_MAP = texture(NORMAL_TEXTURE,UV).rgb;
-	// Place fragment code here.
+// Allows us to assign a normal map to the shader in the Inspector
+uniform sampler2D normal_map;
+
+void fragment(){
+	// Converts the texture data into a unit vector, with each channel in the [-1, 1] range
+
+NORMAL = 2.0 * texture(normal_map, UV).rgb - 1.0;
 }
