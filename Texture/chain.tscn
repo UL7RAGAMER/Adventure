@@ -6,7 +6,6 @@
 size = Vector2(2.67468, 3.22508)
 
 [node name="chain" type="RigidBody2D"]
-continuous_cd = 2
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(-0.0078392, 2.55413)

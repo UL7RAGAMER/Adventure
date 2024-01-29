@@ -1,23 +1,26 @@
 extends Node2D
 var chain:PackedScene = preload("res://Texture/chain.tscn")
-@export_range(1,10,1) var chains 
+@export_range(1,50,1) var chains 
 var n_a = null
 var once = 1
 @export var t : Texture
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
-	var pos = $Node2D/chain2/Marker2D.position
+	var pos = $Marker2D.position
 	for i in chains:
-
+		var x = 1/chains
 		print(chains)
 		var c = chain.instantiate() as RigidBody2D
 		var m = Sprite2D.new()
 		
 		
-		c.gravity_scale = 1
-		$Node2D.add_child(c)
+		c.gravity_scale = x 
 		c.position = pos 
+		
+		
+		$Node2D.add_child(c)
+		
 		
 		if i == 0:
 			$PinJoint2D3.set_node_b('../'+str(get_path_to(c)))
@@ -26,10 +29,10 @@ func _ready():
 			pass
 		else:
 			var j = PinJoint2D.new()
-			j.scale = Vector2(0.0053,0.0053)
-			add_child(j)
+			j.scale = Vector2(0.053,0.053)
 			pos.x+=1
 			j.position = pos
+			add_child(j)
 			pos.x-=1
 			m.texture = t
 			m.scale = Vector2(0.053,0.053)
@@ -44,8 +47,8 @@ func _ready():
 			pos.x+=1
 			$Lanten.position = pos
 			$Lanten/PinJoint2D.set_node_a('../../'+str(get_path_to(c)))
-		pos.y += 5
-		
+		pos.y += 4	
+
 		n_a = get_path_to(c)
 
 	pass # Replace with function body.
@@ -53,7 +56,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	$RigidBody2D.global_position = get_global_mouse_position()
 	pass
 	
 	

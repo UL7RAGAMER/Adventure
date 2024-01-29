@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cuss82iweq43u"]
+[gd_scene load_steps=8 format=3 uid="uid://cuss82iweq43u"]
 
 [ext_resource type="Script" path="res://lamp.gd" id="1_7oyec"]
 [ext_resource type="Texture2D" uid="uid://bw7bkly3yl6th" path="res://lamp_n.tres" id="2_0nmqb"]
@@ -24,8 +24,6 @@ fill_to = Vector2(0.790598, 0.205128)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0mtp3"]
 size = Vector2(2.67468, 3.22508)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_lqixt"]
-
 [node name="lamp" type="Node2D"]
 position = Vector2(-1, -0.636134)
 script = ExtResource("1_7oyec")
@@ -36,6 +34,7 @@ t = ExtResource("2_4ys3c")
 position = Vector2(0, 17.742)
 collision_layer = 128
 collision_mask = 3
+mass = 0.46
 
 [node name="Lamph-export" type="Sprite2D" parent="Lanten"]
 position = Vector2(0, 1)
@@ -52,7 +51,7 @@ shape = SubResource("CapsuleShape2D_sygpa")
 position = Vector2(0, 2)
 scale = Vector2(0.194797, -0.156588)
 color = Color(1, 0.635294, 0, 1)
-energy = 4.76
+energy = 3.75
 shadow_color = Color(0, 0, 0, 1)
 shadow_filter = 1
 texture = SubResource("GradientTexture2D_7u8ta")
@@ -77,26 +76,16 @@ texture = ExtResource("2_0nmqb")
 region_enabled = true
 region_rect = Rect2(10, 14, 3, 5)
 
-[node name="Marker2D" type="Marker2D" parent="Node2D/chain2"]
-position = Vector2(0, 5.18249)
-scale = Vector2(1.02492, 0.0149254)
-
 [node name="PinJoint2D3" type="PinJoint2D" parent="."]
-position = Vector2(1.0374, 4.65572)
+position = Vector2(0.997983, 3.99877)
 scale = Vector2(0.0527573, 0.0527573)
 node_a = NodePath("../Node2D/chain2")
-softness = 0.01
-motor_enabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-1.03734, 30.7165)
+position = Vector2(-1.03734, 8.0546)
 scale = Vector2(0.920855, -0.809369)
-zoom = Vector2(7.062, 7.062)
+zoom = Vector2(2.285, 2.285)
 
-[node name="RigidBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(8.875, 2.1875)
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-scale = Vector2(0.11035, 0.11035)
-shape = SubResource("CircleShape2D_lqixt")
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, 4.00816)
+scale = Vector2(1.02492, 0.0149254)

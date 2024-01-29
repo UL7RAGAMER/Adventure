@@ -15,7 +15,7 @@ func _ready():
 signal dmg(dmg) 
 
 func _process(delta):
-
+	
 	
 	
 	num += 1
@@ -25,6 +25,7 @@ func _process(delta):
 	var f_pos = pos1
 	f_pos.x = randi_range(pos1.x,pos2.x) 
 	var b = boar.instantiate() as CharacterBody2D
+	
 	b.position = f_pos
 	if false:
 		add_child(b)
@@ -79,7 +80,7 @@ func _on_player_bluefb(pos, dir):
 
 
 func _on_character_body_2d_player_hurt():
-	hurt.emit(2)
+	hurt.emit(0)
 	
 
 
@@ -168,7 +169,7 @@ func _on_button_6_pressed():
 
 
 func _on_boar_player_hurt_1():
-	hurt.emit(3)
+	hurt.emit(0)
 	pass # Replace with function body.
 
 
@@ -182,7 +183,7 @@ func _on_bullet_w_hurt(h):
 
 
 func _on_wasp_wasp_h(h):
-	hurt.emit(h)
+	hurt.emit(0)
 	
 	
 	pass # Replace with function body.
@@ -213,5 +214,5 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 
 func _on_goblin_atk():
-	hurt.emit(1)
+	hurt.emit(0)
 	pass # Replace with function body.

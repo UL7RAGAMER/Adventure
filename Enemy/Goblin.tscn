@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://d4eu6a8mern6p"]
+[gd_scene load_steps=40 format=3 uid="uid://d4eu6a8mern6p"]
 
 [ext_resource type="Script" path="res://Goblin.gd" id="1_glxhb"]
 [ext_resource type="Texture2D" uid="uid://cw0yfimrw5f6n" path="res://Texture/Goblin/idle.png" id="2_gcnep"]
@@ -20,7 +20,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Path2D/PathFollow2D/Idle:frame")
+tracks/0/path = NodePath("Idle:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -32,7 +32,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Path2D/PathFollow2D/Idle:flip_h")
+tracks/1/path = NodePath("Idle:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -49,7 +49,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Path2D/PathFollow2D/Idle:frame")
+tracks/0/path = NodePath("Idle:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -61,7 +61,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Path2D/PathFollow2D/Idle:flip_h")
+tracks/1/path = NodePath("Idle:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -78,7 +78,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Path2D/PathFollow2D/Idle:frame")
+tracks/0/path = NodePath("Idle:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -90,7 +90,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Path2D/PathFollow2D/Idle:flip_h")
+tracks/1/path = NodePath("Idle:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -107,7 +107,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Path2D/PathFollow2D/Idle:frame")
+tracks/0/path = NodePath("Idle:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -119,7 +119,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Path2D/PathFollow2D/Idle:flip_h")
+tracks/1/path = NodePath("Idle:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -137,7 +137,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Path2D/PathFollow2D/Idle:frame")
+tracks/0/path = NodePath("Idle:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -149,7 +149,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Path2D/PathFollow2D/Idle:flip_h")
+tracks/1/path = NodePath("Idle:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -167,7 +167,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Path2D/PathFollow2D/Idle:frame")
+tracks/0/path = NodePath("Idle:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -179,7 +179,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Path2D/PathFollow2D/Idle:flip_h")
+tracks/1/path = NodePath("Idle:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -194,7 +194,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Path2D/PathFollow2D/Idle:frame")
+tracks/0/path = NodePath("Idle:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -206,7 +206,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Path2D/PathFollow2D/Idle:flip_h")
+tracks/1/path = NodePath("Idle:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -214,6 +214,66 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_t54gu"]
+resource_name = "test"
+length = 0.5
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Idle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.35, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8, 9, 10]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Idle:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_gdc2v"]
+resource_name = "test_2"
+length = 0.5
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Idle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.25, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8, 9, 10]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Idle:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ihvh5"]
@@ -224,7 +284,9 @@ _data = {
 "Atk_jump_2": SubResource("Animation_dwiid"),
 "Idle": SubResource("Animation_74vac"),
 "Idle_2": SubResource("Animation_ogkmh"),
-"RESET": SubResource("Animation_0kbqg")
+"RESET": SubResource("Animation_0kbqg"),
+"test": SubResource("Animation_t54gu"),
+"test_2": SubResource("Animation_gdc2v")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xdaqc"]
@@ -241,6 +303,12 @@ animation = &"Atk_jump"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_506ew"]
 animation = &"Atk_jump_2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yg7ho"]
+animation = &"test"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fpe3t"]
+animation = &"test_2"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uo6nl"]
 animation = &"Idle"
@@ -271,6 +339,9 @@ input_1/reset = true
 input_2/name = "Atk_fall"
 input_2/auto_advance = false
 input_2/reset = true
+input_3/name = "f_jump"
+input_3/auto_advance = false
+input_3/reset = true
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_4ch78"]
 input_0/name = "Idle"
@@ -280,7 +351,16 @@ input_1/name = "Idle 2"
 input_1/auto_advance = false
 input_1/reset = true
 
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_ufeuj"]
+input_0/name = "r"
+input_0/auto_advance = false
+input_0/reset = true
+input_1/name = "l"
+input_1/auto_advance = false
+input_1/reset = true
+
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_krs3a"]
+graph_offset = Vector2(-310.264, 391.091)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_uo6nl")
 nodes/Animation/position = Vector2(-40, 180)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_xdaqc")
@@ -293,16 +373,22 @@ nodes/Animation/position = Vector2(-40, 180)
 "nodes/Animation 5/position" = Vector2(-40, 820)
 "nodes/Animation 6/node" = SubResource("AnimationNodeAnimation_506ew")
 "nodes/Animation 6/position" = Vector2(-40, 960)
+"nodes/Animation 7/node" = SubResource("AnimationNodeAnimation_yg7ho")
+"nodes/Animation 7/position" = Vector2(120, 720)
+"nodes/Animation 8/node" = SubResource("AnimationNodeAnimation_fpe3t")
+"nodes/Animation 8/position" = Vector2(120, 800)
 nodes/Atk_f/node = SubResource("AnimationNodeTransition_a2374")
 nodes/Atk_f/position = Vector2(120, 520)
 nodes/Atk_j/node = SubResource("AnimationNodeTransition_sal0h")
 nodes/Atk_j/position = Vector2(235.274, 882.77)
 nodes/Change/node = SubResource("AnimationNodeTransition_4vw3j")
-nodes/Change/position = Vector2(420.333, 291.358)
+nodes/Change/position = Vector2(800, 360)
 nodes/Idle/node = SubResource("AnimationNodeTransition_4ch78")
 nodes/Idle/position = Vector2(220, 220)
-nodes/output/position = Vector2(580, 320)
-node_connections = [&"Atk_f", 0, &"Animation 4", &"Atk_f", 1, &"Animation 3", &"Atk_j", 0, &"Animation 5", &"Atk_j", 1, &"Animation 6", &"Change", 0, &"Idle", &"Change", 1, &"Atk_j", &"Change", 2, &"Atk_f", &"Idle", 0, &"Animation", &"Idle", 1, &"Animation 2", &"output", 0, &"Change"]
+nodes/f_jump/node = SubResource("AnimationNodeTransition_ufeuj")
+nodes/f_jump/position = Vector2(340, 700)
+nodes/output/position = Vector2(1020, 380)
+node_connections = [&"Atk_f", 0, &"Animation 4", &"Atk_f", 1, &"Animation 3", &"Atk_j", 0, &"Animation 5", &"Atk_j", 1, &"Animation 6", &"Change", 0, &"Idle", &"Change", 1, &"Atk_j", &"Change", 2, &"Atk_f", &"Change", 3, &"f_jump", &"Idle", 0, &"Animation", &"Idle", 1, &"Animation 2", &"f_jump", 0, &"Animation 7", &"f_jump", 1, &"Animation 8", &"output", 0, &"Change"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c5y68"]
 
@@ -315,6 +401,9 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -3.786, 0, -59.5119, -0.890899, 59.5119, 0.890899, 162, -65.8261, 0, 0, 16.2709, 8.33385, 320, -0.826)
 }
 point_count = 3
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pywel"]
+height = 51.1376
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_417js"]
 shader = ExtResource("3_uxexw")
@@ -363,6 +452,9 @@ parameters/Change/current_index = 2
 parameters/Idle/current_state = "Idle"
 parameters/Idle/transition_request = ""
 parameters/Idle/current_index = 0
+parameters/f_jump/current_state = ""
+parameters/f_jump/transition_request = "l"
+parameters/f_jump/current_index = -1
 
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
@@ -397,6 +489,7 @@ position = Vector2(-4, 5)
 shape = SubResource("RectangleShape2D_p3vfn")
 
 [node name="Path2D" type="Path2D" parent="."]
+visible = false
 position = Vector2(0, 19.8261)
 curve = SubResource("Curve2D_pvdc6")
 script = ExtResource("4_st2sk")
@@ -406,15 +499,6 @@ position = Vector2(-3.786, 0)
 rotation = -0.259871
 rotates = false
 loop = false
-
-[node name="Idle" type="Sprite2D" parent="Path2D/PathFollow2D"]
-material = SubResource("ShaderMaterial_417js")
-position = Vector2(-25.0828, -42.7052)
-rotation = 0.259871
-texture = SubResource("CanvasTexture_winoe")
-offset = Vector2(40, 15)
-hframes = 12
-region_rect = Rect2(0, 0, 64, 64)
 
 [node name="Marker2D" type="Marker2D" parent="Path2D"]
 visible = false
@@ -433,7 +517,6 @@ position = Vector2(160, -65.826)
 texture = ExtResource("5_me0h3")
 
 [node name="Marker2D3" type="Marker2D" parent="Path2D"]
-visible = false
 modulate = Color(1, 0.784314, 0, 1)
 position = Vector2(320, 0)
 
@@ -447,8 +530,41 @@ texture = ExtResource("7_p0ulh")
 texture_scale = 6.22
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(62, -12)
+target_position = Vector2(58, -5)
 collision_mask = 3
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+visible = false
+position = Vector2(320, 20)
+scale = Vector2(1.1733, 1.1733)
+collision_layer = 256
+collision_mask = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, -23.8642)
+shape = SubResource("CapsuleShape2D_pywel")
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(12, 0)
+default_color = Color(1, 0, 0, 1)
+
+[node name="Line2D2" type="Line2D" parent="."]
+visible = false
+position = Vector2(12, 0)
+default_color = Color(0.117647, 1, 0, 1)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="Idle" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_417js")
+position = Vector2(-39, -15)
+texture = SubResource("CanvasTexture_winoe")
+offset = Vector2(40, 15)
+hframes = 12
+region_rect = Rect2(0, 0, 64, 64)
 
 [connection signal="jp" from="." to="." method="_on_jp"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

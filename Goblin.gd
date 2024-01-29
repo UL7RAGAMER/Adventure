@@ -27,6 +27,7 @@ signal atk
 func _ready():
 	add_to_group('goblins')
 func _process(delta):
+	print(velocity)
 	ray.target_position = %Player.global_position - global_position
 
 	if ray.get_collider() == %Player:
@@ -53,25 +54,79 @@ func _process(delta):
 	
 	update(delta)
 	if iswall == false:
-		update_path(delta)
+		movement2(delta)
 	move_and_slide()
+	
 
+
+
+var once = 1
+func movement2(d):
+	if is_on_floor():
+		velocity.x = 0
+	var h = global_position.angle_to_point(get_global_mouse_position())
+	print(velocity)
+	var t = 5 - $Timer.time_left
+	h = deg_to_rad(65)
+	var u = (%Player.global_position.x - global_position.x) * tan(h)
+	var v =(%Player.global_position.y - global_position.y)* cos(h)**2 - (gravity*0.5)*cos(h)
+	
+	var r_v = Vector2(u,v -13)
+	print(r_v)
+	var rv1 = r_v
+	var init = Vector2.ZERO
+	var init2 = Vector2.ZERO
+	print(t)
+	$Line2D.clear_points()
+	if jumped == false:
+		jumped = true
+		print(once)
+		velocity = r_v
+		$Timer.start()
+	$Line2D2.clear_points()	
+	for i in 300:
+		$Line2D.add_point(init)
+		
+		r_v.y += gravity*d
+		init +=r_v*d
+		once = 0
+	rv1.y = rv1.y
+	rv1.x = rv1.x
+	for i in 300:
+		$Line2D2.add_point(init2)
+		
+		rv1.y += gravity*d
+		init2 +=rv1*d
+		once = 0
+	
 	pass
 func update(d):
 	var pos = %Player.global_position.x - $".".global_position.x
 	if ((pos < 210 and pos > 0) or (pos > -210 and pos < 0) ) and jumped == false:
+		pass
+
+	if is_on_floor():
+
 		direc = (%Player.global_position - $".".global_position ).normalized()
 		move_direction = direc
-
-	else:
-		velocity.x = 0
 		anitree.set('parameters/Change/transition_request','Idle' )
 		if move_direction.x < 0:
 			anitree.set('parameters/Idle/transition_request','Idle 2')
 		else:
 			anitree.set('parameters/Idle/transition_request','Idle')
-		$Path2D/PathFollow2D.set_progress_ratio(0)
-		var plp = (%Player.global_position - $Path2D/PathFollow2D/Idle.global_position)
+
+		
+		
+	elif not is_on_floor():
+		direc = (%Player.global_position - $".".global_position ).normalized()
+		move_direction = direc
+		anitree.set('parameters/Change/transition_request','f_jump' )
+		if move_direction.x < 0:
+			anitree.set('parameters/f_jump/transition_request','l')
+		else:
+			anitree.set('parameters/f_jump/transition_request','r')
+
+		var plp = (%Player.global_position - $Idle.global_position)
 		if ((plp.x < 50 and plp.x > 0) or (plp.x > -50 and plp.x < 0)) and((plp.y < 50 and plp.y > 0) or (plp.y > -50 and plp.y < 0)) and jumped == true :
 			#atk.emit()
 			pass	
@@ -98,9 +153,10 @@ func update_path(d):
 		if ((pos < 210 and pos > 0) or (pos > -210 and pos < 0)) or isatking == true  :
 			isatking = true
 			path.curve.set_point_position(2,plp)
+			$CharacterBody2D.global_position = $Path2D/Marker2D3.global_position
 			if plp.x < 0: 
 				path.curve.set_point_in(1,Vector2(58,0))
-				path.curve.set_point_out(1,Vector2(-58,0))
+				path.curve.set_point_out(1,Vector2(-58,0))                        
 			else:
 				path.curve.set_point_in(1,Vector2(-58,0))
 				path.curve.set_point_out(1,Vector2(58,0))
@@ -152,7 +208,7 @@ func reset(plp):
 		isatking = false
 		jp.emit()
 func ft(x):
-	return 1/(200 * x)
+	return 1/(Engine.get_frames_per_second() * x)
 func _on_jp():
 
 
@@ -179,3 +235,8 @@ func _on_area_2d_area_entered(area):
 
 
 
+
+
+func _on_timer_timeout():
+	jumped = false
+	pass # Replace with function body.

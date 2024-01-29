@@ -1,10 +1,9 @@
-[gd_scene load_steps=99 format=3 uid="uid://c4uv3cur76h0r"]
+[gd_scene load_steps=98 format=3 uid="uid://c4uv3cur76h0r"]
 
 [ext_resource type="Script" path="res://Level/level.gd" id="1_b3drq"]
 [ext_resource type="PackedScene" uid="uid://cc8wav40o0jst" path="res://Player/player.tscn" id="4_gwfel"]
 [ext_resource type="PackedScene" uid="uid://downiljy7e3de" path="res://Level/wasp.tscn" id="6_8coam"]
 [ext_resource type="PackedScene" uid="uid://rys8xlye1qtb" path="res://Level/wasp_bullet.tscn" id="7_qj5o3"]
-[ext_resource type="PackedScene" uid="uid://dqa8dunult8et" path="res://Player/character_body_2d.tscn" id="8_f5iit"]
 [ext_resource type="PackedScene" uid="uid://lcsekr67212l" path="res://Player/fireball.tscn" id="9_k5on2"]
 [ext_resource type="Texture2D" uid="uid://1dvnm47r2ffl" path="res://Level/Heart&ManaUi.png" id="10_4o4ir"]
 [ext_resource type="Texture2D" uid="uid://cqmyflbm0teeu" path="res://Level/Heart&ManaUi - Copy.png" id="11_e78n8"]
@@ -379,12 +378,10 @@ adjustment_saturation = 1.18
 script = ExtResource("1_b3drq")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(6784, 817)
-zoom = Vector2(2.823, 2.823)
+position = Vector2(7303, 961)
 process_callback = 0
 limit_left = 0
 limit_smoothed = true
-position_smoothing_enabled = true
 
 [node name="Hud" type="CanvasLayer" parent="."]
 
@@ -877,9 +874,6 @@ occluder = SubResource("OccluderPolygon2D_2o0h1")
 position = Vector2(886, -212)
 scale = Vector2(0.6, 0.6)
 
-[node name="wasp" parent="Tutorial/Mobs/wasps" instance=ExtResource("6_8coam")]
-position = Vector2(685, 1100)
-
 [node name="wasp2" parent="Tutorial/Mobs/wasps" instance=ExtResource("6_8coam")]
 position = Vector2(165, 1033.33)
 
@@ -898,18 +892,6 @@ position = Vector2(1988.46, 569.855)
 scale = Vector2(1.97534, 1.97534)
 collision_mask = 39
 safe_margin = 0.39
-
-[node name="CharacterBody2D" parent="Tutorial/Mobs/Boar" instance=ExtResource("8_f5iit")]
-position = Vector2(1904.44, 501.382)
-collision_mask = 39
-
-[node name="CharacterBody2D2" parent="Tutorial/Mobs/Boar" instance=ExtResource("8_f5iit")]
-position = Vector2(2205.31, 514.463)
-collision_mask = 39
-
-[node name="CharacterBody2D3" parent="Tutorial/Mobs/Boar" instance=ExtResource("8_f5iit")]
-position = Vector2(2080.44, 518.031)
-collision_mask = 39
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Tutorial"]
 position = Vector2(1229, 422)
@@ -1188,16 +1170,16 @@ position = Vector2(6642, 617)
 script = ExtResource("49_jtnt3")
 
 [node name="Goblin" parent="Level 1/Goblins" instance=ExtResource("49_h3o0h")]
-position = Vector2(122, 312)
+position = Vector2(154, 317)
 
 [node name="AnimationTree" parent="Level 1/Goblins/Goblin" index="2"]
 parameters/Atk_f/current_state = "Atk"
 parameters/Atk_f/current_index = 0
 parameters/Atk_j/current_state = ""
 parameters/Atk_j/current_index = -1
-
-[node name="Goblin2" parent="Level 1/Goblins" instance=ExtResource("49_h3o0h")]
-position = Vector2(605, 324)
+parameters/f_jump/current_state = ""
+parameters/f_jump/transition_request = ""
+parameters/f_jump/current_index = -1
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Level 1"]
 color = Color(0.188235, 0.188235, 0.188235, 1)
@@ -1212,7 +1194,7 @@ autoplay = "new_animation"
 [node name="Player" parent="." instance=ExtResource("4_gwfel")]
 unique_name_in_owner = true
 z_index = 775
-position = Vector2(6784, 817)
+position = Vector2(7303, 961)
 collision_mask = 30
 
 [node name="GPUParticles2D" parent="Player" index="1"]
@@ -1244,14 +1226,10 @@ position = Vector2(6769, 760)
 [connection signal="pressed" from="Tutorial/CanvasLayer2/Control/Panel2/Control3/Button6" to="." method="_on_button_6_pressed"]
 [connection signal="body_entered" from="Tutorial/Bg/Area2D" to="Player" method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Tutorial/Timer2" to="." method="_on_timer_2_timeout"]
-[connection signal="wasp_h" from="Tutorial/Mobs/wasps/wasp" to="." method="_on_wasp_wasp_h"]
 [connection signal="wasp_h" from="Tutorial/Mobs/wasps/wasp2" to="." method="_on_wasp_wasp_h"]
 [connection signal="w_hurt" from="Tutorial/Mobs/wasps/bullet" to="." method="_on_bullet_w_hurt"]
 [connection signal="player_hurt1" from="Tutorial/Mobs/Boar/Boar" to="." method="_on_boar_player_hurt_1"]
 [connection signal="player_hurt1" from="Tutorial/Mobs/Boar/Boar2" to="." method="_on_boar_player_hurt_1"]
-[connection signal="player_hurt" from="Tutorial/Mobs/Boar/CharacterBody2D" to="." method="_on_character_body_2d_player_hurt"]
-[connection signal="player_hurt" from="Tutorial/Mobs/Boar/CharacterBody2D2" to="." method="_on_character_body_2d_player_hurt"]
-[connection signal="player_hurt" from="Tutorial/Mobs/Boar/CharacterBody2D3" to="." method="_on_character_body_2d_player_hurt"]
 [connection signal="screen_entered" from="Tutorial/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="Tutorial/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="body_entered" from="Level 1/TileMap/Area2D" to="Player" method="_on_area_2d_body_entered2"]
@@ -1266,7 +1244,6 @@ position = Vector2(6769, 760)
 
 [editable path="Tutorial/Fireball"]
 [editable path="Tutorial/bluefb"]
-[editable path="Tutorial/Mobs/wasps/wasp"]
 [editable path="Tutorial/Mobs/wasps/wasp2"]
 [editable path="Level 1/Goblins/Goblin"]
 [editable path="Player"]
