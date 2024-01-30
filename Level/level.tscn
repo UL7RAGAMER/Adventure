@@ -1177,9 +1177,7 @@ parameters/Atk_f/current_state = "Atk"
 parameters/Atk_f/current_index = 0
 parameters/Atk_j/current_state = ""
 parameters/Atk_j/current_index = -1
-parameters/f_jump/current_state = ""
 parameters/f_jump/transition_request = ""
-parameters/f_jump/current_index = -1
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Level 1"]
 color = Color(0.188235, 0.188235, 0.188235, 1)
