@@ -19,9 +19,9 @@ func _process(delta):
 
 	pass
 	
-func position():
+func positionv():
 	var pos1 = $".".position
-	var pos2 = $"/root/Level/Player".position
+	var pos2 = $"/root/World/Player".global_position
 	pos1 = pos2
 	return(pos1)
 	pass
@@ -65,3 +65,4 @@ func _dead():
 	dmg_multiplyer = 1
 	max_mana = 100
 	
+

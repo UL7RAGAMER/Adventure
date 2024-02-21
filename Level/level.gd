@@ -11,6 +11,8 @@ signal hurt()
 func _ready():
 	for i in $"Level 1/Goblins".get_children():
 		i.atk.connect(_on_goblin_atk)
+	for i in $'Level 1/Skeleton'.get_children():
+		i.atks.connect(_on_skeleton_atk)
 	pass
 signal dmg(dmg) 
 
@@ -214,5 +216,8 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 
 func _on_goblin_atk():
-	hurt.emit(0)
+	hurt.emit(2)
 	pass # Replace with function body.
+func _on_skeleton_atk():
+	print('asdasd')
+	hurt.emit(3)

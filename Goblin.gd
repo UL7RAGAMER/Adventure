@@ -27,7 +27,6 @@ signal atk
 func _ready():
 	add_to_group('goblins')
 func _process(delta):
-	print(velocity)
 	ray.target_position = %Player.global_position - global_position
 
 	if ray.get_collider() == %Player:
@@ -128,7 +127,7 @@ func update(d):
 
 		var plp = (%Player.global_position - $Idle.global_position)
 		if ((plp.x < 50 and plp.x > 0) or (plp.x > -50 and plp.x < 0)) and((plp.y < 50 and plp.y > 0) or (plp.y > -50 and plp.y < 0)) and jumped == true :
-			#atk.emit()
+			atk.emit()
 			pass	
 func jump():
 	velocity.y += jump_velocity

@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://t167kerabklq"]
+
+[ext_resource type="Texture2D" uid="uid://cd3acc8wrfemo" path="res://Texture/arrow.png" id="1_8xxg8"]
+[ext_resource type="Script" path="res://Enemy/Arrow.gd" id="1_hxwvc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nh53f"]
+size = Vector2(15.0973, 32.3961)
+
+[node name="Arrow" type="CharacterBody2D"]
+position = Vector2(-22, -2.125)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_hxwvc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.44248, 0.372311)
+rotation = -4.71239
+texture = ExtResource("1_8xxg8")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0.0849465, 1.56165)
+rotation = -4.71239
+collision_layer = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.0187438, 0.00526156)
+shape = SubResource("RectangleShape2D_nh53f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.00461352, 1.61605)
+rotation = -4.71239
+shape = SubResource("RectangleShape2D_nh53f")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
