@@ -26,5 +26,5 @@ func _process(delta):
 
 
 func _on_area_2d_body_entered(body):
-	atk_s.emit()
+	Hurt.health -=1
 	pass # Replace with function body.

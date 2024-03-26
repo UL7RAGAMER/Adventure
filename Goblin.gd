@@ -3,6 +3,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export_category('Stats')
 @export var health = 5
 @export var speed : float = 100.0
+@export var dmg = 3
 @export_category('Ai')
 var isatking = false
 @export var jump_velocity : float = -300.0
@@ -17,7 +18,8 @@ var ground_in_front : bool = true
 var iswall = false
 signal jp
 signal atk
-@onready var direc = (%Player.global_position.x - $".".global_position.x )
+var t = true
+@onready var direc = (PlayerPos.positionv().x - $".".global_position.x )
 @export var move_direction : Vector2 = Vector2.RIGHT :  
 	set(new_direction):
 		if(move_direction != new_direction):
@@ -25,11 +27,13 @@ signal atk
 			flip_node.scale.x = new_direction.x
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _ready():
+	
 	add_to_group('goblins')
 func _process(delta):
-	ray.target_position = %Player.global_position - global_position
+	var a = ray.get_collider()
+	ray.target_position = PlayerPos.positionv() - global_position
 
-	if ray.get_collider() == %Player:
+	if ray.get_collider() == $"/root/World/Player":
 		iswall = false
 	else:
 		iswall = true
@@ -37,8 +41,10 @@ func _process(delta):
 	if health <= 0:
 		await get_tree().create_timer(0.1).timeout
 		queue_free()
+		Inventory
+		
 	
-	var p = %Player.global_position - $".".global_position
+	var p = PlayerPos.positionv() - $".".global_position
 
 	if not is_on_floor():
 		velocity.y += (gravity) * delta
@@ -64,22 +70,18 @@ func movement2(d):
 	if is_on_floor():
 		velocity.x = 0
 	var h = global_position.angle_to_point(get_global_mouse_position())
-	print(velocity)
 	var t = 5 - $Timer.time_left
 	h = deg_to_rad(65)
-	var u = (%Player.global_position.x - global_position.x) * tan(h)
-	var v =(%Player.global_position.y - global_position.y)* cos(h)**2 - (gravity*0.5)*cos(h)
+	var u = (PlayerPos.positionv().x - global_position.x) * tan(h)
+	var v =(PlayerPos.positionv().y - global_position.y)* cos(h)**2 - (gravity*0.5)*cos(h)
 	
 	var r_v = Vector2(u,v -13)
-	print(r_v)
 	var rv1 = r_v
 	var init = Vector2.ZERO
 	var init2 = Vector2.ZERO
-	print(t)
 	$Line2D.clear_points()
 	if jumped == false:
 		jumped = true
-		print(once)
 		velocity = r_v
 		$Timer.start()
 	$Line2D2.clear_points()	
@@ -100,13 +102,13 @@ func movement2(d):
 	
 	pass
 func update(d):
-	var pos = %Player.global_position.x - $".".global_position.x
+	var pos = PlayerPos.positionv().x - $".".global_position.x
 	if ((pos < 210 and pos > 0) or (pos > -210 and pos < 0) ) and jumped == false:
 		pass
 
 	if is_on_floor():
 
-		direc = (%Player.global_position - $".".global_position ).normalized()
+		direc = (PlayerPos.positionv() - $".".global_position ).normalized()
 		move_direction = direc
 		anitree.set('parameters/Change/transition_request','Idle' )
 		if move_direction.x < 0:
@@ -117,7 +119,7 @@ func update(d):
 		
 		
 	elif not is_on_floor():
-		direc = (%Player.global_position - $".".global_position ).normalized()
+		direc = (PlayerPos.positionv() - $".".global_position ).normalized()
 		move_direction = direc
 		anitree.set('parameters/Change/transition_request','f_jump' )
 		if move_direction.x < 0:
@@ -125,19 +127,20 @@ func update(d):
 		else:
 			anitree.set('parameters/f_jump/transition_request','r')
 
-		var plp = (%Player.global_position - $Idle.global_position)
-		if ((plp.x < 50 and plp.x > 0) or (plp.x > -50 and plp.x < 0)) and((plp.y < 50 and plp.y > 0) or (plp.y > -50 and plp.y < 0)) and jumped == true :
-			atk.emit()
+		var plp = (PlayerPos.positionv() - $Idle.global_position)
+		if ((plp.x < 50 and plp.x > 0) or (plp.x > -50 and plp.x < 0)) and((plp.y < 50 and plp.y > 0) or (plp.y > -50 and plp.y < 0)) and jumped == true and t :
+			Hurt.health -= dmg
+			t = false
 			pass	
 func jump():
 	velocity.y += jump_velocity
 func update_path(d):
 	var r = $Path2D/PathFollow2D.get_progress_ratio()
-	var pos = %Player.global_position.x - $".".global_position.x
+	var pos = PlayerPos.positionv().x - $".".global_position.x
 	var pos2 = path.curve.get_point_position(2)
 	var pos1 = path.curve.get_point_position(1)
 	var pos0 = path.curve.get_point_position(0)
-	var plp = (%Player.global_position - $".".global_position)
+	var plp = (PlayerPos.positionv() - $".".global_position)
 	pos1.x = pos2.x/2
 	$Path2D/Marker2D.position = pos0	
 	$Path2D/Marker2D2.position = pos1
@@ -219,15 +222,14 @@ func _on_jp():
 
 
 func _on_area_2d_area_entered(area):
-	$Label.set_text(str(area))
 	health -= PlayerPos.dmg
-	$Path2D/PathFollow2D/Idle.material.set_shader_parameter("Hit",true) 
+	$Idle.material.set_shader_parameter("Hit",true) 
 	await get_tree().create_timer(0.1).timeout
-	$Path2D/PathFollow2D/Idle.material.set_shader_parameter("Hit",false) 
+	$Idle.material.set_shader_parameter("Hit",false) 
 	await get_tree().create_timer(0.1).timeout
-	$Path2D/PathFollow2D/Idle.material.set_shader_parameter("Hit",true) 
+	$Idle.material.set_shader_parameter("Hit",true) 
 	await get_tree().create_timer(0.1).timeout
-	$Path2D/PathFollow2D/Idle.material.set_shader_parameter("Hit",false) 
+	$Idle.material.set_shader_parameter("Hit",false) 	
 
 	pass # Replace with function body.
 
@@ -238,4 +240,9 @@ func _on_area_2d_area_entered(area):
 
 func _on_timer_timeout():
 	jumped = false
+	pass # Replace with function body.
+
+
+func _on_timer_2_timeout():
+	t = true
 	pass # Replace with function body.

@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://h6gyosv22fsp"]
+
+[ext_resource type="Texture2D" uid="uid://bw7bkly3yl6th" path="res://lamp_n.tres" id="1_8epem"]
+[ext_resource type="Script" path="res://Test.gd" id="1_qrh37"]
+[ext_resource type="Script" path="res://item.gd" id="1_smsvx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ogu1g"]
+
+[node name="item" type="Node2D"]
+script = ExtResource("1_smsvx")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+input_pickable = true
+script = ExtResource("1_qrh37")
+t = 70
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("1_8epem")
+region_enabled = true
+region_rect = Rect2(0, 18.8635, 24, 13.1365)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CircleShape2D_ogu1g")

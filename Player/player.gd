@@ -7,8 +7,8 @@ signal dead()
 var SPEED = 190.0
 const dbug = 1
 const JUMP_VELOCITY = -400.0
-var max_health = PlayerPos.def
-var health = max_health 
+var max_health = 10
+var health = Hurt.health
 var hit = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var ani_locked : bool = false
@@ -29,6 +29,7 @@ var can_jump = false
 var has_jumped = false
 var fs = false
 func _physics_process(delta):
+	
 	$Label.set_text(str(ani_locked,was_in_air))
 	if Input.is_action_just_pressed('fs') and fs == false:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
@@ -62,11 +63,11 @@ func _physics_process(delta):
 	$"../Hud/TextureProgressBar3".set_max(exp_req)
 	$"../Hud/TextureProgressBar3".set_value(exp1)
 
-	$"../Hud/TextureProgressBar2".set_max(PlayerPos.max_mana)
-	$"../Hud/TextureProgressBar".set_max(max_health)
+	$"../Hud/Mana".set_max(PlayerPos.max_mana)
+	$"../Hud/Health".set_max(max_health)
 	up_health()
-	if health <= 0:
-		health = 0
+	if Hurt.health <= 0:
+		Hurt.health = 0
 		PlayerPos.dmg_multiplyer = 1
 		PlayerPos.max_mana = 100
 		PlayerPos.def = 10
@@ -100,8 +101,8 @@ func _physics_process(delta):
 		jump()
 		
 	if Input.is_action_pressed("hurt"):
-		health-=1
-	if health != 0 and (not health<0):	
+		Hurt.health-=1
+	if Hurt.health != 0 and (not Hurt.health<0):	
 		direction = Input.get_vector("Left", "Right", "None", 'None')
 		if can_move:
 			SPEED = 190
@@ -128,13 +129,13 @@ func _physics_process(delta):
 			fireball.emit(selected_marker.global_position, direc_fb)
 
 
-	if not ani_locked and health!=0 and not health<0:
+	if not ani_locked and Hurt.health!=0 and not Hurt.health<0:
 		if direction.x != 0:
 			$player.play("run")
 		else:
 			$player.play("idle")
 			pass	
-	$"../Hud/TextureProgressBar2".value = mana
+	$"../Hud/Mana".value = mana
 
 	attack()
 	posi.emit(position)
@@ -229,22 +230,23 @@ func _on_timer_3_timeout():
 
 
 func up_health():
-	var health_p =$"../Hud/TextureProgressBar"
-	health_p.value = health
+	var health_p =$"../Hud/Health"
+	health_p.value = Hurt.health
 
 	
 
 
 
 
-
+@export var health_regen = 1 
 func _on_timer_4_timeout():
-	if health<max_health and health!=0:
-		health += 1	
+	if Hurt.health<max_health and Hurt.health!=0:
+		Hurt.health += 1*health_regen
 
 
 
 func _on_level_hurt(d):
+	print('Player:' , d)
 	if hit == false:
 		$Timer2.start()		
 		hit = true
@@ -315,7 +317,7 @@ func rest():
 
 func _on_area_2d_body_entered(body):
 	await get_tree().create_timer(0.1).timeout
-	health = 0
+	Hurt.health = 0
 	pass # Replace with function body.
 
 
@@ -331,5 +333,20 @@ func _on_jump_timeout():
 
 func _on_area_2d_body_entered2(body):
 	await get_tree().create_timer(0.1).timeout
-	health = 0
+	Hurt.health = 0
+	pass # Replace with function body.
+func hurt(dmg:int):
+	health-=dmg
+	return dmg
+
+
+func _on_hurt_dmg(d):
+	print('Player:' , d)
+	if hit == false:
+		$Timer2.start()		
+		hit = true
+		health -= d
+		#$player.material.set_shader_parameter("alpha",1) 
+		$Timer6.start()
+
 	pass # Replace with function body.

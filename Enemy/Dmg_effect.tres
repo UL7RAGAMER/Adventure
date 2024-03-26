@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d2dueg7redgds"]
+
+[ext_resource type="Shader" uid="uid://nnr8wvyq8lkq" path="res://Enemy/new_shader.tres" id="1_c5non"]
+
+[resource]
+shader = ExtResource("1_c5non")
+shader_parameter/Hit = false
+shader_parameter/Red = Color(1, 0, 0, 1)

@@ -1,12 +1,19 @@
-[gd_scene load_steps=21 format=3 uid="uid://bbyc146mbndn8"]
+[gd_scene load_steps=24 format=3 uid="uid://bbyc146mbndn8"]
 
 [ext_resource type="Texture2D" uid="uid://ygxnh6xdkdr0" path="res://Texture/Skeleton archer 2.0.png" id="1_bilvj"]
 [ext_resource type="Script" path="res://Enemy/skeleton.gd" id="1_pxjgp"]
+[ext_resource type="Shader" uid="uid://nnr8wvyq8lkq" path="res://Enemy/new_shader.tres" id="2_lj1cs"]
 [ext_resource type="Texture2D" uid="uid://78ibry1ly6aq" path="res://Texture/Skeleton archer 2_n.png" id="2_smkge"]
 [ext_resource type="Texture2D" uid="uid://c5vh71yhu2vnw" path="res://Player/light.tres" id="3_xnx6x"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2n6ky"]
 height = 63.0114
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_417js"]
+resource_local_to_scene = true
+shader = ExtResource("2_lj1cs")
+shader_parameter/Hit = false
+shader_parameter/Red = Color(1, 0, 0, 1)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_rwsfl"]
 diffuse_texture = ExtResource("1_bilvj")
@@ -219,6 +226,8 @@ nodes/State/position = Vector2(480, 520)
 nodes/output/position = Vector2(680, 580)
 node_connections = [&"Atk", 0, &"Atk_l", &"Atk", 1, &"Atk_r", &"Idle", 0, &"Idle_l", &"Idle", 1, &"Idle_r", &"State", 0, &"Idle", &"State", 1, &"Atk", &"output", 0, &"State"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2yyul"]
+
 [node name="Skeleton" type="CharacterBody2D" node_paths=PackedStringArray("anitree")]
 collision_layer = 0
 collision_mask = 6
@@ -231,6 +240,7 @@ shape = SubResource("CapsuleShape2D_2n6ky")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(2, 2, 2, 1)
+material = SubResource("ShaderMaterial_417js")
 texture = SubResource("CanvasTexture_rwsfl")
 hframes = 19
 
@@ -276,4 +286,14 @@ autostart = true
 
 [node name="Arrow" type="Node2D" parent="."]
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1.85813, 0.891905)
+scale = Vector2(1.80909, -2.5784)
+shape = SubResource("CapsuleShape2D_2yyul")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

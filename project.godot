@@ -19,6 +19,8 @@ config/icon="res://Texture/icon.svg"
 Trasisin="*res://Player/trasisin.tscn"
 PlayerPos="*res://Player/player pos.tscn"
 InputBuffer="*res://godot-input-buffer-godot-4/input_buffer.gd"
+Hurt="*res://Player/Hurt.gd"
+Inventory="*res://Inventory.gd"
 
 [display]
 

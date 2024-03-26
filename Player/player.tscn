@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://cc8wav40o0jst"]
+[gd_scene load_steps=83 format=3 uid="uid://cc8wav40o0jst"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_edqt5"]
 [ext_resource type="Texture2D" uid="uid://vopundayk7on" path="res://Texture/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Character/Idle/particles - Copy.png" id="2_sotpr"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://mn4aeoc76eyo" path="res://Audio/short-whoosh5.mp3" id="12_bhlco"]
 [ext_resource type="Texture2D" uid="uid://dw7j4ytry5r1d" path="res://Texture/My char/run mc.png" id="12_ebdrv"]
 [ext_resource type="AudioStream" uid="uid://60rpmqlnc006" path="res://Audio/short-whoosh6.mp3" id="13_hon66"]
+[ext_resource type="Script" path="res://Player/Hurt.gd" id="18_2e7ab"]
 [ext_resource type="Texture2D" uid="uid://c5vh71yhu2vnw" path="res://Player/light.tres" id="18_aflt6"]
 
 [sub_resource type="Curve" id="Curve_p3cfg"]
@@ -642,6 +643,7 @@ libraries = {
 }
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 modulate = Color(2, 2, 2, 1)
 position = Vector2(0.317665, 0.136078)
 color = Color(1, 0.803922, 0.34902, 1)
@@ -649,6 +651,9 @@ energy = 0.66
 texture = ExtResource("18_aflt6")
 texture_scale = 0.68
 height = 41.0
+
+[node name="Hurt" type="Node2D" parent="."]
+script = ExtResource("18_2e7ab")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
@@ -661,3 +666,4 @@ height = 41.0
 [connection signal="timeout" from="Timer6" to="." method="_on_timer_6_timeout"]
 [connection signal="timeout" from="Jump" to="." method="_on_jump_timeout"]
 [connection signal="animation_finished" from="player" to="." method="_on_player_animation_finished"]
+[connection signal="dmg" from="Hurt" to="." method="_on_hurt_dmg"]

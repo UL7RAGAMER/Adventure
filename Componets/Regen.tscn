@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dg1s28njv42r4"]
+
+[ext_resource type="Script" path="res://Test.gd" id="1_qrh37"]
+[ext_resource type="Texture2D" uid="uid://bi3oe6gwjljwe" path="res://Texture/Health.png" id="2_yr1x8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ogu1g"]
+
+[node name="Health" type="CharacterBody2D"]
+top_level = true
+z_index = 935
+collision_mask = 0
+input_pickable = true
+script = ExtResource("1_qrh37")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ogu1g")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.438
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(6, 6, 6, 1)
+position = Vector2(-0.280609, 0.280617)
+scale = Vector2(0.585351, 0.585351)
+texture = ExtResource("2_yr1x8")
+region_rect = Rect2(0, 18.8635, 24, 13.1365)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

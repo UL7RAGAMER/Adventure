@@ -9,10 +9,6 @@ var boar = load("res://Player/character_body_2d.tscn")
 var num = 0
 signal hurt()
 func _ready():
-	for i in $"Level 1/Goblins".get_children():
-		i.atk.connect(_on_goblin_atk)
-	for i in $'Level 1/Skeleton'.get_children():
-		i.atks.connect(_on_skeleton_atk)
 	pass
 signal dmg(dmg) 
 
