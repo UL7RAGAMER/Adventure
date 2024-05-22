@@ -1,31 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpiqvbioo15tq"]
+[gd_scene load_steps=3 format=3 uid="uid://dpiqvbioo15tq"]
 
 [ext_resource type="Script" path="res://Spwan.gd" id="1_6w8fi"]
-[ext_resource type="Texture2D" uid="uid://sp2kurich2po" path="res://Texture/marker.png" id="2_pnlp2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_04352"]
-size = Vector2(351, 74)
+size = Vector2(349.531, 33.9924)
 
 [node name="Spawn" type="Node2D"]
 script = ExtResource("1_6w8fi")
-test = 0
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(682, 542)
+scale = Vector2(0.777138, 1.92755)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(175.5, 37)
+position = Vector2(-1.52588e-05, 5.72205e-06)
 shape = SubResource("RectangleShape2D_04352")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(682, 542)
+[node name="Marker2D" type="Marker2D" parent="Area2D/CollisionShape2D"]
+position = Vector2(-174.766, -16.9962)
+scale = Vector2(1.61434, 1.61434)
 
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(682, 542)
-
-[node name="Marker2D2" type="Marker2D" parent="."]
-position = Vector2(1033, 616)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(5.26817, 5.26817)
-texture = ExtResource("2_pnlp2")
+[node name="Marker2D2" type="Marker2D" parent="Area2D/CollisionShape2D"]
+position = Vector2(175.234, 17.0038)

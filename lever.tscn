@@ -1,103 +1,33 @@
-[gd_scene load_steps=14 format=3 uid="uid://cswavse8dsnhc"]
+[gd_scene load_steps=5 format=3 uid="uid://cswavse8dsnhc"]
 
-[ext_resource type="Script" path="res://Lever.gd" id="1_r06jw"]
-[ext_resource type="Texture2D" uid="uid://dyqb7jd61jr1e" path="res://Texture/lever.png" id="2_rhdqt"]
+[ext_resource type="Script" path="res://Level/lev.gd" id="1_5bqcx"]
+[ext_resource type="SpriteFrames" uid="uid://dmvfcam66p7ww" path="res://level.tres" id="2_r2pf1"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qnc4e"]
-atlas = ExtResource("2_rhdqt")
-region = Rect2(0, 0, 64, 64)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_veqrm"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_66yws"]
-atlas = ExtResource("2_rhdqt")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wb62v"]
-atlas = ExtResource("2_rhdqt")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_un67u"]
-atlas = ExtResource("2_rhdqt")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_egibv"]
-atlas = ExtResource("2_rhdqt")
-region = Rect2(256, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5u827"]
-atlas = ExtResource("2_rhdqt")
-region = Rect2(320, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_44v6v"]
-atlas = ExtResource("2_rhdqt")
-region = Rect2(384, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hqgwk"]
-atlas = ExtResource("2_rhdqt")
-region = Rect2(448, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bqf3i"]
-atlas = ExtResource("2_rhdqt")
-region = Rect2(512, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n0tax"]
-atlas = ExtResource("2_rhdqt")
-region = Rect2(576, 0, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_4jo3k"]
-animations = [{
-"frames": [{
-"duration": 0.7,
-"texture": SubResource("AtlasTexture_qnc4e")
-}, {
-"duration": 0.2,
-"texture": SubResource("AtlasTexture_66yws")
-}, {
-"duration": 0.7,
-"texture": SubResource("AtlasTexture_wb62v")
-}, {
-"duration": 0.2,
-"texture": SubResource("AtlasTexture_un67u")
-}, {
-"duration": 0.7,
-"texture": SubResource("AtlasTexture_egibv")
-}, {
-"duration": 0.2,
-"texture": SubResource("AtlasTexture_5u827")
-}, {
-"duration": 0.7,
-"texture": SubResource("AtlasTexture_44v6v")
-}, {
-"duration": 0.2,
-"texture": SubResource("AtlasTexture_hqgwk")
-}, {
-"duration": 0.7,
-"texture": SubResource("AtlasTexture_bqf3i")
-}, {
-"duration": 0.7,
-"texture": SubResource("AtlasTexture_n0tax")
-}],
-"loop": false,
-"name": &"default",
-"speed": 10.0
-}]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sxn2t"]
 
 [node name="Lever" type="Node2D"]
-script = ExtResource("1_r06jw")
+script = ExtResource("1_5bqcx")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-1.61324, 1.50846)
-scale = Vector2(0.704911, 0.829263)
-zoom = Vector2(4.72, 4.72)
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+modulate = Color(5, 5, 5, 1)
+z_index = -30
+scale = Vector2(0.648289, 0.597367)
+sprite_frames = ExtResource("2_r2pf1")
+animation = &"pulled"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_4jo3k")
-frame = 9
-frame_progress = 1.0
+[node name="Button2" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -4.00012
+offset_top = -12.0
+offset_right = 11.9999
+offset_bottom = 19.0
+scale = Vector2(0.882901, 0.537256)
+theme_override_styles/hover = SubResource("StyleBoxEmpty_veqrm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_sxn2t")
+toggle_mode = true
+text = "s"
+metadata/_edit_use_anchors_ = true
 
-[node name="CheckButton" type="CheckButton" parent="AnimatedSprite2D"]
-offset_left = -22.5896
-offset_top = -8.9797
-offset_right = 21.4104
-offset_bottom = 15.0203
-
-[connection signal="pressed" from="AnimatedSprite2D/CheckButton" to="." method="_on_check_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ruhq1bvscwxe"]
+
+[ext_resource type="Texture2D" uid="uid://dgrn3t1ic6b55" path="res://Texture/wines.png" id="1_dgv6o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3mbn2"]
+size = Vector2(10, 32)
+
+[node name="wine" type="RigidBody2D"]
+
+[node name="wine" type="Sprite2D" parent="."]
+self_modulate = Color(4, 5, 4, 1)
+texture = ExtResource("1_dgv6o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3mbn2")

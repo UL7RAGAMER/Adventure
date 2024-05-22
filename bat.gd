@@ -3,10 +3,12 @@ var t = 0
 var timer = true
 var player_vis = false
 var t2 = false
-@export var hp = 2
+@export var health = 2
 @export var dmg = 2
 signal atk
 var cd = true
+var iswall = false
+@onready var ray = $RayCast2D as RayCast2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -14,13 +16,19 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if hp<=0:
+	var a = ray.get_collider()
+	ray.target_position = PlayerPos.positionv() - global_position
+	if ray.get_collider() == $"/root/World/Player":
+		iswall = false
+	else:
+		iswall = true
+	if health<=0:
 		Inventory.random_spawn(global_position)
 		queue_free()
 		
 	var player =   $"/root/World/Player".global_position
 	if (player - global_position <= Vector2(10,10) and player - global_position >= Vector2(-10,-10)) and cd:
-		Hurt.health -=dmg*0
+		Hurt.health -=dmg
 		cd = false
 		pass
 	var v = (player - global_position)
@@ -31,9 +39,9 @@ func _process(delta):
 		timer = false
 		
 		
-	elif not(player_vis) and t2:
-		var x = player.x - global_position.x
-		var y = player.y - global_position.y
+	elif not(player_vis) and t2 and iswall:
+		var x = 100
+		var y = 100
 		velocity = Vector2(randi_range(-x,x),randi_range(-y,y))
 		t2 = false
 	move_and_slide()
@@ -77,7 +85,7 @@ func _on_timer_2_timeout():
 
 
 func _on_area_2d_2_area_entered(area):
-	hp -= PlayerPos.dmg
+	health -= PlayerPos.dmg
 	pass # Replace with function body.
 
 

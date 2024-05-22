@@ -15,7 +15,9 @@ var l2 = false
 var l3 = false
 var l4 = false
 var l5 = false
+var levers = [l1,l2,l3,l4,l5]
 func _process(delta):
+	
 
 	pass
 	

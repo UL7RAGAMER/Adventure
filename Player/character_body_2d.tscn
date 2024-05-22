@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Player/character_body_2d.gd" id="1_jaqas"]
 [ext_resource type="Texture2D" uid="uid://bvmoi08roerp1" path="res://Texture/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Hit-Vanish/Hit-Sheet-Black.png" id="2_xypgm"]
 [ext_resource type="Texture2D" uid="uid://yylc61xkyc8u" path="res://Texture/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Run/Run-Sheet-Black.png" id="4_k31s2"]
-[ext_resource type="Texture2D" uid="uid://bu2t73iychqpj" path="res://Texture/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Run/Run-Sheet-Black - Copy.png" id="5_44toq"]
+[ext_resource type="Texture2D" uid="uid://vq1rfqvkygyj" path="res://Texture/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Run/Run-Sheet-Black - Copy.png" id="5_44toq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o2wv0"]
 atlas = ExtResource("2_xypgm")

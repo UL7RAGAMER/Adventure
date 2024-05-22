@@ -1,7 +1,7 @@
 extends CharacterBody2D
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export_category('Stats')
-@export var health = 5
+@export var health = 3
 @export var speed : float = 100.0
 @export var dmg = 3
 @export_category('Ai')

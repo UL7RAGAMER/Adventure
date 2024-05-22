@@ -9,7 +9,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	update_trajectory(delta)
 	pass
 func update_trajectory(delta):
 	var direc = (pl.global_position - gb.global_position )

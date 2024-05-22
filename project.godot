@@ -12,13 +12,13 @@ config_version=5
 
 run/main_scene="res://Level/level.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
+run/max_fps=120
 config/icon="res://Texture/icon.svg"
 
 [autoload]
 
 Trasisin="*res://Player/trasisin.tscn"
 PlayerPos="*res://Player/player pos.tscn"
-InputBuffer="*res://godot-input-buffer-godot-4/input_buffer.gd"
 Hurt="*res://Player/Hurt.gd"
 Inventory="*res://Inventory.gd"
 
@@ -28,7 +28,6 @@ window/size/viewport_width=1280
 window/size/viewport_height=704
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
-window/vsync/vsync_mode=0
 
 [editor_plugins]
 

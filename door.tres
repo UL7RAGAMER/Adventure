@@ -1,0 +1,17 @@
+[gd_resource type="VisualShader" load_steps=2 format=3 uid="uid://c77xvfqup2oit"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_s5os8"]
+output_port_for_preview = 0
+input_name = "vertex"
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+
+
+"
+mode = 1
+flags/light_only = false
+nodes/vertex/2/node = SubResource("VisualShaderNodeInput_s5os8")
+nodes/vertex/2/position = Vector2(100.345, 176.732)

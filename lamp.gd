@@ -10,7 +10,6 @@ func _ready():
 	var pos = $Marker2D.position
 	for i in chains:
 		var x = 1/chains
-		print(chains)
 		var c = chain.instantiate() as RigidBody2D
 		var m = Sprite2D.new()
 		
@@ -42,7 +41,6 @@ func _ready():
 		if i == chains - 1:
 			c.linear_velocity.y = 9.8
 			pass
-			print('../../'+str(get_path_to(c)))
 			pos.y +=10
 			pos.x+=1
 			$Lanten.position = pos

@@ -3,10 +3,6 @@ extends Node2D
 
 func _ready():
 	pass
-	
-func _process(delta):
-	await get_tree().create_timer(4).timeout
-	print(Inventory.random_spawn())
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 	#var tw = get_tree().create_tween()

@@ -39,7 +39,7 @@ func _physics_process(delta):
 		fs = false
 	
 	if Input.is_action_just_pressed("Down") and is_on_floor():
-		position.y +=5
+		position.y +=1
 	$GPUParticles2D.visible = false
 	$GPUParticles2D2.visible = false
 	$GPUParticles2D.process_material.set_emission_sphere_radius(1)
@@ -67,24 +67,18 @@ func _physics_process(delta):
 	$"../Hud/Health".set_max(max_health)
 	up_health()
 	if Hurt.health <= 0:
-		Hurt.health = 0
-		PlayerPos.dmg_multiplyer = 1
-		PlayerPos.max_mana = 100
-		PlayerPos.def = 10
+
 		$player.play("dead")
 
-		await $player.animation_finished
-		$player.set_frame(7)
-		$"../Hud/AnimationTree".play("new_animation")
-		await $"../Hud/AnimationTree".animation_finished
-		$"../Hud/AnimationTree".play("new_animation")		
+		await get_tree().create_timer(1.6).timeout
 		$"../Hud".visible = false
 		$".".visible = false
-		
+		gravity = 0
 		Trasisin.change_scene_to_file("res://Player/game.tscn")
+
 		dead.emit()
 	if not is_on_floor():
-		velocity.y += (gravity) * delta*dbug
+		velocity.y += (gravity) * delta * 1.6
 		was_in_air = true
 	else:
 
@@ -212,7 +206,7 @@ func _on_bluefb_cd_timeout():
 
 
 func _on_attack_area_entered(area):
-	PlayerPos.dmg_change(1)	
+	PlayerPos.dmg_change(Hurt.dmg_m)
 	atk.emit()
 	pass # Replace with function body.
 

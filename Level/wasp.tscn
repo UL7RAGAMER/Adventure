@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://downiljy7e3de"]
+[gd_scene load_steps=4 format=3 uid="uid://bui5ul3aom151"]
 
 [ext_resource type="Script" path="res://wasp.gd" id="1_5fhuj"]
 [ext_resource type="SpriteFrames" uid="uid://wab0xnlg06xs" path="res://Texture/Pixel Art Top Down - Basic/new_sprite_frames.tres" id="2_84ow3"]

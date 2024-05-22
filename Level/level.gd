@@ -1,78 +1,61 @@
 extends Node2D
 var fireball:PackedScene = preload("res://Player/fireball.tscn")
-var bluefb:PackedScene = preload("res://Player/bluefb.tscn")
-var bfb_aud:PackedScene = preload("res://Player/bfb_aud.tscn")
-var bfb_ani = preload("res://Player/bfb_ani.tscn")
+#var bluefb:PackedScene = preload("res://Player/bluefb.tscn")
+#var bfb_aud:PackedScene = preload("res://Player/bfb_aud.tscn")
+#var bfb_ani = preload("res://Player/bfb_ani.tscn")
 var boar = load("res://Player/character_body_2d.tscn")
-@onready var mrk1 : Marker2D = $Tutorial/spw1
-@onready var mrk2 : Marker2D = $Tutorial/spw2
 var num = 0
 signal hurt()
 func _ready():
 	pass
 signal dmg(dmg) 
 
-func _process(delta):
-	
-	
-	
-	num += 1
-	$Tutorial/CanvasLayer2/Control/Panel2/Label2.set_text(str(PlayerPos.points))
-	var pos1 = $Tutorial/spw1.position
-	var pos2 = $Tutorial/spw2.position
-	var f_pos = pos1
-	f_pos.x = randi_range(pos1.x,pos2.x) 
-	var b = boar.instantiate() as CharacterBody2D
-	
-	b.position = f_pos
-	if false:
-		add_child(b)
-	b.player_hurt.connect(_on_character_body_2d_player_hurt)
-	if PlayerPos.dead == true:
-		b.queue_free()
-		
+func _process(_delta):
+	pass
 	
 pass		
 func _on_player_fireball(pos, direction):
+	print(fireball,12312312313123)
 	var fb = fireball.instantiate() as Area2D
-	fb.z_index = 10
+	print(fb)
+	fb.set_z_index(10)
 	fb.position = pos
 	fb.rotation_degrees = rad_to_deg(direction.angle())
 	fb.direction = direction
 	print(fb.position,fb.rotation_degrees,fb.direction)
-	$Tutorial/Fireballs.add_child(fb)
-	$Tutorial/Fireballs/Fireball/AudioStreamPlayer2D.play()
+	$"Level 1".add_child(fb)
+	$"Level 1/Fireball/AudioStreamPlayer2D".play()
 	await get_tree().create_timer(3).timeout
-	$Tutorial/Fireballs/Fireball/fireball.play("fizziling")
-	$Tutorial/Fireballs/Fireball/CollisionShape2D.set_deferred("disabled",true)
-	for i in range(0,153):
-		$Tutorial/Fireballs/Fireball/GPUParticles2D.amount -= 1
+	$"Level 1/Fireball/fireball".play("fizziling")
+	$"Level 1/Fireball/CollisionShape2D".set_deferred("disabled",true)
 	
-	await $Tutorial/Fireballs/Fireball/fireball.animation_finished
+	await $"Level 1/Fireball/fireball".animation_finished
 	fb.queue_free()
 
 
 
-func _on_player_bluefb(pos, dir):
-	var  bfb = bluefb.instantiate() as Area2D
-	var bfb_aud1 = bfb_aud.instantiate() as AudioStreamPlayer2D
-	var bfb_ani1 = bfb_ani.instantiate() as AnimatedSprite2D
-	bfb.position = pos
-	bfb_aud1.position = pos
-	bfb_ani1.position = pos
-	bfb.rotation_degrees = rad_to_deg(dir.angle())
-	bfb_aud1.rotation_degrees = rad_to_deg(dir.angle())
-	bfb_ani1.rotation_degrees = rad_to_deg(dir.angle())
-	bfb.direction = dir
-	bfb_aud1.direction = dir
-	bfb_ani1.direction = dir
-	$Tutorial/Fireballs.add_child(bfb)
-	$Tutorial/Fireballs.add_child(bfb_aud1)
-	$Tutorial/Fireballs.add_child(bfb_ani1)	
-	
-	await get_tree().create_timer(6.671).timeout
-	bfb.queue_free()
+func _on_player_bluefb(_pos, _dir):
 
+	pass
+	#var  bfb = bluefb.instantiate() as Area2D
+	#var bfb_aud1 = bfb_aud.instantiate() as AudioStreamPlayer2D
+	#var bfb_ani1 = bfb_ani.instantiate() as AnimatedSprite2D
+	#bfb.position = pos
+	#bfb_aud1.position = pos
+	#bfb_ani1.position = pos
+	#bfb.rotation_degrees = rad_to_deg(dir.angle())
+	#bfb_aud1.rotation_degrees = rad_to_deg(dir.angle())
+	#bfb_ani1.rotation_degrees = rad_to_deg(dir.angle())
+	#bfb.direction = dir
+	#bfb_aud1.direction = dir
+	#bfb_ani1.direction = dir
+	#$Tutorial/Fireballs.add_child(bfb)
+	#$Tutorial/Fireballs.add_child(bfb_aud1)
+	#$Tutorial/Fireballs.add_child(bfb_ani1)	
+	#
+	#await get_tree().create_timer(6.671).timeout
+	#bfb.queue_free()
+#
 
 
 
@@ -176,28 +159,13 @@ func _on_player_dead():
 	pass # Replace with function body.
 
 
-func _on_bullet_w_hurt(h):				
-	pass # Replace with function body.
-
-
-func _on_wasp_wasp_h(h):
+func _on_wasp_wasp_h(_h):
 	hurt.emit(0)
 	
 	
 	pass # Replace with function body.
 
 
-
-
-func _on_animation_player_animation_finished(anim_name):
-	pass # Replace with function body.
-
-
-
-
-
-func _on_button_toggled(button_pressed):
-	pass # Replace with function body.
 
 
 func _on_visible_on_screen_notifier_2d_screen_entered():

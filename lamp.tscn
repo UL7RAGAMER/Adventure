@@ -81,11 +81,6 @@ position = Vector2(0.997983, 3.99877)
 scale = Vector2(0.0527573, 0.0527573)
 node_a = NodePath("../Node2D/chain2")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-1.03734, 8.0546)
-scale = Vector2(0.920855, -0.809369)
-zoom = Vector2(2.285, 2.285)
-
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(0, 4.00816)
 scale = Vector2(1.02492, 0.0149254)

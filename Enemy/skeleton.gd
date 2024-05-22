@@ -1,7 +1,7 @@
 extends CharacterBody2D
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export_category('Stats')
-@export var hp = 5
+@export var health = 5
 @export var speed : float = 100.0
 @export var dmg = 3
 @export var arrow = preload("res://Enemy/Arrow.tscn")
@@ -17,7 +17,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if hp <=0:
+	if health <=0:
 		queue_free()
 	if not is_on_floor():
 		velocity.y += (gravity) * delta
@@ -37,7 +37,7 @@ func atk(d):
 	
 	
 func update(d):
-	var pos = PlayerPos.positionv().x - $".".global_position.x
+	var pos = PlayerPos.positionv() - $".".global_position
 	var dir = (PlayerPos.positionv() - $".".global_position).normalized()
 	if dir.x < 0:
 		anitree.set('parameters/Idle/transition_request','L')
@@ -45,7 +45,7 @@ func update(d):
 		anitree.set('parameters/Idle/transition_request','R' )
 
 	
-	if ((pos < 210 and pos > 0) or (pos > -210 and pos < 0)) :
+	if (((pos.x < 210 and pos.x > 0) or (pos.x > -210 and pos.x< 0))and((pos.y < 210 and pos.y > 0) or (pos.y > -210 and pos.y< 0))) :
 		if not(is_atked):
 			if dir.x < 0:
 				anitree.set('parameters/Atk/transition_request','L')
@@ -74,7 +74,7 @@ func atkk():
 
 
 func _on_area_2d_area_entered(area):
-	hp -= PlayerPos.dmg
+	health -= PlayerPos.dmg
 	$Sprite2D.material.set_shader_parameter("Hit",true) 
 	await get_tree().create_timer(0.1).timeout
 	$Sprite2D.material.set_shader_parameter("Hit",false) 

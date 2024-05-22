@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://s60kcve83204"]
+
+[ext_resource type="Script" path="res://wines.gd" id="1_iv36n"]
+[ext_resource type="Texture2D" uid="uid://dgrn3t1ic6b55" path="res://Texture/wines.png" id="2_3u7jo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3mbn2"]
+size = Vector2(10, 32)
+
+[node name="wines" type="Node2D"]
+script = ExtResource("1_iv36n")
+stocks = 5
+
+[node name="wine" type="StaticBody2D" parent="."]
+self_modulate = Color(5, 5, 5, 1)
+
+[node name="wine" type="Sprite2D" parent="wine"]
+self_modulate = Color(4, 5, 4, 1)
+texture = ExtResource("2_3u7jo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wine"]
+shape = SubResource("RectangleShape2D_3mbn2")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(1, 14)
+scale = Vector2(-0.209121, -0.209121)
+node_a = NodePath("../wine")
+angular_limit_enabled = true
+angular_limit_lower = -0.466003
+angular_limit_upper = 0.438078
