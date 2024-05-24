@@ -23,6 +23,7 @@ func _process(delta):
 		await get_tree().create_timer(0.4).timeout
 		visible = false
 		Inventory.str +=1
+		Hurt.dmg_m+=1
 		queue_free()
 	move_and_slide()
 

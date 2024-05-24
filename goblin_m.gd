@@ -17,6 +17,7 @@ func _process(delta):
 
 	if health <= 0:
 		await get_tree().create_timer(0.1).timeout
+		Inventory.random_spawn(global_position)
 		queue_free()
 
 	if not is_on_floor():

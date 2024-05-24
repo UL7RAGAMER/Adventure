@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Level/level.gd" id="1_b3drq"]
 [ext_resource type="PackedScene" uid="uid://cc8wav40o0jst" path="res://Player/player.tscn" id="4_gwfel"]
 [ext_resource type="Texture2D" uid="uid://ccgd7f63h3105" path="res://Texture/Heart&ManaUi - Copy.png" id="4_rtcuo"]
+[ext_resource type="Script" path="res://Level/Stats.gd" id="10_v4r6s"]
 [ext_resource type="Texture2D" uid="uid://1dvnm47r2ffl" path="res://Texture/Heart&ManaUi.png" id="11_e78n8"]
 [ext_resource type="Texture2D" uid="uid://blh351etqrlwr" path="res://Texture/Str.png" id="12_c3ler"]
 [ext_resource type="Texture2D" uid="uid://v5mykjb4fre" path="res://Texture/Heart&ManaUi - OG.png" id="12_f47qs"]
@@ -17,7 +18,6 @@
 [ext_resource type="Texture2D" uid="uid://cn3tprott0bha" path="res://Texture/Sprite-0001.png" id="27_u7dqk"]
 [ext_resource type="PackedScene" uid="uid://cuss82iweq43u" path="res://lamp.tscn" id="28_2se8x"]
 [ext_resource type="Script" path="res://Level/bg_trans.gd" id="30_pky1l"]
-[ext_resource type="PackedScene" uid="uid://cb2q3h2sl6vfe" path="res://inventory.tscn" id="32_auchv"]
 [ext_resource type="Script" path="res://Level/Level 1.gd" id="32_d231k"]
 [ext_resource type="PackedScene" uid="uid://2hrov15852oq" path="res://door.tscn" id="33_465t4"]
 [ext_resource type="PackedScene" uid="uid://s60kcve83204" path="res://wines.tscn" id="33_fobtv"]
@@ -369,6 +369,7 @@ offset_top = -400.0
 offset_right = -369.0
 offset_bottom = -360.0
 scale = Vector2(1.60735, 1.60735)
+script = ExtResource("10_v4r6s")
 
 [node name="Hp" type="Label" parent="Hud/Stats"]
 layout_mode = 0
@@ -899,8 +900,6 @@ collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colliders/inv collider8"]
 shape = SubResource("RectangleShape2D_u5t6a")
-
-[node name="Inventory" parent="." instance=ExtResource("32_auchv")]
 
 [connection signal="hurt" from="." to="Player" method="_on_level_hurt"]
 [connection signal="pressed" from="Hud/Button" to="Level 1" method="_on_button_pressed"]

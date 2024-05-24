@@ -8,7 +8,7 @@ func _ready():
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
+	print(str,'asd',regen)
 	#$"/root/World/Hud/Stats/Hp".set_text(": " + str(regen))
 	#$"/root/World/Hud/Stats/Str".set_text(": " + str(str))
 	pass
@@ -19,7 +19,8 @@ func random_spawn(p:Vector2):
 	
 	var x = [1,2]
 	
-	var y = x.pick_random() if randi_range(0,100) >=10 else null
+	var y = x.pick_random() 
+	#if randi_range(0,100) >=10 else null
 	print(y)
 	
 	if y==1:
