@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://cc8wav40o0jst"]
+[gd_scene load_steps=94 format=3 uid="uid://cc8wav40o0jst"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_edqt5"]
 [ext_resource type="Texture2D" uid="uid://c35w5md5fv66x" path="res://Texture/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Character/Idle/Idle-Sheet.png" id="3_ob3vl"]
@@ -17,6 +17,10 @@
 [ext_resource type="AudioStream" uid="uid://60rpmqlnc006" path="res://Audio/short-whoosh6.mp3" id="13_hon66"]
 [ext_resource type="Script" path="res://Player/Hurt.gd" id="18_2e7ab"]
 [ext_resource type="Texture2D" uid="uid://c5vh71yhu2vnw" path="res://Player/light.tres" id="18_aflt6"]
+[ext_resource type="AudioStream" uid="uid://dngpn7ix6hq5l" path="res://Audio/Player sfx/jumping_1-6452.mp3" id="19_xxdjb"]
+[ext_resource type="AudioStream" uid="uid://tw25hxo11ryc" path="res://Audio/Player sfx/180904-woodland04-run-steps-skip-jump-clip-47486.mp3" id="20_d5cxc"]
+[ext_resource type="AudioStream" uid="uid://cn7hof72ggk4a" path="res://Audio/Player sfx/land2-43790.mp3" id="20_lq1la"]
+[ext_resource type="AudioStream" uid="uid://ble4s07sbb4d3" path="res://Audio/Player sfx/ough-47202.mp3" id="21_tp3jc"]
 
 [sub_resource type="Curve" id="Curve_p3cfg"]
 min_value = -200.0
@@ -544,6 +548,9 @@ _data = {
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 78
 script = ExtResource("1_edqt5")
+s1 = ExtResource("19_xxdjb")
+s2 = ExtResource("20_lq1la")
+s3 = ExtResource("20_d5cxc")
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
 visible = false
@@ -710,6 +717,17 @@ height = 41.0
 
 [node name="Hurt" type="Node2D" parent="."]
 script = ExtResource("18_2e7ab")
+
+[node name="Jump2" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
+
+[node name="Walk" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("20_d5cxc")
+bus = &"SFX"
+
+[node name="Hurt2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("21_tp3jc")
+bus = &"SFX"
 
 [connection signal="fireball" from="." to="Hurt" method="_on_player_fireball"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

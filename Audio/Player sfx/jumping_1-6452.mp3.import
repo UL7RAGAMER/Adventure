@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dngpn7ix6hq5l"
+path="res://.godot/imported/jumping_1-6452.mp3-32bad50067e0eed309c7dc8a8820f7be.mp3str"
+
+[deps]
+
+source_file="res://Audio/Player sfx/jumping_1-6452.mp3"
+dest_files=["res://.godot/imported/jumping_1-6452.mp3-32bad50067e0eed309c7dc8a8820f7be.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

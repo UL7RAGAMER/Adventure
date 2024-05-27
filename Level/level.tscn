@@ -213,7 +213,7 @@ size = Vector2(1510, 731)
 script = ExtResource("1_b3drq")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(4189, 933)
+position = Vector2(4221, 957)
 zoom = Vector2(2.3, 2.3)
 process_callback = 0
 limit_left = 0
@@ -584,36 +584,36 @@ times = 2.0
 
 [node name="Spawn2" parent="Level 1/Enemy" instance=ExtResource("46_tkg5w")]
 position = Vector2(4775.27, 948.926)
-scale = Vector2(0.418284, 0.0510716)
-sr = 2
+scale = Vector2(0.182023, 0.0222246)
+sr = 1
 S_m = true
 times = 1.0
 
 [node name="Spawn3" parent="Level 1/Enemy" instance=ExtResource("46_tkg5w")]
 position = Vector2(4898.83, 601.975)
 scale = Vector2(1.28993, 0.127524)
-sr = 3
+sr = 1
 B = true
 times = 2.0
 
 [node name="Spawn7" parent="Level 1/Enemy" instance=ExtResource("46_tkg5w")]
 position = Vector2(6170, 754.198)
 scale = Vector2(1.28993, 0.127524)
-sr = 7
+sr = 2
 B = true
 times = 2.0
 
 [node name="Spawn4" parent="Level 1/Enemy" instance=ExtResource("46_tkg5w")]
 position = Vector2(4261.27, 572.321)
 scale = Vector2(0.418284, 0.0510716)
-sr = 4
+sr = 1
 S_r = true
 times = 1.0
 
 [node name="Spawn5" parent="Level 1/Enemy" instance=ExtResource("46_tkg5w")]
 position = Vector2(4452.04, 623.721)
 scale = Vector2(0.418284, 0.0510716)
-sr = 5
+sr = 1
 G_r = true
 times = 1.0
 
@@ -628,7 +628,7 @@ times = 1.0
 [node name="Spawn8" parent="Level 1/Enemy" instance=ExtResource("46_tkg5w")]
 position = Vector2(6709.7, 771.003)
 scale = Vector2(0.788943, 0.0963283)
-sr = 8
+sr = 6
 G_m = true
 S_m = true
 times = 1.0
@@ -636,7 +636,7 @@ times = 1.0
 [node name="Spawn10" parent="Level 1/Enemy" instance=ExtResource("46_tkg5w")]
 position = Vector2(6709.7, 635.583)
 scale = Vector2(0.788943, 0.0963283)
-sr = 9
+sr = 6
 G_m = true
 S_m = true
 times = 1.0
@@ -644,7 +644,7 @@ times = 1.0
 [node name="Spawn11" parent="Level 1/Enemy" instance=ExtResource("46_tkg5w")]
 position = Vector2(7103.11, 635.583)
 scale = Vector2(0.788943, 0.0963283)
-sr = 9
+sr = 6
 G_m = true
 S_m = true
 times = 1.0
@@ -652,7 +652,7 @@ times = 1.0
 [node name="Spawn9" parent="Level 1/Enemy" instance=ExtResource("46_tkg5w")]
 position = Vector2(6937.04, 890.607)
 scale = Vector2(0.788943, 0.0963283)
-sr = 9
+sr = 6
 G_r = true
 S_r = true
 times = 1.0
@@ -660,7 +660,7 @@ times = 1.0
 [node name="Spawn12" parent="Level 1/Enemy" instance=ExtResource("46_tkg5w")]
 position = Vector2(7595.36, 625.698)
 scale = Vector2(0.7316, 0.210853)
-sr = 11
+sr = 6
 S_r = true
 times = 1.0
 
@@ -789,7 +789,7 @@ chains = 16.0
 [node name="Player" parent="." instance=ExtResource("4_gwfel")]
 unique_name_in_owner = true
 z_index = 775
-position = Vector2(4189, 933)
+position = Vector2(4221, 957)
 collision_mask = 30
 
 [node name="GPUParticles2D" parent="Player" index="1"]

@@ -12,7 +12,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var p = $"/root/World/Player" if $"/root/World/Player" else $"../Marker2D"
+	var p = $"/root/World/Player" 
 	if not(piked):
 		sinwave(delta)
 		t1 = false
@@ -24,6 +24,13 @@ func _process(delta):
 		visible = false
 		Inventory.regen += 1
 		Hurt.health+=1
+		var x = AudioStreamPlayer2D.new()
+		x.stream = load("res://Audio/Player sfx/collectcoin-6075.wav")
+		add_child(x)
+		if one:
+			x.play()
+			one = 0
+		x.finished.connect(st)
 		queue_free()
 	move_and_slide()
 

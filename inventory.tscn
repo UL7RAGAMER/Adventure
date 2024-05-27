@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://cb2q3h2sl6vfe"]
+[gd_scene load_steps=3 format=3 uid="uid://cb2q3h2sl6vfe"]
 
 [ext_resource type="Script" path="res://Inventory.gd" id="1_jk0y3"]
+[ext_resource type="AudioStream" uid="uid://68n0cwh05has" path="res://Audio/Player sfx/collectcoin-6075.wav" id="2_nyokj"]
 
 [node name="Inventory" type="Node2D"]
 script = ExtResource("1_jk0y3")
+
+[node name="Collecetabels" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_nyokj")
+bus = &"SFX"

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bdnwms18nkaws"
+path="res://.godot/imported/Y2meta.app - Video Game Music _Mystic Passage_ Cave Theme Concept (128 kbps).wav-a51839ab6deff09fe0f9497871c9f2f7.sample"
+
+[deps]
+
+source_file="res://Audio/Y2meta.app - Video Game Music _Mystic Passage_ Cave Theme Concept (128 kbps).wav"
+dest_files=["res://.godot/imported/Y2meta.app - Video Game Music _Mystic Passage_ Cave Theme Concept (128 kbps).wav-a51839ab6deff09fe0f9497871c9f2f7.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

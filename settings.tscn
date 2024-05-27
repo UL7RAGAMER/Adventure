@@ -1,0 +1,167 @@
+[gd_scene load_steps=12 format=3 uid="uid://b3p0160yl67e6"]
+
+[ext_resource type="Script" path="res://settings.gd" id="1_557fw"]
+[ext_resource type="FontFile" uid="uid://swd8qfo05kdj" path="res://StayPixelRegular-EaOxl.ttf" id="1_ylrtn"]
+[ext_resource type="AudioStream" uid="uid://b6ykfksg8n2wh" path="res://Audio/click-buttons-ui-menu-sounds-effects-button-2-203594.mp3" id="2_wse00"]
+[ext_resource type="Texture2D" uid="uid://bavjt3yjp6tfn" path="res://Texture/settings..png" id="4_o88tw"]
+[ext_resource type="PackedScene" uid="uid://5srftxldlmh5" path="res://hotkey.tscn" id="5_3t2ah"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_206fh"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+texture = ExtResource("4_o88tw")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mbjt2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v2mnm"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("4_o88tw")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+modulate_color = Color(0.611765, 0.611765, 0.611765, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6a07v"]
+texture = ExtResource("4_o88tw")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x1mso"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rpnec"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_557fw")
+s1 = ExtResource("2_wse00")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 50.0
+offset_right = -100.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_selected_color = Color(0.968627, 0.737255, 0.380392, 1)
+theme_override_colors/font_unselected_color = Color(0.580392, 0.439216, 0.227451, 1)
+theme_override_colors/font_outline_color = Color(0.14902, 0.14902, 0.14902, 1)
+theme_override_constants/outline_size = 9
+theme_override_fonts/font = ExtResource("1_ylrtn")
+theme_override_font_sizes/font_size = 59
+theme_override_styles/tab_selected = SubResource("StyleBoxTexture_206fh")
+theme_override_styles/tab_hovered = SubResource("StyleBoxEmpty_mbjt2")
+theme_override_styles/tab_unselected = SubResource("StyleBoxTexture_v2mnm")
+theme_override_styles/panel = SubResource("StyleBoxTexture_6a07v")
+tab_alignment = 1
+current_tab = 1
+
+[node name="Sound" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(0.968627, 0.737255, 0.380392, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Sound"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Sound/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Label" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "asdsa"
+
+[node name="Label2" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "asdsa"
+
+[node name="Label3" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "asdsa"
+
+[node name="Label4" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "asdsa"
+
+[node name="Label5" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "asdsa"
+
+[node name="Keybinds" type="TabBar" parent="TabContainer"]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(0.968627, 0.737255, 0.380392, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Keybinds"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Keybinds/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Keybinds/MarginContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="HSeparator2" type="HSeparator" parent="TabContainer/Keybinds/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+theme_override_styles/separator = SubResource("StyleBoxEmpty_x1mso")
+
+[node name="left" parent="TabContainer/Keybinds/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_3t2ah")]
+layout_mode = 2
+action = "Left"
+
+[node name="right" parent="TabContainer/Keybinds/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_3t2ah")]
+layout_mode = 2
+action = "Right"
+
+[node name="down" parent="TabContainer/Keybinds/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_3t2ah")]
+layout_mode = 2
+action = "Down"
+
+[node name="jump" parent="TabContainer/Keybinds/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_3t2ah")]
+layout_mode = 2
+action = "jump"
+
+[node name="ranged" parent="TabContainer/Keybinds/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_3t2ah")]
+layout_mode = 2
+action = "fireball"
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Keybinds/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+theme_override_styles/separator = SubResource("StyleBoxEmpty_rpnec")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_wse00")

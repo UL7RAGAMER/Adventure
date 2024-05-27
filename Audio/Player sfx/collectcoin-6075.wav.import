@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://68n0cwh05has"
+path="res://.godot/imported/collectcoin-6075.wav-7e10e5214023619c57a6b359da8c0196.sample"
+
+[deps]
+
+source_file="res://Audio/Player sfx/collectcoin-6075.wav"
+dest_files=["res://.godot/imported/collectcoin-6075.wav-7e10e5214023619c57a6b359da8c0196.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

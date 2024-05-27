@@ -18,19 +18,14 @@ func _ready():
 	if on:
 		if G_r:
 			e.append(e1)
-			print(e1)
 		if S_r:
 			e.append(e2)
-			print(e2)
 		if B:
 			e.append(e3)
-			print(e3)
 		if G_m:
 			e.append(e4)
-			print(e4)
 		if S_m:
 			e.append(e5)
-			print(e5)
 		if (G_m or G_r or S_m or S_r or B  ) == false:
 			var d = false
 			assert(d,'Spawn checkboxes not tickedw')
@@ -41,11 +36,10 @@ func _ready():
 			for j in range(o.y,f.y):
 				var x = Vector2(i,j)
 				a.append(x)
-		await get_tree().create_timer(1).timeout 
 		for j in range(times):
 			for i in e :
 				var p = i.instantiate() as CharacterBody2D
-				await get_tree().create_timer(1).timeout 
+				await get_tree().create_timer(0.1).timeout 
 				p.global_position = a.pick_random()
 				p.modulate
 				if sr <=5:
@@ -58,7 +52,6 @@ func _ready():
 					p.health = p.health * 3
 					p.dmg = p.dmg * 3
 				$"/root/World/Level 1/Enemy".add_child(p)
-		print(G_m,G_r,S_m,S_r,B)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 

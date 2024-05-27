@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://tw25hxo11ryc"
+path="res://.godot/imported/180904-woodland04-run-steps-skip-jump-clip-47486.mp3-aaa9b42b6be48a2102b6a1674b49e713.mp3str"
+
+[deps]
+
+source_file="res://Audio/Player sfx/180904-woodland04-run-steps-skip-jump-clip-47486.mp3"
+dest_files=["res://.godot/imported/180904-woodland04-run-steps-skip-jump-clip-47486.mp3-aaa9b42b6be48a2102b6a1674b49e713.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

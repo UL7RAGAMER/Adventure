@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ble4s07sbb4d3"
+path="res://.godot/imported/ough-47202.mp3-9b448f7410b3ba009db1cca52cbe65a8.mp3str"
+
+[deps]
+
+source_file="res://Audio/Player sfx/ough-47202.mp3"
+dest_files=["res://.godot/imported/ough-47202.mp3-9b448f7410b3ba009db1cca52cbe65a8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

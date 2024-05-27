@@ -11,6 +11,8 @@ z_index = 935
 collision_mask = 0
 input_pickable = true
 script = ExtResource("1_qrh37")
+t = null
+a = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ogu1g")

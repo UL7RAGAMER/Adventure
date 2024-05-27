@@ -27,16 +27,17 @@ var y = 1
 var time = 0.1
 var can_jump = false
 var has_jumped = false
-var fs = false
+@onready var jump_2 = $Jump2 
+@onready var walk = $Walk as AudioStreamPlayer2D
+@onready var hurt_2 = $Hurt2
+@export var s1 : AudioStream
+@export var s2 : AudioStream
+@export var s3 : AudioStream
+var is_w = true
 func _physics_process(delta):
 	
 	$Label.set_text(str(ani_locked,was_in_air))
-	if Input.is_action_just_pressed('fs') and fs == false:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-		fs = true
-	elif Input.is_action_just_pressed('fs') and fs == true:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		fs = false
+
 	
 	if Input.is_action_just_pressed("Down") and is_on_floor():
 		position.y +=1
@@ -81,28 +82,42 @@ func _physics_process(delta):
 		velocity.y += (gravity) * delta * 1.6
 		was_in_air = true
 	else:
-
 		if has_jumped:
+			jump_2.stream = s2
+			jump_2.play()
 			land()	
 		
 	# Handle Jump.
 	if is_on_floor() and can_jump == false:
 		can_jump = true
+		
 	elif can_jump == true and $Jump.is_stopped() :
 		$Jump.start()
-		
+
 	if Input.is_action_just_pressed("ui_accept") and can_jump:
+		jump_2.stream = s1
+		jump_2.play()
 		jump()
 		
-	if Input.is_action_pressed("hurt"):
-		Hurt.health-=1
-	if Hurt.health != 0 and (not Hurt.health<0):	
+	if Input.is_action_just_pressed("hurt"):
+		Inventory.random_spawn(global_position)
+	if velocity.x==0:
+		walk.stop()
+		is_w = true
+
+	if Hurt.health != 0 and (not Hurt.health<0):
+		
 		direction = Input.get_vector("Left", "Right", "None", 'None')
 		if can_move:
 			SPEED = 190
 		else:
 			SPEED = 90
 		if direction:
+			print('sdsdsd')
+			if is_w:
+				walk.play()
+				is_w = false
+			
 			velocity.x = direction.x * SPEED
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -165,6 +180,7 @@ func land():
 	if was_in_air:
 		ani_locked = false
 		was_in_air = false
+		has_jumped = false
 	else:
 		pass
 	

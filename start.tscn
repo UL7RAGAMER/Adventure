@@ -1,8 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4xi4udhy15f1"]
+[gd_scene load_steps=11 format=3 uid="uid://c4xi4udhy15f1"]
 
 [ext_resource type="Texture2D" uid="uid://cw602euokf5xf" path="res://Texture/parallaz3.png" id="1_6ryni"]
 [ext_resource type="Script" path="res://start.gd" id="1_dqoux"]
 [ext_resource type="FontFile" uid="uid://swd8qfo05kdj" path="res://StayPixelRegular-EaOxl.ttf" id="2_bwrnl"]
+[ext_resource type="AudioStream" uid="uid://c1m7ccp1s8lwr" path="res://Audio/click-buttons-ui-menu-sounds-effects-button-7-203601.mp3" id="3_g4r0p"]
+[ext_resource type="PackedScene" uid="uid://bh5kshaax0kpe" path="res://options.tscn" id="4_e1ds2"]
+[ext_resource type="AudioStream" uid="uid://b6ykfksg8n2wh" path="res://Audio/click-buttons-ui-menu-sounds-effects-button-2-203594.mp3" id="5_7j1yr"]
+[ext_resource type="AudioStream" uid="uid://cjpbsxn4pah7v" path="res://Audio/Y2meta.app - Video Game Music _Mystic Passage_ Cave Theme Concept (128 kbps).mp3" id="7_ed7i7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fgnka"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5mdr1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xts5i"]
 
 [node name="Start" type="Control"]
 layout_mode = 3
@@ -12,6 +22,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dqoux")
+s1 = ExtResource("5_7j1yr")
+s2 = ExtResource("3_g4r0p")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -39,6 +51,12 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.968627, 0.737255, 0.380392, 1)
+theme_override_colors/font_shadow_color = Color(0.670588, 0.380392, 0.380392, 1)
+theme_override_colors/font_outline_color = Color(0.858824, 0.537255, 0.384314, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = -4
+theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("2_bwrnl")
 theme_override_font_sizes/font_size = 116
 text = "Catacomb clash"
@@ -61,22 +79,49 @@ layout_mode = 2
 
 [node name="Start" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.968627, 0.737255, 0.380392, 1)
+theme_override_colors/font_outline_color = Color(0.25098, 0.152941, 0.184314, 1)
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_bwrnl")
 theme_override_font_sizes/font_size = 73
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fgnka")
 text = "Begin"
-
-[node name="Exit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_bwrnl")
-theme_override_font_sizes/font_size = 73
-text = "Exit"
 
 [node name="Options" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.968627, 0.737255, 0.380392, 1)
+theme_override_colors/font_outline_color = Color(0.231373, 0.113725, 0.160784, 1)
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_bwrnl")
 theme_override_font_sizes/font_size = 73
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5mdr1")
 text = "Option"
 
+[node name="Exit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.968627, 0.737255, 0.380392, 1)
+theme_override_colors/font_outline_color = Color(0.231373, 0.113725, 0.160784, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_bwrnl")
+theme_override_font_sizes/font_size = 73
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xts5i")
+text = "Exit"
+
+[node name="Options" parent="." instance=ExtResource("4_e1ds2")]
+visible = false
+layout_mode = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_7j1yr")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_ed7i7")
+volume_db = -20.293
+autoplay = true
+bus = &"Music"
+
 [connection signal="button_down" from="MarginContainer/HBoxContainer/VBoxContainer/Start" to="." method="_on_start_button_down"]
-[connection signal="button_down" from="MarginContainer/HBoxContainer/VBoxContainer/Exit" to="." method="_on_exit_button_down"]
 [connection signal="button_down" from="MarginContainer/HBoxContainer/VBoxContainer/Options" to="." method="_on_options_button_down"]
+[connection signal="button_down" from="MarginContainer/HBoxContainer/VBoxContainer/Exit" to="." method="_on_exit_button_down"]
+
+[editable path="Options"]
