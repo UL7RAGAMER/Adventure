@@ -129,9 +129,22 @@ func update(d):
 
 		var plp = (PlayerPos.positionv() - $Idle.global_position)
 		if ((plp.x < 50 and plp.x > 0) or (plp.x > -50 and plp.x < 0)) and((plp.y < 50 and plp.y > 0) or (plp.y > -50 and plp.y < 0)) and jumped == true and t :
-			Hurt.health -= dmg
-			t = false
-			pass	
+			Hurt.hurt(dmg)
+			hurt()
+func hurt():
+	var x = AudioStreamPlayer2D.new()
+	x.stream = load("res://Audio/Player sfx/ough-47202.mp3")
+	x.bus = 'SFX'
+	x.volume_db = -20
+	add_child(x)
+	var one = 1
+	if one:
+		x.play()
+		one = 0
+	x.finished.connect(st.bind(x))
+func st(x):
+	x.queue_free()
+	pass
 func jump():
 	velocity.y += jump_velocity
 func update_path(d):

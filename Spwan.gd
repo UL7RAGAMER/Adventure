@@ -21,7 +21,7 @@ func _ready():
 		if S_r:
 			e.append(e2)
 		if B:
-			e.append(e3)
+			pass
 		if G_m:
 			e.append(e4)
 		if S_m:

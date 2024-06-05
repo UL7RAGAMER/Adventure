@@ -26,5 +26,21 @@ func _process(delta):
 
 
 func _on_area_2d_body_entered(body):
-	Hurt.health -=1
+	Hurt.hurt(1)
+	hurt()
+	
+func hurt():
+	var x = AudioStreamPlayer2D.new()
+	x.stream = load("res://Audio/Player sfx/ough-47202.mp3")
+	x.bus = 'SFX'
+	x.volume_db = -10
+	add_child(x)
+	var one = 1
+	if one:
+		x.play()
+		one = 0
+	x.finished.connect(st.bind(x))
+func st(x):
+	x.queue_free()
+	
 	pass # Replace with function body.

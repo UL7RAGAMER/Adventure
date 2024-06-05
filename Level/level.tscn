@@ -213,7 +213,7 @@ size = Vector2(1510, 731)
 script = ExtResource("1_b3drq")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(4221, 957)
+position = Vector2(4157, 954)
 zoom = Vector2(2.3, 2.3)
 process_callback = 0
 limit_left = 0
@@ -295,10 +295,10 @@ anchor_left = 0.457031
 anchor_top = 0.832386
 anchor_right = 0.489748
 anchor_bottom = 0.922006
-offset_left = 120.0
-offset_top = 19.0
-offset_right = 466.123
-offset_bottom = 732.908
+offset_left = 301.0
+offset_top = -559.0
+offset_right = 647.123
+offset_bottom = 154.908
 grow_horizontal = 2
 scale = Vector2(0.10793, 0.0811999)
 theme_override_colors/font_color = Color(0.929412, 0.74902, 0.290196, 1)
@@ -308,10 +308,10 @@ text = "1"
 
 [node name="Label3" type="Label" parent="Hud"]
 visible = false
-offset_left = 652.0
-offset_top = 76.0
-offset_right = 1040.0
-offset_bottom = 853.0
+offset_left = 637.0
+offset_top = 40.0
+offset_right = 1025.0
+offset_bottom = 817.0
 scale = Vector2(0.0684244, 0.0514783)
 theme_override_colors/font_color = Color(0.054902, 0.905882, 0.705882, 1)
 theme_override_fonts/font = ExtResource("19_5auy0")
@@ -789,7 +789,7 @@ chains = 16.0
 [node name="Player" parent="." instance=ExtResource("4_gwfel")]
 unique_name_in_owner = true
 z_index = 775
-position = Vector2(4221, 957)
+position = Vector2(4157, 954)
 collision_mask = 30
 
 [node name="GPUParticles2D" parent="Player" index="1"]

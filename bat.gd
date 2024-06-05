@@ -28,7 +28,8 @@ func _process(delta):
 		
 	var player =   $"/root/World/Player".global_position
 	if (player - global_position <= Vector2(10,10) and player - global_position >= Vector2(-10,-10)) and cd:
-		Hurt.health -=dmg
+		Hurt.health -= dmg
+		print('sdfsdfsdfsdfsdfsfdsdfsdfsdfsdfsfsdfsdfsdfsfsdfsdfsfsf')
 		cd = false
 		pass
 	var v = (player - global_position)

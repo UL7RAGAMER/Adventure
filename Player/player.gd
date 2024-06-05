@@ -7,8 +7,6 @@ signal dead()
 var SPEED = 190.0
 const dbug = 1
 const JUMP_VELOCITY = -400.0
-var max_health = 10
-var health = Hurt.health
 var hit = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var ani_locked : bool = false
@@ -29,13 +27,12 @@ var can_jump = false
 var has_jumped = false
 @onready var jump_2 = $Jump2 
 @onready var walk = $Walk as AudioStreamPlayer2D
-@onready var hurt_2 = $Hurt2
+@onready var hurt_2 = $Hurt2 as AudioStreamPlayer2D
 @export var s1 : AudioStream
 @export var s2 : AudioStream
 @export var s3 : AudioStream
 var is_w = true
 func _physics_process(delta):
-	
 	$Label.set_text(str(ani_locked,was_in_air))
 
 	
@@ -60,12 +57,11 @@ func _physics_process(delta):
 	$"../Hud/Label3".set_text(str(exp1))
 	if Input.is_action_pressed('xp'):
 		gain_xp(1)
-	max_health = PlayerPos.def
 	$"../Hud/TextureProgressBar3".set_max(exp_req)
 	$"../Hud/TextureProgressBar3".set_value(exp1)
 
 	$"../Hud/Mana".set_max(PlayerPos.max_mana)
-	$"../Hud/Health".set_max(max_health)
+	$"../Hud/Health".set_max(Hurt.m_h)
 	up_health()
 	if Hurt.health <= 0:
 
@@ -113,7 +109,6 @@ func _physics_process(delta):
 		else:
 			SPEED = 90
 		if direction:
-			print('sdsdsd')
 			if is_w:
 				walk.play()
 				is_w = false
@@ -132,7 +127,6 @@ func _physics_process(delta):
 			var fb_markers  = $Fireball_pos.get_children()
 			var selected_marker = fb_markers[randi() % fb_markers.size()]
 			var direc_fb = (get_global_mouse_position() - position).normalized()
-			print('fireball')
 			mana -= fb_cost
 			$Fireball_cd.start()
 			fireball.emit(selected_marker.global_position, direc_fb)
@@ -158,7 +152,6 @@ func _physics_process(delta):
 
 func inventory():
 	if Input.is_action_just_pressed("inventory"):
-		print('work')
 		if $"../Tutorial/CanvasLayer2".visible == true:
 			$"../Tutorial/CanvasLayer2".visible = false
 		elif $"../Tutorial/CanvasLayer2".visible == false:
@@ -250,17 +243,18 @@ func up_health():
 
 @export var health_regen = 1 
 func _on_timer_4_timeout():
-	if Hurt.health<max_health and Hurt.health!=0:
+	if Hurt.health<Hurt.m_h and Hurt.health!=0:
 		Hurt.health += 1*health_regen
 
 
 
 func _on_level_hurt(d):
-	print('Player:' , d)
+	hurt_2.stream = load("res://Audio/Player sfx/ough-47202.mp3")
+	hurt_2.play()
 	if hit == false:
 		$Timer2.start()		
 		hit = true
-		health -= d
+		Hurt.dmg_m -= d
 		#$player.material.set_shader_parameter("alpha",1) 
 		$Timer6.start()
 
@@ -287,7 +281,6 @@ func gain_xp(amount):
 		
 		exp1 -= exp_req
 		lvl_up()
-		print(exp1)
 func lvl_up():
 	lvl += 1
 	exp_req = req_xp(lvl + 1)
@@ -345,18 +338,21 @@ func _on_area_2d_body_entered2(body):
 	await get_tree().create_timer(0.1).timeout
 	Hurt.health = 0
 	pass # Replace with function body.
-func hurt(dmg:int):
-	health-=dmg
-	return dmg
+
 
 
 func _on_hurt_dmg(d):
-	print('Player:' , d)
 	if hit == false:
 		$Timer2.start()		
 		hit = true
-		health -= d
+		Hurt.health -= d
 		#$player.material.set_shader_parameter("alpha",1) 
 		$Timer6.start()
 
 	pass # Replace with function body.
+
+
+func _on_hurt_dmg_sound():
+	print(hurt_2,'asdasdasdasdadasd')
+	pass # Replace with function body.
+	

@@ -193,6 +193,7 @@ shape = SubResource("CapsuleShape2D_5nnnp")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.9
+one_shot = true
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 16

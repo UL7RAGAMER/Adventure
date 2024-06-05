@@ -11,6 +11,8 @@ func _ready():
 signal dmg(dmg) 
 
 func _process(_delta):
+	$Hud/Label.text = str(Hurt.health)
+	$Hud/Label3.text = str(Hurt.dmg_m)
 	pass
 	
 pass		
