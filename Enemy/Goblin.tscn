@@ -458,6 +458,7 @@ parameters/f_jump/transition_request = "l"
 parameters/f_jump/current_index = -1
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 text = "asdadad"

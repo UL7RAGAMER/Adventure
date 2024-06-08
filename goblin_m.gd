@@ -50,10 +50,13 @@ func update():
 		x.start()
 		velocity.x = 0
 		ani.play('atk')
+
 		if cd:
+			sound(load("res://Audio/Monster/sword-sound-2-36274.mp3"))
 			x.stop()
 			t.start()
 			Hurt.hurt(dmg)
+			
 			hurt()
 			x.start()
 

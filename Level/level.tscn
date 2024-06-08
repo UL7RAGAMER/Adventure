@@ -213,7 +213,7 @@ size = Vector2(1510, 731)
 script = ExtResource("1_b3drq")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(4157, 954)
+position = Vector2(5267, 528)
 zoom = Vector2(2.3, 2.3)
 process_callback = 0
 limit_left = 0
@@ -789,7 +789,7 @@ chains = 16.0
 [node name="Player" parent="." instance=ExtResource("4_gwfel")]
 unique_name_in_owner = true
 z_index = 775
-position = Vector2(4157, 954)
+position = Vector2(5267, 528)
 collision_mask = 30
 
 [node name="GPUParticles2D" parent="Player" index="1"]

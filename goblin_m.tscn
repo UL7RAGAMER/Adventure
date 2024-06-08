@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://goblin_m.gd" id="1_0rfh6"]
 [ext_resource type="Texture2D" uid="uid://cnjya4snhrxje" path="res://Texture/Goblin/gob_m.png" id="1_3dsax"]
-[ext_resource type="AudioStream" uid="uid://dg7brsjqcpter" path="res://Audio/Goblin/goblin-death-6729.mp3" id="2_e0gmt"]
+[ext_resource type="AudioStream" uid="uid://dg7brsjqcpter" path="res://Audio/Monster/goblin-death-6729.mp3" id="2_e0gmt"]
 [ext_resource type="Shader" uid="uid://nnr8wvyq8lkq" path="res://Enemy/new_shader.tres" id="2_tnm0s"]
-[ext_resource type="AudioStream" uid="uid://cp15vuwj42y3t" path="res://Audio/Goblin/goblin-growl-100279.mp3" id="3_mcbxk"]
-[ext_resource type="AudioStream" uid="uid://dfigalkkgd1hy" path="res://Audio/Goblin/goblin-scream-87564.mp3" id="4_d3o4i"]
-[ext_resource type="AudioStream" uid="uid://dobsl2q1pq2tp" path="res://Audio/Goblin/256819987_nw_prev.mp3" id="5_d0538"]
+[ext_resource type="AudioStream" uid="uid://cp15vuwj42y3t" path="res://Audio/Monster/goblin-growl-100279.mp3" id="3_mcbxk"]
+[ext_resource type="AudioStream" uid="uid://dfigalkkgd1hy" path="res://Audio/Monster/goblin-scream-87564.mp3" id="4_d3o4i"]
+[ext_resource type="AudioStream" uid="uid://dobsl2q1pq2tp" path="res://Audio/Monster/256819987_nw_prev.mp3" id="5_d0538"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ljfq3"]
 resource_local_to_scene = true

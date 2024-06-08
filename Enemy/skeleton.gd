@@ -56,6 +56,7 @@ func update(d):
 			anitree.set('parameters/State/transition_request','Atk')
 			is_atked = true
 			atk(d)
+			sound(load("res://Audio/Monster/sword-sound-2-36274.mp3"))
 	else:
 
 		anitree.set('parameters/State/transition_request','Idle')
@@ -63,8 +64,18 @@ func update(d):
 			anitree.set('parameters/Idle/transition_request','L')
 		else:
 			anitree.set('parameters/Idle/transition_request','R' )
-
-
+func sound(s):
+	var x = AudioStreamPlayer2D.new()
+	x.stream = s
+	x.bus = 'SFX'
+	add_child(x)
+	var one = 1
+	if one:
+		x.play()
+		one = 0
+	x.finished.connect(st2.bind(x))
+func st2(x):
+	x.queue_free()
 func _on_timer_timeout():
 	is_atked=false
 	pass # Replace with function body.

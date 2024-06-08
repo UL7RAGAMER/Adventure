@@ -130,6 +130,7 @@ func update(d):
 		var plp = (PlayerPos.positionv() - $Idle.global_position)
 		if ((plp.x < 50 and plp.x > 0) or (plp.x > -50 and plp.x < 0)) and((plp.y < 50 and plp.y > 0) or (plp.y > -50 and plp.y < 0)) and jumped == true and t :
 			Hurt.hurt(dmg)
+			t=false
 			hurt()
 func hurt():
 	var x = AudioStreamPlayer2D.new()
