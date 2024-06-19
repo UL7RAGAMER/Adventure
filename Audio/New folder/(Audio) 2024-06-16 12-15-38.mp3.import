@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dkaatik0aosyq"
+path="res://.godot/imported/(Audio) 2024-06-16 12-15-38.mp3-f3f73ba57de4ff644574569c17b41f0d.mp3str"
+
+[deps]
+
+source_file="res://Audio/New folder/(Audio) 2024-06-16 12-15-38.mp3"
+dest_files=["res://.godot/imported/(Audio) 2024-06-16 12-15-38.mp3-f3f73ba57de4ff644574569c17b41f0d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://b3p0160yl67e6"]
+[gd_scene load_steps=13 format=3 uid="uid://b3p0160yl67e6"]
 
 [ext_resource type="Script" path="res://settings.gd" id="1_557fw"]
 [ext_resource type="FontFile" uid="uid://swd8qfo05kdj" path="res://StayPixelRegular-EaOxl.ttf" id="1_ylrtn"]
 [ext_resource type="AudioStream" uid="uid://b6ykfksg8n2wh" path="res://Audio/click-buttons-ui-menu-sounds-effects-button-2-203594.mp3" id="2_wse00"]
 [ext_resource type="Texture2D" uid="uid://bavjt3yjp6tfn" path="res://Texture/settings..png" id="4_o88tw"]
 [ext_resource type="PackedScene" uid="uid://5srftxldlmh5" path="res://hotkey.tscn" id="5_3t2ah"]
+[ext_resource type="PackedScene" uid="uid://c8o5bixoukdrd" path="res://audio_slider.tscn" id="5_umqp4"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_206fh"]
 content_margin_left = 15.0
@@ -66,10 +67,8 @@ theme_override_styles/tab_hovered = SubResource("StyleBoxEmpty_mbjt2")
 theme_override_styles/tab_unselected = SubResource("StyleBoxTexture_v2mnm")
 theme_override_styles/panel = SubResource("StyleBoxTexture_6a07v")
 tab_alignment = 1
-current_tab = 1
 
 [node name="Sound" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_colors/font_selected_color = Color(0.968627, 0.737255, 0.380392, 1)
 
@@ -80,37 +79,32 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 24
+theme_override_constants/margin_left = 285
+theme_override_constants/margin_top = 68
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Sound/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Sound/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Sound/MarginContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 165
 alignment = 1
 
-[node name="Label" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+[node name="Audio Slider" parent="TabContainer/Sound/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_umqp4")]
 layout_mode = 2
-text = "asdsa"
 
-[node name="Label2" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+[node name="Audio Slider2" parent="TabContainer/Sound/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_umqp4")]
 layout_mode = 2
-text = "asdsa"
+bus_name = "Music"
 
-[node name="Label3" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+[node name="Audio Slider3" parent="TabContainer/Sound/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_umqp4")]
 layout_mode = 2
-text = "asdsa"
-
-[node name="Label4" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "asdsa"
-
-[node name="Label5" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "asdsa"
+bus_name = "SFX"
 
 [node name="Keybinds" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_selected_color = Color(0.968627, 0.737255, 0.380392, 1)
 

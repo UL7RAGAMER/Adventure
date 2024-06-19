@@ -1,0 +1,10 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://xh4tycx64o8e"]
+
+[ext_resource type="Texture2D" uid="uid://br7jsvso7rtmq" path="res://Texture/slider..png" id="1_pvpie"]
+
+[resource]
+texture = ExtResource("1_pvpie")
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+axis_stretch_vertical = 2
+region_rect = Rect2(4, 4, 70, 6)
