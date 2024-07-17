@@ -436,9 +436,6 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ihvh5")
-}
 tree_root = SubResource("AnimationNodeBlendTree_krs3a")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Atk_f/current_state = "Atk_fliped"
@@ -547,6 +544,7 @@ position = Vector2(0, -23.8642)
 shape = SubResource("CapsuleShape2D_pywel")
 
 [node name="Line2D" type="Line2D" parent="."]
+visible = false
 position = Vector2(12, 0)
 default_color = Color(1, 0, 0, 1)
 

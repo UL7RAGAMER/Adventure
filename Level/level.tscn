@@ -213,7 +213,7 @@ size = Vector2(1510, 731)
 script = ExtResource("1_b3drq")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(4169, 456)
+position = Vector2(4171, 953)
 zoom = Vector2(2.3, 2.3)
 process_callback = 0
 limit_left = 0
@@ -786,10 +786,67 @@ chains = 3.0
 position = Vector2(5754, 490)
 chains = 16.0
 
+[node name="CanvasLayer" type="CanvasLayer" parent="Level 1"]
+follow_viewport_enabled = true
+
+[node name="Label5" type="Label" parent="Level 1/CanvasLayer"]
+top_level = true
+offset_left = 4244.0
+offset_top = 904.0
+offset_right = 5498.0
+offset_bottom = 998.0
+scale = Vector2(0.228769, 0.228769)
+theme_override_colors/font_color = Color(0.968627, 0.737255, 0.380392, 1)
+theme_override_colors/font_shadow_color = Color(0.670588, 0.380392, 0.380392, 1)
+theme_override_colors/font_outline_color = Color(0.858824, 0.537255, 0.384314, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = -4
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("20_83cpf")
+theme_override_font_sizes/font_size = 116
+text = "eliminate all the monsters"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="Level 1/CanvasLayer"]
+top_level = true
+offset_left = 5047.0
+offset_top = 904.0
+offset_right = 6301.0
+offset_bottom = 998.0
+scale = Vector2(0.228769, 0.228769)
+theme_override_colors/font_color = Color(0.968627, 0.737255, 0.380392, 1)
+theme_override_colors/font_shadow_color = Color(0.670588, 0.380392, 0.380392, 1)
+theme_override_colors/font_outline_color = Color(0.858824, 0.537255, 0.384314, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = -4
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("20_83cpf")
+theme_override_font_sizes/font_size = 116
+text = "Reach the end"
+horizontal_alignment = 1
+
+[node name="Label7" type="Label" parent="Level 1/CanvasLayer"]
+top_level = true
+offset_left = 4692.0
+offset_top = 904.0
+offset_right = 5946.0
+offset_bottom = 998.0
+scale = Vector2(0.228769, 0.228769)
+theme_override_colors/font_color = Color(0.968627, 0.737255, 0.380392, 1)
+theme_override_colors/font_shadow_color = Color(0.670588, 0.380392, 0.380392, 1)
+theme_override_colors/font_outline_color = Color(0.858824, 0.537255, 0.384314, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = -4
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("20_83cpf")
+theme_override_font_sizes/font_size = 116
+text = "find the levers"
+horizontal_alignment = 1
+
 [node name="Player" parent="." instance=ExtResource("4_gwfel")]
 unique_name_in_owner = true
 z_index = 775
-position = Vector2(4169, 456)
+position = Vector2(4171, 953)
 collision_mask = 30
 
 [node name="GPUParticles2D" parent="Player" index="1"]
